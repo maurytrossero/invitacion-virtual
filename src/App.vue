@@ -2,6 +2,10 @@
   <div class="home">
     <InvitacionBoda />
     <CuentaRegresiva />
+    <UbicacionEvento />
+    <GestionFiesta />
+    <FotosEvento />
+
     <button class="scroll-btn up" @click="scroll('up')">▲</button>
     <button class="scroll-btn down" @click="scroll('down')">▼</button>
   </div>
@@ -11,6 +15,9 @@
 import { defineComponent } from 'vue'
 import InvitacionBoda from '@/components/InvitacionBoda.vue'  
 import CuentaRegresiva from '@/components/CuentaRegresiva.vue'  
+import UbicacionEvento from '@/components/UbicacionEvento.vue'
+import GestionFiesta from '@/components/GestionFiesta.vue'
+import FotosEvento from '@/components/FotosEvento.vue'
 
 const scroll = (direction: 'up' | 'down') => {
   const offset = direction === 'up' ? -window.innerHeight : window.innerHeight;

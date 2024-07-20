@@ -6,9 +6,9 @@
     <p>y nos encantaría compartir este día con ustedes</p>
     <h3>Nuestros Padres</h3>
     <p>Novia:</p>
-    <p>Erika Reyes y Víctor Ortiz</p>      
+    <p>Ana García y Juan Pérez</p>      
     <p>Novio:</p>
-    <p>Erika Reyes y Víctor Ortiz</p>
+    <p>María López y Carlos Martínez</p>
   </div>
 </template>
 
@@ -48,6 +48,7 @@
   max-width: 200px; /* Tamaño máximo para evitar que las imágenes sean demasiado grandes */
   max-height: 200px; /* Tamaño máximo para evitar que las imágenes sean demasiado grandes */
   background-image: url('@/../public/images/flor.png'); /* Usa la imagen directamente en el CSS */
+
 }
 
 .invitacion::before {
