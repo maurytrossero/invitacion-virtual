@@ -1,30 +1,73 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="home">
+    <InvitacionBoda />
+    <CuentaRegresiva />
+    <button class="scroll-btn up" @click="scroll('up')">▲</button>
+    <button class="scroll-btn down" @click="scroll('down')">▼</button>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<script lang="ts" setup>
+import { defineComponent } from 'vue'
+import InvitacionBoda from '@/components/InvitacionBoda.vue'  
+import CuentaRegresiva from '@/components/CuentaRegresiva.vue'  
+
+const scroll = (direction: 'up' | 'down') => {
+  const offset = direction === 'up' ? -window.innerHeight : window.innerHeight;
+  window.scrollBy({ top: offset, behavior: 'smooth' });
+}
+</script>
+
+<style scoped>
+.home {
   text-align: center;
-  color: #2c3e50;
+  padding: 20px;
+  position: relative;
+  min-height: 200vh; /* Asegura que haya suficiente contenido para desplazar */
 }
 
-nav {
-  padding: 30px;
+.scroll-btn {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.scroll-btn.up {
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+.scroll-btn.down {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .scroll-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2em;
+  }
+
+  .scroll-btn.up {
+    bottom: 50px;
+  }
+
+  .scroll-btn.down {
+    bottom: 5px;
+  }
 }
 </style>
