@@ -91,7 +91,6 @@
   .tarjeta {
     width: 300px;
     height: 200px;
-    perspective: 1000px;
     margin: 10px;
   }
   
@@ -107,6 +106,7 @@
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
+    text-align: center; /* Asegurar que el texto esté centrado */
   }
   
   .tarjeta-contenido h2 {
@@ -119,7 +119,6 @@
     font-family: 'Lora', serif;
     font-size: 1em;
     margin-bottom: 20px;
-    text-align: center;
   }
   
   .tarjeta-contenido button {
@@ -148,6 +147,7 @@
   
     .fiesta {
       flex-direction: column;
+      align-items: center;
     }
   
     .tarjeta {
@@ -155,8 +155,18 @@
       margin-bottom: 20px;
     }
   
-    .tarjeta-contenido {
+    .tarjeta-contenido h2 {
       font-size: 1.2em;
+    }
+  
+    .tarjeta-contenido p {
+      font-size: 0.9em;
+      margin-bottom: 15px;
+    }
+  
+    .tarjeta-contenido button {
+      font-size: 0.9em;
+      padding: 8px 16px;
     }
   }
   </style>
