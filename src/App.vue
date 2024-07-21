@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <InvitacionBoda />
     <CuentaRegresiva />
+    <InvitacionBoda />
     <UbicacionEvento />
     <GestionFiesta />
     <FotosEvento />
