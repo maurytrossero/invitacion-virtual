@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-const ACCESS_TOKEN = 'IGQWRQdk1GT2ZAMSHY3TlhQZAkxaRDJOY1ZAwLTdDVkZAFVlVMV092NTB6TElkMWZAyQ2Vja3JmTDk1MmQ2a25jMnh5WVo1V01TT3FYN1pvWll4ZA290VWEyUE9wX3FQeXFaMWJvazBVM0dDaXBWc0l3YzdCQUNIWGRfVkUZD'; // Reemplaza esto con tu token de acceso a largo plazo
+const ACCESS_TOKEN = 'IGQWRPelhEcEl4Mjc3Yldjek94RDdGZAndLaTY0LVc3ZAXBOR0xWeTJ0bk9jbFM4eWFVUC02cElfbHVmMkpmOE9pRDhfeDhOQjZAhcW1EcWNnSllBaEFmdGREWVp0dGZAqdUdPVlhFWWFYcktkOWxXeTJCM0R0b1Q4OTgZD'; // Reemplaza esto con tu token de acceso a largo plazo
 const USER_ID = '1246190323410382'; // Reemplaza esto con tu user ID de Instagram
 const HASHTAG = 'oriypaulo'; // Reemplaza esto con tu hashtag sin el símbolo #
 
