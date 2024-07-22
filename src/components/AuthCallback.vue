@@ -20,8 +20,9 @@ onMounted(async () => {
       });
 
       const { access_token, user_id } = response.data;
-      console.log('Access Token:', access_token);  // Verifica si el token se recibe correctamente
-      console.log('User ID:', user_id);  // Verifica si el user_id se recibe correctamente
+      console.log('Access Token:', access_token);  // Verifica que el token se obtiene correctamente
+      console.log('User ID:', user_id);  // Verifica que el user_id se obtiene correctamente
+
       localStorage.setItem('instagram_access_token', access_token);
       localStorage.setItem('instagram_user_id', user_id);
 
@@ -32,5 +33,3 @@ onMounted(async () => {
   }
 });
 </script>
-
-  
