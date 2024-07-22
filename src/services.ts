@@ -4,6 +4,9 @@ const ACCESS_TOKEN = localStorage.getItem('instagram_access_token') || '';
 const USER_ID = localStorage.getItem('instagram_user_id') || '';
 const HASHTAG = 'oriypaulo';
 
+console.log('Access Token:', ACCESS_TOKEN);  // Verifica el token recuperado
+console.log('User ID:', USER_ID);  // Verifica el user_id recuperado
+
 export const getInstagramImages = async () => {
   try {
     if (!ACCESS_TOKEN || !USER_ID) {
