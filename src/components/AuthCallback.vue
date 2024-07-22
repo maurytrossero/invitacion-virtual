@@ -26,6 +26,8 @@
         });
   
         const { access_token, user_id } = response.data;
+        console.log('Access Token:', access_token);  // Para depuración
+        console.log('User ID:', user_id);  // Para depuración
         localStorage.setItem('instagram_access_token', access_token);  // Guarda el token
         localStorage.setItem('instagram_user_id', user_id);  // Guarda el user_id también
   

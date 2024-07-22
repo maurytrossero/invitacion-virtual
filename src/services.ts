@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const ACCESS_TOKEN = localStorage.getItem('instagram_access_token') || '';
-const USER_ID = localStorage.getItem('instagram_user_id') || '';  // Obtener el user_id desde localStorage
+const USER_ID = localStorage.getItem('instagram_user_id') || '';
 const HASHTAG = 'oriypaulo';
 
 export const getInstagramImages = async () => {
