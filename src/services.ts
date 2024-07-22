@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
-const ACCESS_TOKEN = '7d1b48aa7d90a01554736eae97823ed0'; // Reemplaza esto con tu token de acceso a largo plazo
-const USER_ID = '1683614822429244'; // Reemplaza esto con tu user ID de Instagram
+const ACCESS_TOKEN = 'IGQWRNRDROakp0akVMNkotUFZArV09Ha09GNk9SRmJMTmVMVmIwdm11YTVWcV9IaHVzdmtFSEszeWhHVmRzSDVHb3NvUDBfWDZA6VG1PalY3alFTTFM0RlhNWU9rLXVnX2E5ZAnQzZAnJvQjllbDY1T05La3BQTTN5N3MZD'; // Reemplaza esto con tu token de acceso a largo plazo
+const USER_ID = '1246190323410382'; // Reemplaza esto con tu user ID de Instagram
 const HASHTAG = 'oriypaulo'; // Reemplaza esto con tu hashtag sin el símbolo #
 
 export const getInstagramImages = async () => {
@@ -11,6 +11,8 @@ export const getInstagramImages = async () => {
     
     // Primero obtenemos el ID del hashtag
     const hashtagResponse = await axios.get(hashtagSearchUrl);
+    console.log('Respuesta de búsqueda de hashtag:', hashtagResponse.data); // Para depuración
+    
     const hashtagId = hashtagResponse.data.data[0]?.id;
     
     if (!hashtagId) {
@@ -21,6 +23,8 @@ export const getInstagramImages = async () => {
     const mediaUrl = `https://graph.facebook.com/v10.0/${hashtagId}/recent_media?user_id=${USER_ID}&fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${ACCESS_TOKEN}`;
     
     const mediaResponse = await axios.get(mediaUrl);
+    console.log('Respuesta de medios:', mediaResponse.data); // Para depuración
+    
     return mediaResponse.data.data.map((media: any) => media.media_url);
   } catch (error) {
     if (axios.isAxiosError(error)) {
