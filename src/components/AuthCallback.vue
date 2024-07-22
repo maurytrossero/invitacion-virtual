@@ -25,8 +25,9 @@
           code: code
         });
   
-        const { access_token } = response.data;
-        localStorage.setItem('instagram_access_token', access_token);
+        const { access_token, user_id } = response.data;
+        localStorage.setItem('instagram_access_token', access_token);  // Guarda el token
+        localStorage.setItem('instagram_user_id', user_id);  // Guarda el user_id también
   
         // Redirige al usuario a la página principal
         router.push('/');
