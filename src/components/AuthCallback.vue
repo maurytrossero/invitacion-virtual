@@ -28,6 +28,8 @@
           code: code
         });
   
+        console.log('Respuesta de la API de Instagram:', response.data);
+
         const { access_token, user_id } = response.data;
         accessToken.value = access_token;
         userId.value = user_id;
