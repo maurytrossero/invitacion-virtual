@@ -78,9 +78,13 @@ const cambiarImagen = () => {
 let intervalId: number | undefined;
 
 onMounted(async () => {
-  intervalId = setInterval(cambiarImagen, 10000); // Cambia cada 10 segundos
-  const fetchedImages = await getInstagramImages(); // Llamar a la función para obtener las imágenes
-  imagenes.value = imagenes.value.concat(fetchedImages); // Añadir las imágenes obtenidas al array de imágenes
+  try {
+    const fetchedImages = await getInstagramImages(); // Llamar a la función para obtener las imágenes
+    console.log('Imágenes obtenidas de Instagram:', fetchedImages); // Imprimir las imágenes obtenidas
+    imagenes.value = imagenes.value.concat(fetchedImages); // Añadir las imágenes obtenidas al array de imágenes
+  } catch (error) {
+    console.error('Error al obtener imágenes de Instagram:', error); // Imprimir error si ocurre
+  }
 });
 
 onUnmounted(() => {
