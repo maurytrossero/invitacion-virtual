@@ -3,6 +3,11 @@
     <h1>Una gran fiesta junto a vos</h1>
     <p>Compartí tus fotos y videos de este hermoso día con el hashtag</p>
     <h2>#BodaEmaYJorge</h2>
+
+    <div>
+      <a :href="instagramAuthUrl">Iniciar sesión con Instagram</a>
+    </div>
+
     <div class="carrusel">
       <div class="carrusel-contenedor" :style="carruselStyle">
         <div class="carrusel-item" v-for="(imagen, index) in imagenes" :key="index">
@@ -11,12 +16,27 @@
       </div>
       <button @click="anterior" class="carrusel-boton carrusel-boton-anterior">Anterior</button>
       <button @click="siguiente" class="carrusel-boton carrusel-boton-siguiente">Siguiente</button>
+      <button @click="activarPantallaCompleta" class="carrusel-boton carrusel-boton-fullscreen">Pantalla Completa</button>
+    </div>
+    <div v-if="pantallaCompleta" class="modal" @click="desactivarPantallaCompleta">
+      <div class="modal-contenido">
+        <div v-for="(imagen, index) in imagenes" :key="index" class="modal-imagen" :style="{ opacity: currentIndex === index ? 1 : 0 }">
+          <img :src="imagen" alt="Foto de la boda en pantalla completa" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
+
+
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+const instagramAuthUrl = 'https://api.instagram.com/oauth/authorize' +
+  '?client_id=1246190323410382' +
+  '&redirect_uri=https://invitacion-virtual-beige.vercel.app/auth/instagram/callback' +
+  '&scope=user_profile,user_media' +
+  '&response_type=code';
 
 const imagenes = ref([
   'https://cdn0.matrimonio.com.pe/article-real-wedding/021/3_2/960/jpg/89129.jpeg',
@@ -25,6 +45,8 @@ const imagenes = ref([
 ]);
 
 const carruselIndex = ref(0);
+const pantallaCompleta = ref(false);
+const currentIndex = ref(0);
 
 const carruselStyle = computed(() => ({
   transform: `translateX(-${carruselIndex.value * 100}%)`
@@ -37,7 +59,40 @@ const anterior = () => {
 const siguiente = () => {
   carruselIndex.value = (carruselIndex.value + 1) % imagenes.value.length;
 };
+
+const activarPantallaCompleta = () => {
+  pantallaCompleta.value = true;
+  currentIndex.value = carruselIndex.value; // Sincronizar el índice del carrusel con el modal
+};
+
+const desactivarPantallaCompleta = () => {
+  pantallaCompleta.value = false;
+};
+
+const cambiarImagen = () => {
+  if (pantallaCompleta.value) {
+    currentIndex.value = (currentIndex.value + 1) % imagenes.value.length;
+  }
+};
+
+let intervalId: number | undefined;
+
+onMounted(() => {
+  intervalId = setInterval(cambiarImagen, 10000); // Cambia cada 10 segundos
+});
+
+onUnmounted(() => {
+  clearInterval(intervalId);
+});
+
+watch(pantallaCompleta, (newVal) => {
+  if (newVal) {
+    currentIndex.value = carruselIndex.value; // Sincronizar al entrar en pantalla completa
+  }
+});
 </script>
+
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lora&display=swap');
@@ -109,8 +164,54 @@ const siguiente = () => {
   right: 10px;
 }
 
+.carrusel-boton-fullscreen {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: unset;
+}
+
 .carrusel-boton:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-contenido {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+}
+
+.modal-imagen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.modal-imagen img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  transition: opacity 1s;
 }
 
 @media (max-width: 768px) {
@@ -124,6 +225,11 @@ const siguiente = () => {
 
   .carrusel {
     width: 100%;
+  }
+
+  .carrusel-boton-fullscreen {
+    bottom: 5px;
+    font-size: 1.2em;
   }
 }
 </style>
