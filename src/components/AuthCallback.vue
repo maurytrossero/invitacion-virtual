@@ -11,6 +11,8 @@ onMounted(async () => {
 
   if (code) {
     try {
+      console.log('Código recibido:', code); // Verifica que se recibe el código de autorización
+
       const response = await axios.post('https://api.instagram.com/oauth/access_token', {
         client_id: '1246190323410382',
         client_secret: 'b0c222b5f2e29a493a573709a3423470',
@@ -20,7 +22,7 @@ onMounted(async () => {
       });
 
       const { access_token, user_id } = response.data;
-      console.log('Access Token:', access_token);  // Verifica que el token se obtiene correctamente
+      console.log('Token de acceso:', access_token);  // Verifica que el token se obtiene correctamente
       console.log('User ID:', user_id);  // Verifica que el user_id se obtiene correctamente
 
       localStorage.setItem('instagram_access_token', access_token);
