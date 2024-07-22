@@ -79,11 +79,11 @@ let intervalId: number | undefined;
 
 onMounted(async () => {
   try {
-    const fetchedImages = await getInstagramImages(); // Llamar a la función para obtener las imágenes
-    console.log('Imágenes obtenidas de Instagram:', fetchedImages); // Imprimir las imágenes obtenidas
-    imagenes.value = imagenes.value.concat(fetchedImages); // Añadir las imágenes obtenidas al array de imágenes
+    const fetchedImages = await getInstagramImages();
+    console.log('Imágenes obtenidas de Instagram:', fetchedImages);
+    imagenes.value = imagenes.value.concat(fetchedImages);
   } catch (error) {
-    console.error('Error al obtener imágenes de Instagram:', error); // Imprimir error si ocurre
+    console.error('Error al obtener imágenes de Instagram:', error);
   }
 });
 
@@ -93,7 +93,7 @@ onUnmounted(() => {
 
 watch(pantallaCompleta, (newVal) => {
   if (newVal) {
-    currentIndex.value = carruselIndex.value; // Sincronizar al entrar en pantalla completa
+    currentIndex.value = carruselIndex.value;
   }
 });
 </script>
