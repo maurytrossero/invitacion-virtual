@@ -1,8 +1,9 @@
+// services.ts
 import axios from 'axios';
 
 const ACCESS_TOKEN = '7d1b48aa7d90a01554736eae97823ed0'; // Reemplaza esto con tu token de acceso a largo plazo
 const USER_ID = '1683614822429244'; // Reemplaza esto con tu user ID de Instagram
-const HASHTAG = 'BodaEmaYJorge'; // Reemplaza esto con tu hashtag
+const HASHTAG = '#oriypaulo'; // Reemplaza esto con tu hashtag
 
 export const getInstagramImages = async () => {
   try {

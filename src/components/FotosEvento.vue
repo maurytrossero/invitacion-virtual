@@ -28,21 +28,21 @@
   </div>
 </template>
 
-
-
 <script lang="ts" setup>
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { getInstagramImages } from '@/services';
+
 const instagramAuthUrl = 'https://api.instagram.com/oauth/authorize' +
   '?client_id=1246190323410382' +
   '&redirect_uri=https://invitacion-virtual-beige.vercel.app/auth/instagram/callback' +
   '&scope=user_profile,user_media' +
   '&response_type=code';
 
-const imagenes = ref([
+const imagenes = ref<string[]>([
   'https://cdn0.matrimonio.com.pe/article-real-wedding/021/3_2/960/jpg/89129.jpeg',
   'https://cdn0.bodas.net/article-vendor/45446/3_2/960/jpg/ec-228_1_45446-168966401847248.jpeg',
   'https://eldiariony.com/wp-content/uploads/sites/2/2022/03/meses-celebrar-boda-pexels-soner-gorkem-6119578.jpg?w=2600'
-]);
+]); // Inicializar con las imágenes de muestra
 
 const carruselIndex = ref(0);
 const pantallaCompleta = ref(false);
@@ -77,8 +77,10 @@ const cambiarImagen = () => {
 
 let intervalId: number | undefined;
 
-onMounted(() => {
+onMounted(async () => {
   intervalId = setInterval(cambiarImagen, 10000); // Cambia cada 10 segundos
+  const fetchedImages = await getInstagramImages(); // Llamar a la función para obtener las imágenes
+  imagenes.value = imagenes.value.concat(fetchedImages); // Añadir las imágenes obtenidas al array de imágenes
 });
 
 onUnmounted(() => {
@@ -91,8 +93,6 @@ watch(pantallaCompleta, (newVal) => {
   }
 });
 </script>
-
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lora&display=swap');
@@ -192,44 +192,5 @@ watch(pantallaCompleta, (newVal) => {
   position: relative;
   width: 80%;
   max-width: 800px;
-}
-
-.modal-imagen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 1s;
-}
-
-.modal-imagen img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 10px;
-  transition: opacity 1s;
-}
-
-@media (max-width: 768px) {
-  .fiesta h1 {
-    font-size: 1.5em;
-  }
-
-  .fiesta h2 {
-    font-size: 1.2em;
-  }
-
-  .carrusel {
-    width: 100%;
-  }
-
-  .carrusel-boton-fullscreen {
-    bottom: 5px;
-    font-size: 1.2em;
-  }
 }
 </style>
