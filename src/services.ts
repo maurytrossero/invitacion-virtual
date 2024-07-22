@@ -1,11 +1,15 @@
 import axios from 'axios';
 
-const ACCESS_TOKEN = localStorage.getItem('instagram_access_token') || ''; // Obtener el token de acceso desde el almacenamiento local
-const USER_ID = '1246190323410382';
+const ACCESS_TOKEN = localStorage.getItem('instagram_access_token') || '';
+const USER_ID = localStorage.getItem('instagram_user_id') || '';  // Obtener el user_id desde localStorage
 const HASHTAG = 'oriypaulo';
 
 export const getInstagramImages = async () => {
   try {
+    if (!ACCESS_TOKEN || !USER_ID) {
+      throw new Error('Falta el token de acceso o el user_id');
+    }
+
     const hashtagSearchUrl = `https://graph.facebook.com/v10.0/ig_hashtag_search?user_id=${USER_ID}&q=${encodeURIComponent(HASHTAG)}&access_token=${ACCESS_TOKEN}`;
     
     const hashtagResponse = await axios.get(hashtagSearchUrl);
@@ -26,6 +30,8 @@ export const getInstagramImages = async () => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error('Error fetching Instagram images:', error.response?.data || error.message);
+    } else if (error instanceof Error) {
+      console.error('Error fetching Instagram images:', error.message);
     } else {
       console.error('Error fetching Instagram images:', error);
     }
