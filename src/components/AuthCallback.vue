@@ -28,14 +28,19 @@
         });
   
         const { access_token, user_id } = response.data;
-        console.log('Token de acceso:', access_token);  // Verifica que el token se obtiene correctamente
-        console.log('User ID:', user_id);  // Verifica que el user_id se obtiene correctamente
+        console.log('Token de acceso recibido:', access_token);  // Verifica que el token se obtiene correctamente
+        console.log('User ID recibido:', user_id);  // Verifica que el user_id se obtiene correctamente
   
         // Guarda el token y el user ID en localStorage
         localStorage.setItem('instagram_access_token', access_token);
         localStorage.setItem('instagram_user_id', user_id);
   
-        // Redirige a la página principal después de guardar los datos
+        // Verifica que se han guardado correctamente
+        console.log('Token guardado en localStorage:', localStorage.getItem('instagram_access_token'));
+        console.log('User ID guardado en localStorage:', localStorage.getItem('instagram_user_id'));
+  
+        // Redirecciona a la página de inicio
+        console.log('Redireccionando a la página de inicio...');
         router.push('/');
       } catch (error) {
         console.error('Error al obtener el token de acceso:', error);
