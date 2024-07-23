@@ -34,7 +34,7 @@
         console.log('User ID:', user_id);  // Verifica que el user_id se obtiene correctamente
   
         localStorage.setItem('instagram_access_token', access_token);
-        localStorage.setItem('instagram_user_id', user_id);
+        localStorage.setItem('instagram_user_id', user_id.toString()); // Asegúrate de que el user_id se guarda como string
   
         console.log('Token guardado en localStorage:', localStorage.getItem('instagram_access_token'));
         console.log('User ID guardado en localStorage:', localStorage.getItem('instagram_user_id'));
