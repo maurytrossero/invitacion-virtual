@@ -1,46 +1,23 @@
+// services.ts
 import axios from 'axios';
 
 export const getInstagramImages = async () => {
-  const ACCESS_TOKEN = localStorage.getItem('instagram_access_token');
-  const USER_ID = localStorage.getItem('instagram_user_id');
-  const HASHTAG = 'oriypaulo';
+  const accessToken = localStorage.getItem('instagram_access_token');
+  const userId = localStorage.getItem('instagram_user_id');
 
-  console.log('Token de acceso desde localStorage:', ACCESS_TOKEN);  // Verifica el token recuperado
-  console.log('User ID desde localStorage:', USER_ID);  // Verifica el user_id recuperado
+  if (!accessToken || !userId) {
+    throw new Error('Falta el token de acceso o el user_id');
+  }
+
+  const hashtag = 'oriypaulo';
+  const url = `https://graph.instagram.com/v1.0/${userId}/media?access_token=${accessToken}&fields=id,caption,media_url&limit=10&q=${hashtag}`;
 
   try {
-    if (!ACCESS_TOKEN || !USER_ID) {
-      throw new Error('Falta el token de acceso o el user_id');
-    }
-
-    const hashtagSearchUrl = `https://graph.facebook.com/v10.0/ig_hashtag_search?user_id=${USER_ID}&q=${encodeURIComponent(HASHTAG)}&access_token=${ACCESS_TOKEN}`;
-    console.log('URL de búsqueda de hashtag:', hashtagSearchUrl);  // Verifica la URL de búsqueda
-
-    const hashtagResponse = await axios.get(hashtagSearchUrl);
-    console.log('Respuesta de búsqueda de hashtag:', hashtagResponse.data);
-
-    const hashtagId = hashtagResponse.data.data[0]?.id;
-    console.log('ID del hashtag:', hashtagId);  // Verifica el ID del hashtag
-
-    if (!hashtagId) {
-      throw new Error('No se pudo obtener el ID del hashtag.');
-    }
-
-    const mediaUrl = `https://graph.facebook.com/v10.0/${hashtagId}/recent_media?user_id=${USER_ID}&fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${ACCESS_TOKEN}`;
-    console.log('URL de medios recientes:', mediaUrl);  // Verifica la URL de medios
-
-    const mediaResponse = await axios.get(mediaUrl);
-    console.log('Respuesta de medios:', mediaResponse.data);
-
-    return mediaResponse.data.data.map((media: any) => media.media_url);
+    const response = await axios.get(url);
+    const images = response.data.data.map((item: any) => item.media_url);
+    return images;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('Error al obtener imágenes de Instagram:', error.response?.data || error.message);
-    } else if (error instanceof Error) {
-      console.error('Error al obtener imágenes de Instagram:', error.message);
-    } else {
-      console.error('Error al obtener imágenes de Instagram:', error);
-    }
-    return [];
+    console.error('Error al obtener imágenes de Instagram:', error);
+    throw error;
   }
 };

@@ -79,6 +79,16 @@ let intervalId: number | undefined;
 
 const fetchImages = async () => {
   try {
+    console.log('Recuperando tokens desde localStorage');
+    const accessToken = localStorage.getItem('instagram_access_token');
+    const userId = localStorage.getItem('instagram_user_id');
+    console.log('Token de acceso desde localStorage:', accessToken);
+    console.log('User ID desde localStorage:', userId);
+
+    if (!accessToken || !userId) {
+      throw new Error('Falta el token de acceso o el user_id');
+    }
+
     const fetchedImages = await getInstagramImages();
     console.log('Imágenes obtenidas de Instagram:', fetchedImages);
     imagenes.value = imagenes.value.concat(fetchedImages);
@@ -88,7 +98,6 @@ const fetchImages = async () => {
 };
 
 onMounted(async () => {
-  // Esperar 2 segundos antes de intentar recuperar las imágenes (solución temporal)
   setTimeout(fetchImages, 2000);
 });
 

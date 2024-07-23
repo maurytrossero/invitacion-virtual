@@ -38,9 +38,6 @@ onMounted(async () => {
       console.log('Token guardado en localStorage:', localStorage.getItem('instagram_access_token'));
       console.log('User ID guardado en localStorage:', localStorage.getItem('instagram_user_id'));
 
-      // Verifica si los valores están realmente en localStorage
-      console.log('Verificación directa después del set:', localStorage.getItem('instagram_access_token'), localStorage.getItem('instagram_user_id'));
-
       router.push('/');
     } catch (error) {
       console.error('Error al obtener el token de acceso:', error);
