@@ -15,6 +15,7 @@ export const getInstagramImages = async () => {
   try {
     const response = await axios.get(url);
     const images = response.data.data.map((item: any) => item.media_url);
+    console.log('Imágenes recuperadas de Instagram:', images);
     return images;
   } catch (error) {
     console.error('Error al obtener imágenes de Instagram:', error);

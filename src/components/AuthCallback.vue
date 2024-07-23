@@ -3,7 +3,7 @@
     <p>Autorización en curso...</p>
   </div>
 </template>
-  
+
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import axios from 'axios';
@@ -42,6 +42,8 @@ onMounted(async () => {
     } catch (error) {
       console.error('Error al obtener el token de acceso:', error);
     }
+  } else {
+    console.error('No se encontró el código de autorización en la URL');
   }
 });
 </script>
