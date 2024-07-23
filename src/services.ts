@@ -4,8 +4,8 @@ const ACCESS_TOKEN = localStorage.getItem('instagram_access_token') || '';
 const USER_ID = localStorage.getItem('instagram_user_id') || '';
 const HASHTAG = 'oriypaulo';
 
-console.log('Token de acceso desde localStorage:', ACCESS_TOKEN);
-console.log('User ID desde localStorage:', USER_ID);
+console.log('Token de acceso desde localStorage:', ACCESS_TOKEN);  // Verifica el token recuperado
+console.log('User ID desde localStorage:', USER_ID);  // Verifica el user_id recuperado
 
 export const getInstagramImages = async () => {
   try {
@@ -14,24 +14,24 @@ export const getInstagramImages = async () => {
     }
 
     const hashtagSearchUrl = `https://graph.facebook.com/v10.0/ig_hashtag_search?user_id=${USER_ID}&q=${encodeURIComponent(HASHTAG)}&access_token=${ACCESS_TOKEN}`;
-    console.log('URL de búsqueda de hashtag:', hashtagSearchUrl);
+    console.log('URL de búsqueda de hashtag:', hashtagSearchUrl);  // Verifica la URL de búsqueda
 
     const hashtagResponse = await axios.get(hashtagSearchUrl);
     console.log('Respuesta de búsqueda de hashtag:', hashtagResponse.data);
-
+    
     const hashtagId = hashtagResponse.data.data[0]?.id;
-    console.log('ID del hashtag:', hashtagId);
+    console.log('ID del hashtag:', hashtagId);  // Verifica el ID del hashtag
 
     if (!hashtagId) {
       throw new Error('No se pudo obtener el ID del hashtag.');
     }
 
     const mediaUrl = `https://graph.facebook.com/v10.0/${hashtagId}/recent_media?user_id=${USER_ID}&fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${ACCESS_TOKEN}`;
-    console.log('URL de medios recientes:', mediaUrl);
+    console.log('URL de medios recientes:', mediaUrl);  // Verifica la URL de medios
 
     const mediaResponse = await axios.get(mediaUrl);
     console.log('Respuesta de medios:', mediaResponse.data);
-
+    
     return mediaResponse.data.data.map((media: any) => media.media_url);
   } catch (error) {
     if (axios.isAxiosError(error)) {

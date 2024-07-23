@@ -1,25 +1,24 @@
 <template>
     <div>
-      <p>Token de acceso: {{ accessToken }}</p>
-      <p>User ID: {{ userId }}</p>
+      <p>Autorización en curso...</p>
     </div>
   </template>
   
   <script lang="ts" setup>
-  import { ref, onMounted } from 'vue';
+  import { onMounted } from 'vue';
   import axios from 'axios';
   import { useRoute, useRouter } from 'vue-router';
   
   const route = useRoute();
   const router = useRouter();
-  const accessToken = ref('');
-  const userId = ref('');
   
   onMounted(async () => {
     const code = route.query.code as string;
   
     if (code) {
       try {
+        console.log('Código recibido:', code); // Verifica que se recibe el código de autorización
+  
         const response = await axios.post('https://api.instagram.com/oauth/access_token', {
           client_id: '1246190323410382',
           client_secret: 'b0c222b5f2e29a493a573709a3423470',
@@ -28,25 +27,22 @@
           code: code
         });
   
-        console.log('Respuesta de la API de Instagram:', response.data);
-
+        console.log('Respuesta de la API de Instagram:', response.data); // Verifica la respuesta de la API
+  
         const { access_token, user_id } = response.data;
-        accessToken.value = access_token;
-        userId.value = user_id;
+        console.log('Token de acceso:', access_token);  // Verifica que el token se obtiene correctamente
+        console.log('User ID:', user_id);  // Verifica que el user_id se obtiene correctamente
   
-        console.log('Token de acceso:', access_token);
-        console.log('User ID:', user_id);
+        localStorage.setItem('instagram_access_token', access_token);
+        localStorage.setItem('instagram_user_id', user_id);
   
-        // Aquí es donde guardarías en localStorage normalmente
-        // localStorage.setItem('instagram_access_token', access_token);
-        // localStorage.setItem('instagram_user_id', user_id);
+        console.log('Token guardado en localStorage:', localStorage.getItem('instagram_access_token'));
+        console.log('User ID guardado en localStorage:', localStorage.getItem('instagram_user_id'));
   
         router.push('/');
       } catch (error) {
         console.error('Error al obtener el token de acceso:', error);
       }
-    } else {
-      console.error('Código de autorización no recibido.');
     }
   });
   </script>
