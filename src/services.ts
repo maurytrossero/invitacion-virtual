@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const ACCESS_TOKEN = localStorage.getItem('instagram_access_token') || '';
-const USER_ID = localStorage.getItem('instagram_user_id') || '';
-const HASHTAG = 'oriypaulo';
-
-console.log('Token de acceso desde localStorage:', ACCESS_TOKEN);  // Verifica el token recuperado
-console.log('User ID desde localStorage:', USER_ID);  // Verifica el user_id recuperado
-
 export const getInstagramImages = async () => {
+  const ACCESS_TOKEN = localStorage.getItem('instagram_access_token');
+  const USER_ID = localStorage.getItem('instagram_user_id');
+  const HASHTAG = 'oriypaulo';
+
+  console.log('Token de acceso desde localStorage:', ACCESS_TOKEN);  // Verifica el token recuperado
+  console.log('User ID desde localStorage:', USER_ID);  // Verifica el user_id recuperado
+
   try {
     if (!ACCESS_TOKEN || !USER_ID) {
       throw new Error('Falta el token de acceso o el user_id');
@@ -18,7 +18,7 @@ export const getInstagramImages = async () => {
 
     const hashtagResponse = await axios.get(hashtagSearchUrl);
     console.log('Respuesta de búsqueda de hashtag:', hashtagResponse.data);
-    
+
     const hashtagId = hashtagResponse.data.data[0]?.id;
     console.log('ID del hashtag:', hashtagId);  // Verifica el ID del hashtag
 
@@ -31,7 +31,7 @@ export const getInstagramImages = async () => {
 
     const mediaResponse = await axios.get(mediaUrl);
     console.log('Respuesta de medios:', mediaResponse.data);
-    
+
     return mediaResponse.data.data.map((media: any) => media.media_url);
   } catch (error) {
     if (axios.isAxiosError(error)) {

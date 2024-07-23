@@ -98,6 +98,11 @@ watch(pantallaCompleta, (newVal) => {
 });
 </script>
 
+<style scoped>
+/* Tu CSS aquí */
+</style>
+
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lora&display=swap');
