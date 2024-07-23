@@ -27,18 +27,15 @@
           code: code
         });
   
-        console.log('Respuesta de la API de Instagram:', response.data); // Verifica la respuesta de la API
-  
         const { access_token, user_id } = response.data;
         console.log('Token de acceso:', access_token);  // Verifica que el token se obtiene correctamente
         console.log('User ID:', user_id);  // Verifica que el user_id se obtiene correctamente
   
+        // Guarda el token y el user ID en localStorage
         localStorage.setItem('instagram_access_token', access_token);
-        localStorage.setItem('instagram_user_id', user_id.toString()); // Asegúrate de que el user_id se guarda como string
+        localStorage.setItem('instagram_user_id', user_id);
   
-        console.log('Token guardado en localStorage:', localStorage.getItem('instagram_access_token'));
-        console.log('User ID guardado en localStorage:', localStorage.getItem('instagram_user_id'));
-  
+        // Redirige a la página principal después de guardar los datos
         router.push('/');
       } catch (error) {
         console.error('Error al obtener el token de acceso:', error);
