@@ -77,7 +77,7 @@ const cambiarImagen = () => {
 
 let intervalId: number | undefined;
 
-onMounted(async () => {
+const fetchImages = async () => {
   try {
     const fetchedImages = await getInstagramImages();
     console.log('Imágenes obtenidas de Instagram:', fetchedImages);
@@ -85,6 +85,11 @@ onMounted(async () => {
   } catch (error) {
     console.error('Error al obtener imágenes de Instagram:', error);
   }
+};
+
+onMounted(async () => {
+  // Esperar 2 segundos antes de intentar recuperar las imágenes (solución temporal)
+  setTimeout(fetchImages, 2000);
 });
 
 onUnmounted(() => {
