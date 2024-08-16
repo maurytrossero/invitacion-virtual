@@ -49,7 +49,7 @@ onMounted(() => {
   height: 100vh;
   overflow: hidden;
   border-radius: 20px;
-  margin-bottom: 50px; /* Añadido margen inferior */
+  margin-bottom: 50px;
 }
 
 .carousel-container {
@@ -85,12 +85,12 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .header-logo {
-    height: 60vh;
-    margin-bottom: 30px; /* Ajuste del margen en pantallas pequeñas */
+    height: 100vh; /* Ocupa toda la pantalla en dispositivos móviles */
+    margin-bottom: 0; /* Elimina el margen inferior en vistas móviles */
   }
 
   .logo {
-    max-width: 100px;
+    max-width: 120px; /* Ajusta el tamaño del logo para dispositivos móviles */
   }
 }
 </style>
