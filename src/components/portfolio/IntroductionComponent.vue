@@ -22,13 +22,16 @@
             <p>Utilizo tecnología avanzada para capturar imágenes y videos desde perspectivas únicas.</p>
           </div>
           <p class="closing">
+            <span class="quote-start">“</span>
             Mi objetivo es proporcionar imágenes y videos de alta calidad que cuenten historias y documenten tus momentos más importantes con un toque profesional y creativo.
+            <span class="quote-end">”</span>
           </p>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script setup>
 </script>
@@ -110,7 +113,24 @@ p {
   font-size: 1.2rem;
   text-align: center;
   font-style: italic;
+  position: relative;
+  padding: 0 30px; /* Añadido padding para evitar que el contenido se corte */
 }
+
+.quote-start,
+.quote-end {
+  font-size: 2rem; /* Tamaño de las comillas */
+}
+
+.quote-start {
+  content: "“"; /* Comillas de apertura */
+}
+
+.quote-end {
+  content: "”"; /* Comillas de cierre */
+}
+
+
 
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(20px); }

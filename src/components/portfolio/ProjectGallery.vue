@@ -76,7 +76,7 @@ const eventsProjects = [
 ];
 
 const productProjects = [
-  { id: 3, title: 'Fotografía de Accesorios', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455250963_879508620901901_5476384084199253931_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=L-vUmsLFWIIQ7kNvgFNr0aX&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYC8hIaOebulKFYm5GEv3FTigED6DGyFKrocErlfeH2p4w&oe=66C44963' },
+  { id: 3, title: 'Fotografía de Productos', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455250963_879508620901901_5476384084199253931_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=L-vUmsLFWIIQ7kNvgFNr0aX&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYC8hIaOebulKFYm5GEv3FTigED6DGyFKrocErlfeH2p4w&oe=66C44963' },
   { id: 4, title: 'Fotografía de Productos', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455359130_879508590901904_7968808005417451846_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YhBiIDqpwTMQ7kNvgFi5hJ-&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYAm1GmiLDbcJ6sbJCiJSUzzNLMmF6PwD1TVu9fgXxq-xw&oe=66C44C06' }
 ];
 
@@ -87,7 +87,7 @@ const institutionalProjects = [
 
 const aerialProjects = [
   { id: 7, title: 'Axion Freyre', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455631454_879555440897219_1020133484170355582_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=WGa8TUegLDMQ7kNvgFPWIm2&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYARXns2joFjGSPU6F5x0UVpZGJORfGTXlzYnBiBPgMjAg&oe=66C46B88' },
-  { id: 8, title: 'Estadio Kempes', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455640025_879555490897214_8965230795414648581_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fudAHCFFB6QQ7kNvgEHYnSY&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYB7qcp6LA5XuAZ89wCCiTBnbw1tBSW3NqiT0F7zoS1ATw&oe=66C48447' }
+  { id: 8, title: 'Estadio Mario Alberto Kempes', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455640025_879555490897214_8965230795414648581_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fudAHCFFB6QQ7kNvgEHYnSY&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYB7qcp6LA5XuAZ89wCCiTBnbw1tBSW3NqiT0F7zoS1ATw&oe=66C48447' }
 ];
 
 const isViewerOpen = ref(false);

@@ -17,15 +17,9 @@
     </div>
 
     <div class="social-icons">
-      <a href="https://www.facebook.com/tu_pagina" target="_blank">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://www.instagram.com/tu_pagina" target="_blank">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://wa.me/tu_numero_telefono?text=Hola, quisiera más información" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-      </a>
+      <a href="https://www.facebook.com/mtproduccioneshd/" target="_blank" class="facebook-button"></a>
+      <a href="https://www.instagram.com/mtproducciones.ok/" target="_blank" class="instagram-button"></a>
+      <a href="https://wa.me/3564607490?text=Hola, quisiera más información" target="_blank" class="whatsapp-button"></a>
     </div>
   </div>
 </template>
@@ -118,16 +112,27 @@ const handleSubmit = () => {
   justify-content: center;
   gap: 20px;
   font-size: 2rem;
+  margin-top: auto; /* Asegura que los íconos se mantengan en la parte inferior */
 }
 
 .social-icons a {
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.3s;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-position: center;
 }
 
-.social-icons a:hover {
-  color: #0056b3;
+.facebook-button {
+  background-image: url('https://e7.pngegg.com/pngimages/335/1001/png-clipart-social-media-facebook-computer-icons-social-network-linkedin-text-logo-internet.png');
+}
+
+.whatsapp-button {
+  background-image: url('https://e7.pngegg.com/pngimages/347/373/png-clipart-computer-icons-whatsapp-whatsapp-text-trademark-thumbnail.png');
+}
+
+.instagram-button {
+  background-image: url('https://e7.pngegg.com/pngimages/722/1011/png-clipart-logo-icon-instagram-logo-instagram-logo-purple-violet-thumbnail.png');
 }
 
 @media (max-width: 768px) {
