@@ -34,8 +34,8 @@
     {
       titulo: "Salón de Fiestas",
       direccion: "Calle Principal 456",
-      imagen: "@/../public/images/club-abuelos.jpg",
-      url: "https://maps.app.goo.gl/DHv8mVMrbmJgxZkAA"
+      imagen: "https://scontent.fcor3-1.fna.fbcdn.net/v/t1.6435-9/71346918_1285194141641710_7970830689962557440_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=2a1932&_nc_ohc=hZV38VipCIAQ7kNvgFoH3pE&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYChzygrOYTrCbG6UxpFS0Q5ZUO_yjCCShQZrMnED9jBJw&oe=66E5BF5B",
+      url: "https://scontent.fcor3-1.fna.fbcdn.net/v/t1.6435-9/71346918_1285194141641710_7970830689962557440_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=2a1932&_nc_ohc=hZV38VipCIAQ7kNvgFoH3pE&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYChzygrOYTrCbG6UxpFS0Q5ZUO_yjCCShQZrMnED9jBJw&oe=66E5BF5B"
     }
   ]
   </script>

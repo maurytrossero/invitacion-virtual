@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import PortfolioView from '../views/PortfolioView.vue'
 import InvitationView from '../views/InvitationView.vue'
-import AuthCallback from '@/components/AuthCallback.vue' // Asegúrate de crear este componente
+import AuthCallback from '@/components/AuthCallback.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'portfolio-view',
+    component: PortfolioView
   },
   {
     path: '/about',
