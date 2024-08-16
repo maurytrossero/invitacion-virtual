@@ -1,7 +1,7 @@
 <template>
   <div class="contact-section">
     <div class="contact-form">
-      <h2>Contacta con nosotros</h2>
+      <h2>Contactate con nosotros</h2>
       <form @submit.prevent="handleSubmit">
         <label for="name">Nombre:</label>
         <input type="text" id="name" v-model="form.name" required />

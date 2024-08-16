@@ -51,7 +51,7 @@
 
 .hero-image {
   position: relative;
-  background: url('') no-repeat center center;
+  background: url('https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455682815_880112290841534_5260424241854043392_n.jpg?stp=dst-jpg_p526x395&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=boEyfa9RuUUQ7kNvgHSTBQw&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYDCOvKTkj1QOpzNLykz7KHtKVWuGFdE_7mHOPp20GZ5Rg&oe=66C57E36') no-repeat center center;
   background-size: cover;
   width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
   min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
@@ -61,7 +61,7 @@
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.9);
   padding: 40px;
   border-radius: 20px;
   border: 2px solid #00f;

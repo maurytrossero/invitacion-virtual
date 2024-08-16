@@ -51,29 +51,40 @@ onMounted(() => {
 }
 
 /* Flechas de navegación */
+/* Flechas de navegación */
+/* Flechas de navegación */
 .arrow {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   background-color: transparent;
-  border: none;
-  font-size: 2rem;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
   color: white;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
 }
 
 .arrow.up {
-  top: 20px; /* Fijar la flecha superior */
+  bottom: 90px; /* Separa la flecha hacia arriba de la parte inferior */
 }
 
 .arrow.down {
-  bottom: 20px; /* Fijar la flecha inferior */
+  bottom: 20px; /* Mantén la flecha hacia abajo más cerca de la parte inferior */
 }
 
 .arrow:hover {
-  color: #2c3e50;
+  background-color: #2c3e50;
+  color: white;
+  border-color: #2c3e50;
 }
+
 
 /* Asegurar que los elementos se adapten bien en dispositivos pequeños */
 @media (max-width: 768px) {

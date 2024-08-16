@@ -69,6 +69,7 @@
 <script setup>
 import { ref } from 'vue';
 
+
 const eventsProjects = [
   { id: 1, title: 'Bodas', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455348923_879500020902761_8536692325332632548_n.jpg?stp=dst-jpg_s600x600&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ZAlDZAT2VBEQ7kNvgGjUUO9&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYCplYscUwkgbuyPWI_BWEmkqOR-oFmqzukCnPlGqyFeQQ&oe=66C457E1' },
   { id: 2, title: 'Fiesta de 15 Años', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/327294169_707237770996519_1640135708337379976_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=Uel5HLEcW1AQ7kNvgEDzMbZ&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYAWewH9b4lqW8A2kWuxZ-m-2PUjT5CG4GDANVw353cIrQ&oe=66C45AB7' },
