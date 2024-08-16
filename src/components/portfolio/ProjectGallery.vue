@@ -124,6 +124,8 @@ function stopZoom() {
 .project-gallery {
   padding: 40px;
   background-color: #000;
+  margin-top: 80px; /* Añade margen superior para evitar solapamiento */
+  margin-bottom: 80px; /* Añade margen inferior para evitar solapamiento */
 }
 
 .gallery-title {
@@ -208,5 +210,28 @@ function stopZoom() {
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .project-gallery {
+    margin-top: 60px; /* Ajustar margen superior para dispositivos móviles */
+    margin-bottom: 60px; /* Ajustar margen inferior para dispositivos móviles */
+  }
+
+  .gallery-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .gallery-item {
+    width: 100%; /* Ajustar el tamaño en pantallas pequeñas */
+  }
+
+  .gallery-item img {
+    height: auto;
+  }
 }
 </style>
