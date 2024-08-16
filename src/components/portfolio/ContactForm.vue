@@ -20,6 +20,8 @@
       <a href="https://www.facebook.com/mtproduccioneshd/" target="_blank" class="facebook-button"></a>
       <a href="https://www.instagram.com/mtproducciones.ok/" target="_blank" class="instagram-button"></a>
       <a href="https://wa.me/3564607490?text=Hola, quisiera más información" target="_blank" class="whatsapp-button"></a>
+      <a href="https://www.tiktok.com/@mauritrossero" target="_blank" class="tiktok-button"></a>
+
     </div>
   </div>
 </template>
@@ -90,6 +92,7 @@ const handleSubmit = () => {
 
 .contact-form textarea {
   resize: vertical; /* Permite redimensionar solo en la dirección vertical */
+  height: 150px; /* Ajusta la altura inicial del textarea */
 }
 
 .contact-form button {
@@ -112,7 +115,7 @@ const handleSubmit = () => {
   justify-content: center;
   gap: 20px;
   font-size: 2rem;
-  margin-top: auto; /* Asegura que los íconos se mantengan en la parte inferior */
+  margin-top: 20px; /* Ajustado para evitar que los íconos estén demasiado cerca del borde inferior en móviles */
 }
 
 .social-icons a {
@@ -135,15 +138,20 @@ const handleSubmit = () => {
   background-image: url('https://e7.pngegg.com/pngimages/722/1011/png-clipart-logo-icon-instagram-logo-instagram-logo-purple-violet-thumbnail.png');
 }
 
+.tiktok-button {
+  background-image: url('https://e7.pngegg.com/pngimages/449/200/png-clipart-tiktok-icon-tech-companies-thumbnail.png');
+}
+
+
 @media (max-width: 768px) {
   .contact-section {
     padding: 20px;
-    justify-content: space-between;
+    justify-content: flex-start; /* Asegura que el contenido no se estire demasiado en pantallas pequeñas */
   }
 
   .contact-form {
     padding: 20px;
-    margin-bottom: 0;
+    margin-bottom: 20px; /* Asegura que haya espacio suficiente entre el formulario y los íconos */
   }
 
   .contact-form input,
@@ -153,6 +161,10 @@ const handleSubmit = () => {
 
   .contact-form button {
     padding: 10px;
+  }
+
+  .social-icons {
+    margin-top: 20px; /* Asegura que los íconos no estén fuera de la pantalla en móviles */
   }
 }
 </style>
