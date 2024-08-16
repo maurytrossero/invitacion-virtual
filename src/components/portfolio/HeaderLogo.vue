@@ -23,7 +23,8 @@ const logoSrc = 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/326524611_
 const backgroundImages = ref([
   'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455642071_879498430902920_6760471179070421456_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=yTLC0jXaFLsQ7kNvgE9_01i&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYBz0N9TES5C0ABIVEPi-RCGryZEEmdxEgASKgEzwdYy6Q&oe=66C44469',
   'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455631454_879555440897219_1020133484170355582_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=WGa8TUegLDMQ7kNvgFPWIm2&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYARXns2joFjGSPU6F5x0UVpZGJORfGTXlzYnBiBPgMjAg&oe=66C46B88',
-  'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455640025_879555490897214_8965230795414648581_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fudAHCFFB6QQ7kNvgEHYnSY&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYB7qcp6LA5XuAZ89wCCiTBnbw1tBSW3NqiT0F7zoS1ATw&oe=66C48447'
+  'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455640025_879555490897214_8965230795414648581_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fudAHCFFB6QQ7kNvgEHYnSY&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYB7qcp6LA5XuAZ89wCCiTBnbw1tBSW3NqiT0F7zoS1ATw&oe=66C48447',
+  'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/326259855_1204434060172863_5569499084266857701_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHSBVGIfWYXTjyQXFkyHKEWiJnq2RlscRqImerZGWxxGhYK78qSIMoPo99ggeztLJ8&_nc_ohc=zf-QphoCLI8Q7kNvgHGK-rU&_nc_ht=scontent.fcor3-1.fna&oh=00_AYCj8MiQgsbeE0RzI39CFbJkLvfKlXbJB-Eh3YER1q3Txg&oe=66C5AD22'
 ])
 
 const currentImageIndex = ref(0)
