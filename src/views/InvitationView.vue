@@ -1,99 +1,80 @@
 <template>
-  <div id="portfolio-view">
-    <HeaderLogo />
-    <IntroductionComponent />
-    <ProjectGallery />
-    <ContactForm />
-    
-    <!-- Flechas de navegación -->
-    <button class="arrow up" @click="scrollToComponent('up')">▲</button>
-    <button class="arrow down" @click="scrollToComponent('down')">▼</button>
+  <div class="home">
+    <CuentaRegresiva />
+    <InvitacionBoda />
+    <UbicacionEvento />
+    <GestionFiesta />
+    <FotosEvento />
+
+    <button class="scroll-btn up" @click="scroll('up')">▲</button>
+    <button class="scroll-btn down" @click="scroll('down')">▼</button>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'; // Importa onMounted desde 'vue'
-import HeaderLogo from '@/components/portfolio/HeaderLogo.vue';
-import IntroductionComponent from '@/components/portfolio/IntroductionComponent.vue';
-import ProjectGallery from '@/components/portfolio/ProjectGallery.vue';
-import ContactForm from '@/components/portfolio/ContactForm.vue';
+<script lang="ts" setup>
+import { defineComponent } from 'vue'
+import InvitacionBoda from '@/components/InvitacionBoda.vue'  
+import CuentaRegresiva from '@/components/CuentaRegresiva.vue'  
+import UbicacionEvento from '@/components/UbicacionEvento.vue'
+import GestionFiesta from '@/components/GestionFiesta.vue'
+import FotosEvento from '@/components/FotosEvento.vue'
 
-// Referencias a los componentes
-const components = ref([]);
-
-// Función para desplazar la vista al componente correspondiente
-function scrollToComponent(direction) {
-  const currentIndex = components.value.findIndex((el) => el.getBoundingClientRect().top >= 0);
-
-  if (direction === 'up' && currentIndex > 0) {
-    components.value[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
-  } else if (direction === 'down' && currentIndex < components.value.length - 1) {
-    components.value[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
-  }
+const scroll = (direction: 'up' | 'down') => {
+  const offset = direction === 'up' ? -window.innerHeight : window.innerHeight;
+  window.scrollBy({ top: offset, behavior: 'smooth' });
 }
-
-// Montar las referencias a los componentes
-onMounted(() => {
-  components.value = document.querySelectorAll('#portfolio-view > div');
-});
 </script>
 
 <style scoped>
-#portfolio-view {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.home {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 0;
-  padding: 0;
-  background-color: #000; /* Fondo negro para el tema oscuro */
+  padding: 20px;
+  position: relative;
+  min-height: 200vh; /* Asegura que haya suficiente contenido para desplazar */
 }
 
-/* Flechas de navegación */
-.arrow {
+.scroll-btn {
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: transparent;
+  width: 40px;
+  height: 40px;
   border: none;
-  font-size: 2rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   z-index: 1000;
 }
 
-.arrow.up {
-  top: 20px; /* Fijar la flecha superior */
+.scroll-btn.up {
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.arrow.down {
-  bottom: 20px; /* Fijar la flecha inferior */
+.scroll-btn.down {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.arrow:hover {
-  color: #2c3e50;
-}
-
-/* Asegurar que los elementos se adapten bien en dispositivos pequeños */
+/* Responsive styling */
 @media (max-width: 768px) {
-  #portfolio-view {
-    padding: 0 10px; /* Añadir padding lateral para evitar que el contenido toque los bordes de la pantalla */
+  .scroll-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2em;
   }
 
-  header-logo,
-  introduction-component,
-  project-gallery,
-  contact-form {
-    margin-bottom: 20px; /* Añadir espacio entre los componentes */
+  .scroll-btn.up {
+    bottom: 50px;
   }
 
-  h1, h2, h3, p {
-    font-size: 90%; /* Reducir tamaño de texto en dispositivos pequeños */
-  }
-
-  .arrow {
-    font-size: 1.5rem; /* Reducir el tamaño de las flechas en pantallas pequeñas */
+  .scroll-btn.down {
+    bottom: 5px;
   }
 }
 </style>
