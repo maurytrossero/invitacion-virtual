@@ -5,25 +5,36 @@
         <h1 class="title">Mauricio Trossero</h1>
         <h2 class="subtitle">Fotógrafo y Productor Audiovisual</h2>
         <div class="description">
+          <!-- Sección de Eventos Sociales -->
           <div class="section">
+            <AccountGroupIcon class="section-icon"/>
             <h3 class="section-title">Eventos Sociales</h3>
-            <p>Capturo momentos especiales en 15 años, bodas, graduaciones, y más.</p>
+            <p>Capturamos momentos especiales en 15 años, bodas, egresos, y más.</p>
           </div>
+          <!-- Sección de Fotografía de Productos -->
           <div class="section">
+            <CameraIcon class="section-icon"/>
             <h3 class="section-title">Fotografía de Productos</h3>
-            <p>Realizo sesiones fotográficas para resaltar las características de tus productos.</p>
+            <p>Realizamos sesiones fotográficas para resaltar las características de tus productos.</p>
           </div>
+          <!-- Sección de Videos Institucionales -->
           <div class="section">
+            <VideoCameraIcon class="section-icon"/>
             <h3 class="section-title">Videos Institucionales</h3>
-            <p>Produzco contenido visual que comunica la esencia de tu institución o empresa.</p>
+            <p>Producimos contenido visual que comunica la esencia de tu institución o empresa.</p>
           </div>
+          <!-- Sección de Fotografía y Videos Aéreos -->
           <div class="section">
+            <DroneIcon class="section-icon"/>
             <h3 class="section-title">Fotografía y Videos Aéreos</h3>
-            <p>Utilizo tecnología avanzada para capturar imágenes y videos desde perspectivas únicas.</p>
+            <p>Utilizamos tecnología avanzada para capturar imágenes y videos desde perspectivas únicas.</p>
           </div>
+          
           <p class="closing">
             <span class="quote-start">“</span>
-            Mi objetivo es proporcionar imágenes y videos de alta calidad que cuenten historias y documenten tus momentos más importantes con un toque profesional y creativo.
+            Nos dedicamos a capturar los momentos que realmente importan. Creemos en el poder de las imágenes y videos para contar historias profundas y reflejar emociones auténticas. 
+            Celebramos los hitos más significativos de tu vida con un enfoque profesional y creativo. 
+            Cada imagen y cada video son un reflejo genuino de tus momentos más especiales.
             <span class="quote-end">”</span>
           </p>
         </div>
@@ -32,8 +43,11 @@
   </div>
 </template>
 
-
 <script setup>
+import CameraIcon from 'vue-material-design-icons/Camera.vue';
+import VideoCameraIcon from 'vue-material-design-icons/Video.vue';
+import AccountGroupIcon from 'vue-material-design-icons/AccountBadge.vue';
+import DroneIcon from 'vue-material-design-icons/Helicopter';
 </script>
 
 <style scoped>
@@ -41,9 +55,9 @@
   text-align: center;
   background-color: #1e1e1e;
   color: #fff;
-  padding: 0; /* Eliminamos padding aquí */
-  margin: 0; /* Eliminamos márgenes */
-  min-height: 100vh; /* Aseguramos que ocupe al menos toda la altura de la pantalla */
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,8 +67,8 @@
   position: relative;
   background: url('https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455682815_880112290841534_5260424241854043392_n.jpg?stp=dst-jpg_p526x395&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=boEyfa9RuUUQ7kNvgHSTBQw&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYDCOvKTkj1QOpzNLykz7KHtKVWuGFdE_7mHOPp20GZ5Rg&oe=66C57E36') no-repeat center center;
   background-size: cover;
-  width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
-  min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,7 +81,7 @@
   border: 2px solid #00f;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   max-width: 800px;
-  width: 90%; /* Mantén el ancho responsivo */
+  width: 90%;
   box-sizing: border-box;
   z-index: 2;
 }
@@ -93,6 +107,13 @@
 
 .section {
   margin-bottom: 20px;
+  text-align: center;
+}
+
+.section-icon {
+  font-size: 4rem; /* Tamaño del ícono aumentado */
+  color: #00f; /* Color del ícono */
+  margin-bottom: 10px; /* Espacio entre el ícono y el título */
 }
 
 .section-title {
@@ -114,23 +135,13 @@ p {
   text-align: center;
   font-style: italic;
   position: relative;
-  padding: 0 30px; /* Añadido padding para evitar que el contenido se corte */
+  padding: 0 30px;
 }
 
 .quote-start,
 .quote-end {
-  font-size: 2rem; /* Tamaño de las comillas */
+  font-size: 2rem;
 }
-
-.quote-start {
-  content: "“"; /* Comillas de apertura */
-}
-
-.quote-end {
-  content: "”"; /* Comillas de cierre */
-}
-
-
 
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(20px); }
@@ -153,7 +164,7 @@ p {
 
 @media (max-width: 768px) {
   .hero-image {
-    min-height: 100vh; /* Mantiene la altura mínima en pantallas pequeñas */
+    min-height: 100vh;
   }
 
   .overlay {
