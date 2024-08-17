@@ -1,4 +1,3 @@
-
 <template>
   <div class="fiesta">
     <h1>Una gran fiesta junto a vos</h1>
@@ -127,6 +126,9 @@ watch(pantallaCompleta, (newVal) => {
   padding: 20px;
   box-sizing: border-box;
   text-align: center;
+  border-radius: 15px; /* Bordes redondeados añadidos */
+  border: 1px solid #ddd; /* Borde opcional */
+  overflow: hidden; /* Asegura que el contenido no sobresalga */
 }
 
 .fiesta h1, .fiesta h2 {
@@ -192,6 +194,26 @@ watch(pantallaCompleta, (newVal) => {
 
 .carrusel-boton:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media (max-width: 768px) {
+  .carrusel-boton {
+    padding: 5px;
+    font-size: 1em;
+  }
+
+  .carrusel-boton-anterior,
+  .carrusel-boton-siguiente {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carrusel-boton-fullscreen {
+    bottom: 20px;
+    font-size: 0.8em; /* Reducir el tamaño del texto */
+    white-space: nowrap; /* Asegura que el texto esté en una sola línea */
+  }
 }
 
 .modal {

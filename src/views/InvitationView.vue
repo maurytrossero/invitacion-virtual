@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <CuentaRegresiva />
-    <InvitacionBoda />
-    <UbicacionEvento />
-    <GestionFiesta />
-    <FotosEvento />
+    <div ref="cuentaRegresivaRef"><CuentaRegresiva /></div>
+    <div ref="invitacionBodaRef"><InvitacionBoda /></div>
+    <div ref="ubicacionEventoRef"><UbicacionEvento /></div>
+    <div ref="gestionFiestaRef"><GestionFiesta /></div>
+    <div ref="fotosEventoRef"><FotosEvento /></div>
 
     <button class="scroll-btn up" @click="scroll('up')">▲</button>
     <button class="scroll-btn down" @click="scroll('down')">▼</button>
@@ -12,17 +12,46 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent } from 'vue'
-import InvitacionBoda from '@/components/InvitacionBoda.vue'  
-import CuentaRegresiva from '@/components/CuentaRegresiva.vue'  
-import UbicacionEvento from '@/components/UbicacionEvento.vue'
-import GestionFiesta from '@/components/GestionFiesta.vue'
-import FotosEvento from '@/components/FotosEvento.vue'
+import { ref } from 'vue';
+import InvitacionBoda from '@/components/InvitacionBoda.vue';
+import CuentaRegresiva from '@/components/CuentaRegresiva.vue';
+import UbicacionEvento from '@/components/UbicacionEvento.vue';
+import GestionFiesta from '@/components/GestionFiesta.vue';
+import FotosEvento from '@/components/FotosEvento.vue';
+
+const cuentaRegresivaRef = ref<HTMLElement | null>(null);
+const invitacionBodaRef = ref<HTMLElement | null>(null);
+const ubicacionEventoRef = ref<HTMLElement | null>(null);
+const gestionFiestaRef = ref<HTMLElement | null>(null);
+const fotosEventoRef = ref<HTMLElement | null>(null);
+
+const refs = [
+  cuentaRegresivaRef,
+  invitacionBodaRef,
+  ubicacionEventoRef,
+  gestionFiestaRef,
+  fotosEventoRef
+];
+
+let currentIndex = ref(0);
 
 const scroll = (direction: 'up' | 'down') => {
-  const offset = direction === 'up' ? -window.innerHeight : window.innerHeight;
-  window.scrollBy({ top: offset, behavior: 'smooth' });
-}
+  if (refs.length === 0) return;
+
+  if (direction === 'up') {
+    currentIndex.value = (currentIndex.value - 1 + refs.length) % refs.length;
+  } else if (direction === 'down') {
+    currentIndex.value = (currentIndex.value + 1) % refs.length;
+  }
+
+  const targetRef = refs[currentIndex.value];
+  if (targetRef && targetRef.value) {
+    window.scrollTo({
+      top: targetRef.value.offsetTop,
+      behavior: 'smooth'
+    });
+  }
+};
 </script>
 
 <style scoped>
