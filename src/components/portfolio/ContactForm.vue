@@ -2,7 +2,7 @@
   <div class="contact-section">
     <div class="contact-form">
       <h2>Contáctanos</h2>
-      <form @submit.prevent="handleSubmit">
+      <form ref="contactForm" @submit.prevent="handleSubmit">
         <label for="name">Nombre:</label>
         <input type="text" id="name" v-model="form.name" required />
 
@@ -35,8 +35,10 @@ const form = ref({
   message: ''
 });
 
+const contactForm = ref(null);
+
 const handleSubmit = () => {
-  emailjs.sendForm('service_0r6axze', 'template_5mpp0ed', form.value, '7xvunViHmNAoSKloK')
+  emailjs.sendForm('service_0r6axze', 'template_5mpp0ed', contactForm.value, '7xvunViHmNAoSKloK')
     .then(() => {
       alert('Correo enviado con éxito!');
     })
