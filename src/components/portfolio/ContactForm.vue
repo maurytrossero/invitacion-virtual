@@ -38,14 +38,25 @@ const form = ref({
 const contactForm = ref(null);
 
 const handleSubmit = () => {
-  emailjs.sendForm('service_0r6axze', 'template_5mpp0ed', contactForm.value, '7xvunViHmNAoSKloK')
+  const templateParams = {
+    from_name: form.value.name,
+    from_email: form.value.email,
+    message: form.value.message
+  };
+
+  emailjs.send('service_0r6axze', 'template_qltwbpm', templateParams, '7xvunViHmNAoSKloK')
     .then(() => {
       alert('Correo enviado con éxito!');
+      form.value.name = '';
+      form.value.email = '';
+      form.value.message = '';
     })
     .catch((error) => {
       console.error('Error al enviar el correo:', error);
+      alert(`Hubo un problema al enviar el correo. Detalles: ${error.text || 'No se puede mostrar más detalles del error'}`);
     });
 };
+
 </script>
 
 <style scoped>
