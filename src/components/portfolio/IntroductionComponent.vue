@@ -7,25 +7,33 @@
         <div class="description">
           <!-- Sección de Eventos Sociales -->
           <div class="section">
-            <AccountGroupIcon class="section-icon"/>
+            <div class="icon-container">
+              <AccountGroupIcon class="section-icon"/>
+            </div>
             <h3 class="section-title">Eventos Sociales</h3>
             <p>Capturamos momentos especiales en 15 años, bodas, egresos, y más.</p>
           </div>
           <!-- Sección de Fotografía de Productos -->
           <div class="section">
-            <CameraIcon class="section-icon"/>
+            <div class="icon-container">
+              <CameraIcon class="section-icon"/>
+            </div>
             <h3 class="section-title">Fotografía de Productos</h3>
             <p>Realizamos sesiones fotográficas para resaltar las características de tus productos.</p>
           </div>
           <!-- Sección de Videos Institucionales -->
           <div class="section">
-            <VideoCameraIcon class="section-icon"/>
+            <div class="icon-container">
+              <VideoCameraIcon class="section-icon"/>
+            </div>
             <h3 class="section-title">Videos Institucionales</h3>
             <p>Producimos contenido visual que comunica la esencia de tu institución o empresa.</p>
           </div>
           <!-- Sección de Fotografía y Videos Aéreos -->
           <div class="section">
-            <DroneIcon class="section-icon"/>
+            <div class="icon-container">
+              <DroneIcon class="section-icon"/>
+            </div>
             <h3 class="section-title">Fotografía y Videos Aéreos</h3>
             <p>Utilizamos tecnología avanzada para capturar imágenes y videos desde perspectivas únicas.</p>
           </div>
@@ -47,7 +55,7 @@
 import CameraIcon from 'vue-material-design-icons/Camera.vue';
 import VideoCameraIcon from 'vue-material-design-icons/Video.vue';
 import AccountGroupIcon from 'vue-material-design-icons/AccountBadge.vue';
-import DroneIcon from 'vue-material-design-icons/Helicopter';
+import DroneIcon from 'vue-material-design-icons/Helicopter.vue';
 </script>
 
 <style scoped>
@@ -106,18 +114,34 @@ import DroneIcon from 'vue-material-design-icons/Helicopter';
 }
 
 .section {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem; /* Tamaño del contenedor circular */
+  height: 6rem;
+  border-radius: 50%;
+  border: 2px solid #fff; /* Borde blanco */
+  background-color: transparent; /* Sin fondo */
+  margin: 0 auto 15px; /* Margen para separar del texto */
+}
+
 .section-icon {
-  font-size: 4rem; /* Tamaño del ícono aumentado */
-  color: #00f; /* Color del ícono */
-  margin-bottom: 10px; /* Espacio entre el ícono y el título */
+  font-size: 4rem; /* Tamaño del ícono dentro del contenedor */
+  color: #fff; /* Color del ícono */
+  transition: transform 0.3s ease; /* Transición para la animación */
+}
+
+.icon-container:hover .section-icon {
+  transform: scale(1.2); /* Agranda el ícono al pasar el mouse */
 }
 
 .section-title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #00f;
   margin-bottom: 10px;
 }
