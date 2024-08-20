@@ -78,7 +78,7 @@ const eventsProjects = [
 ];
 
 const productProjects = [
-  { id: 3, title: 'Fotografía de Producto', image: 'https://www.dropbox.com/scl/fi/cqexibqi3o6lvlzxtb72a/DSC_1508.jpg?rlkey=35elg00g62zhub7ybvcxdq53l&st=gihtepjc&raw=1' },
+  { id: 3, title: 'Fotografía de Producto', image: 'https://www.dropbox.com/scl/fi/gkkuk6j67vptnv43idd7r/DSC_1510.jpg?rlkey=ewry4iydjf7tg6sy8isl9vzn2&st=oz1kvhl5&raw=1' },
   { id: 4, title: 'Fotografía de Producto', image: 'https://www.dropbox.com/scl/fi/q6k3l195aiudsmaaiz73i/DSC_1376.jpg?rlkey=c8o8kms6k7x3g2r4wr3sys392&st=nip8ooxq&raw=1' },
   { id: 5, title: 'Fotografía de Producto', image: 'https://www.dropbox.com/scl/fi/l84krppwbdos8rc2q2j30/DSC_1262.jpg?rlkey=684ablwnqa0o1jp6jhua06fjo&st=m5ygfccp&raw=1' },
   { id: 6, title: 'Fotografía Gastronómica', image: 'https://www.dropbox.com/scl/fi/z2yxgmx2xt5n2whhb7sy5/producto1.jpg?rlkey=ayjrutn4p7gfs2rledee1o2dq&st=2a3pi8xa&raw=1' },
