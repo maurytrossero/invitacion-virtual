@@ -69,10 +69,14 @@ onMounted(() => {
 
 .cuenta-regresiva {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 50px); /* Reduce el margen inferior */
+  margin: 5px; /* Aplica margen de 10px alrededor */
   background: url('https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2022/07/26/16588301170836.jpg') no-repeat center center;
   background-size: cover;
-  overflow: hidden; /* Asegura que los elementos hijos no sobresalgan */
+  overflow: hidden;
+  border: 2px solid white; /* Añade el borde blanco */
+  border-radius: 15px; /* Esquinas redondeadas */
+  box-sizing: border-box; /* Incluye el borde en el tamaño del elemento */
 }
 
 .overlay {
@@ -90,27 +94,30 @@ onMounted(() => {
   color: white;
   font-family: 'Great Vibes', cursive;
   padding: 20px;
-  box-sizing: border-box; /* Incluye el padding dentro del tamaño del elemento */
 }
 
 h1 {
   font-size: 3em;
-  margin: 0; /* Elimina el margen superior e inferior */
+  margin: 0;
+  text-align: center;
+  line-height: 1.1; /* Ajusta la altura de la línea para mejorar la legibilidad */
+  overflow-wrap: break-word; /* Permite que el texto se rompa para ajustarse al contenedor */
 }
 
 h2 {
   font-size: 2em;
   font-family: 'Open Sans', sans-serif;
-  margin: 10px 0; /* Ajusta el margen para evitar desbordamientos */
+  margin: 10px 0;
+  text-align: center;
+  line-height: 1.2; /* Ajusta la altura de la línea para mejorar la legibilidad */
+  overflow-wrap: break-word; /* Permite que el texto se rompa para ajustarse al contenedor */
 }
 
 .contador {
   display: flex;
-  gap: 10px; /* Reduce el espacio horizontal */
+  gap: 10px;
   margin-top: 20px;
-  flex-wrap: nowrap; /* Evita el ajuste de línea */
   justify-content: center;
-  overflow-x: auto; /* Permite el desplazamiento horizontal en caso de desbordamiento */
 }
 
 .tiempo {
@@ -118,24 +125,24 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 5px; /* Reduce los márgenes laterales */
+  margin: 0 5px;
 }
 
 .digit {
   display: flex;
   flex-direction: row;
-  height: 60px; /* Ajusta el alto según el tamaño del dígito */
+  height: 60px;
   overflow: hidden;
 }
 
 .digit span {
-  font-size: 2em; /* Reduce el tamaño de fuente para ajustar el texto */
+  font-size: 2em;
   display: inline-block;
   width: 100%;
 }
 
 .tiempo p {
-  font-size: 1em; /* Ajusta el tamaño del texto */
+  font-size: 1em;
   margin: 0;
 }
 
@@ -153,23 +160,34 @@ h2 {
 @media (max-width: 768px) {
   h1 {
     font-size: 2em;
+    /* Usa 'display: block' y 'white-space: pre-wrap' para forzar el salto de línea */
+    display: block;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    /* Ajusta el máximo ancho para forzar el salto en móviles */
+    max-width: 90%;
   }
-
   h2 {
     font-size: 1.5em;
+    /* Usa 'display: block' y 'white-space: pre-wrap' para forzar el salto de línea */
+    display: block;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    /* Ajusta el máximo ancho para forzar el salto en móviles */
+    max-width: 90%;
   }
 
   .digit span {
-    font-size: 1.5em; /* Reduce aún más el tamaño de fuente en móviles */
+    font-size: 1.5em;
   }
 
   .tiempo p {
-    font-size: 0.8em; /* Ajusta el tamaño del texto en móviles */
+    font-size: 0.8em;
   }
 
   .contador {
-    gap: 5px; /* Ajusta el espacio entre los elementos */
-    padding: 10px; /* Agrega padding para evitar el desbordamiento */
+    gap: 5px;
+    padding: 10px;
   }
 
   .overlay {

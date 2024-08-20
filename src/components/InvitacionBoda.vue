@@ -27,8 +27,9 @@
   border: 2px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: 100vh;
+  width: calc(100% - 40px); /* Ajusta el ancho considerando el padding */
+  max-width: 800px; /* Establece un ancho máximo para mantener el contenido centrado y con buen aspecto */
+  height: calc(100vh - 40px); /* Ajusta la altura considerando el padding */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,6 +37,7 @@
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  margin: 20px auto; /* Centra el contenedor y añade márgenes arriba y abajo */
 }
 
 .invitacion::before, .invitacion::after {
@@ -45,10 +47,9 @@
   background-repeat: no-repeat;
   width: 25vw; /* Ajusta el tamaño en relación con el ancho del viewport */
   height: 25vh; /* Ajusta el tamaño en relación con la altura del viewport */
-  max-width: 200px; /* Tamaño máximo para evitar que las imágenes sean demasiado grandes */
-  max-height: 200px; /* Tamaño máximo para evitar que las imágenes sean demasiado grandes */
+  max-width: 150px; /* Tamaño máximo para evitar que las imágenes sean demasiado grandes */
+  max-height: 150px; /* Tamaño máximo para evitar que las imágenes sean demasiado grandes */
   background-image: url('@/../public/images/flor.png'); /* Usa la imagen directamente en el CSS */
-
 }
 
 .invitacion::before {
@@ -77,6 +78,10 @@ p {
   .invitacion {
     padding: 10px;
     border-width: 1px;
+    margin: 10px auto; /* Ajusta los márgenes para móviles */
+    width: calc(100% - 20px); /* Ajusta el ancho considerando el padding y márgenes */
+    max-width: 100%; /* Ajusta el ancho máximo para pantallas más pequeñas */
+    height: calc(100vh - 20px); /* Ajusta la altura considerando el padding y márgenes */
   }
   
   h1 {
