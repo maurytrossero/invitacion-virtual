@@ -72,18 +72,18 @@
 import { ref } from 'vue';
 
 const eventsProjects = [
-  { id: 1, title: 'Bodas', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455348923_879500020902761_8536692325332632548_n.jpg?stp=dst-jpg_s600x600&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ZAlDZAT2VBEQ7kNvgGjUUO9&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYCplYscUwkgbuyPWI_BWEmkqOR-oFmqzukCnPlGqyFeQQ&oe=66C457E1' },
-  { id: 2, title: 'Fiesta de 15 Años', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/327294169_707237770996519_1640135708337379976_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=Uel5HLEcW1AQ7kNvgEDzMbZ&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYAWewH9b4lqW8A2kWuxZ-m-2PUjT5CG4GDANVw353cIrQ&oe=66C45AB7' },
-  { id: 3, title: 'Egresos', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455270353_879507540902009_3828396222557473176_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=DFOr05JQH1YQ7kNvgH53HHo&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYB1A3FmL3ZKQTLkKeSSSXC2JeU6gZP8jCnHnP_Do4qKgA&oe=66C45C75' }
+  { id: 1, title: 'Bodas', image: 'https://www.dropbox.com/scl/fi/d7o2s2gijpxbqmyaggb1s/DSC_2841.jpg?rlkey=dn4dq7yonbhb7hxjvh65zojkr&st=trs9ulfz&raw=1' },
+  { id: 2, title: 'Fiesta de 15 Años', image: 'https://www.dropbox.com/scl/fi/eqfsqr0v5syzcn90s1p1o/quince-a-os.jpg?rlkey=gjw3azk9prno5uafh6ztrv9np&st=tmwq8l82&raw=1' },
+  { id: 3, title: 'Egresos', image: 'https://www.dropbox.com/scl/fi/mgrx0kadoywuc75vjz7xw/egreso1.jpg?rlkey=pv0b16n9k4cwf8yix7nmxf51a&st=c6534wlc&raw=1' }
 ];
 
 const productProjects = [
-  { id: 3, title: 'Fotografía de Producto', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455250963_879508620901901_5476384084199253931_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=L-vUmsLFWIIQ7kNvgFNr0aX&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYC8hIaOebulKFYm5GEv3FTigED6DGyFKrocErlfeH2p4w&oe=66C44963' },
-  { id: 4, title: 'Fotografía de Producto', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455929899_879508450901918_7332017861272498770_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Y2ca4YWISRQQ7kNvgEhWLFw&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYChtPzkcSebkjaBlXhhrh8hY-E-qcQvvZyGpa1b8XOF-w&oe=66C59153' },
-  { id: 5, title: 'Fotografía de Producto', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455538892_879508474235249_4459027678837162823_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Xg0xkw6ss8gQ7kNvgFu5q6t&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYD5kwMXg6nCeIvbts7u0xjJVpU6FNLAiSlXk8agY3XyOQ&oe=66C597B5' },
-  { id: 6, title: 'Fotografía Gastronómica', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455300939_879520550900708_6379713209925752305_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HIRe4T3K9DUQ7kNvgGYUO2P&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYC0FQWOWEoUTq-7oWSwEpdYV8pXe03NIK7-dTZwg7LAFw&oe=66C5AF4F' },
-  { id: 7, title: 'Fotografía Gastronómica', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455277588_879520920900671_4551797739031401093_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Sjzxu8y2Xj0Q7kNvgG8X6VZ&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYANYQi-acQg_FxEk3OdNZp16xf83nTA6CX6oLxvVP-ttw&oe=66C59FAD' },
-  { id: 8, title: 'Fotografía Gastronómica', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455640676_879520750900688_7734197138345989772_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=5E_H1uL9makQ7kNvgE0uuqp&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYC8IYgEc4JE4tlv_Zneah6SSRaTkHipMabthcYnsD1vkg&oe=66C591EF' }
+  { id: 3, title: 'Fotografía de Producto', image: 'https://www.dropbox.com/scl/fi/cqexibqi3o6lvlzxtb72a/DSC_1508.jpg?rlkey=35elg00g62zhub7ybvcxdq53l&st=gihtepjc&raw=1' },
+  { id: 4, title: 'Fotografía de Producto', image: 'https://www.dropbox.com/scl/fi/q6k3l195aiudsmaaiz73i/DSC_1376.jpg?rlkey=c8o8kms6k7x3g2r4wr3sys392&st=nip8ooxq&raw=1' },
+  { id: 5, title: 'Fotografía de Producto', image: 'https://www.dropbox.com/scl/fi/l84krppwbdos8rc2q2j30/DSC_1262.jpg?rlkey=684ablwnqa0o1jp6jhua06fjo&st=m5ygfccp&raw=1' },
+  { id: 6, title: 'Fotografía Gastronómica', image: 'https://www.dropbox.com/scl/fi/z2yxgmx2xt5n2whhb7sy5/producto1.jpg?rlkey=ayjrutn4p7gfs2rledee1o2dq&st=2a3pi8xa&raw=1' },
+  { id: 7, title: 'Fotografía Gastronómica', image: 'https://www.dropbox.com/scl/fi/wh1bu25ym74riue12oufy/producto4.jpg?rlkey=903d1ly3bjmhp77nmv3c57hrb&st=x8wehih5&raw=1' },
+  { id: 8, title: 'Fotografía Gastronómica', image: 'https://www.dropbox.com/scl/fi/pd55s3a779u230e0k6plp/producto3.jpg?rlkey=0b224l07iyx7lsmdl200234nl&st=7621hirg&raw=1' }
 
 
 ];
@@ -94,9 +94,9 @@ const institutionalProjects = [
 ];
 
 const aerialProjects = [
-  { id: 7, title: 'Axion Freyre', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455631454_879555440897219_1020133484170355582_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=WGa8TUegLDMQ7kNvgFPWIm2&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYARXns2joFjGSPU6F5x0UVpZGJORfGTXlzYnBiBPgMjAg&oe=66C46B88' },
-  { id: 8, title: 'Estadio Mario Alberto Kempes', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455640025_879555490897214_8965230795414648581_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fudAHCFFB6QQ7kNvgEHYnSY&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYB7qcp6LA5XuAZ89wCCiTBnbw1tBSW3NqiT0F7zoS1ATw&oe=66C48447' },
-  { id: 9, title: 'Miramar de Ansenuza', image: 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/325955170_847744519617105_1219356717276193238_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE8Y-5W4XIpNRq5Mu2DhG-WLEhgSo_mIQAsSGBKj-YhAAHHQYrDS5euUeNimM6XGUs&_nc_ohc=3SHKmhtKuaoQ7kNvgHNKJmg&_nc_ht=scontent.fcor3-1.fna&oh=00_AYADFlfnAKiqR2D9znKiv2K4clDTdwQKnyuSp6IUDr2LnQ&oe=66C5B9F5' }
+  { id: 7, title: 'Axion Freyre', image: 'https://www.dropbox.com/scl/fi/d56ik6joirj0ns0d80s0m/axion2.jpg?rlkey=byfn0uncipahmaj3isq2hhpuq&st=jz4kkta7&raw=1' },
+  { id: 8, title: 'Estadio Mario Alberto Kempes', image: 'https://www.dropbox.com/scl/fi/g6yvj29gbtymue8hcr8mq/estadio-kempes.jpg?rlkey=napgyqztr2x1lxo5b8pkectxo&st=4108guai&raw=1' },
+  { id: 9, title: 'Miramar de Ansenuza', image: 'https://www.dropbox.com/scl/fi/ubxehtsgkhfiu6wth1il9/miramar.jpg?rlkey=cck7x4ph09ktssbef22s4tvho&st=ax1h0te1&raw=1' }
 
 ];
 
