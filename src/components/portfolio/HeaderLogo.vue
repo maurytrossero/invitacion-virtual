@@ -17,14 +17,14 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 
-const logoSrc = 'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/326524611_1565285560665566_1754105422097280677_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Tt5ZMbWL7b0Q7kNvgFj1ofV&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYBopQ0KLBtrHGtCn9l91Q2GQI-zpAb9oDh6QzYinYnPqw&oe=66C43EDB'; // Logo
+const logoSrc = 'https://www.dropbox.com/scl/fi/gv2k4qop077jvccqdhriu/LOGO.jpg?rlkey=isw4oc0cdjzp8k7kac4gv9wsp&st=i465hsay&raw=1'; // Logo
 
 // Vector de imágenes para el carrusel
 const backgroundImages = ref([
-  'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455642071_879498430902920_6760471179070421456_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=yTLC0jXaFLsQ7kNvgE9_01i&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYBz0N9TES5C0ABIVEPi-RCGryZEEmdxEgASKgEzwdYy6Q&oe=66C44469',
-  'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455631454_879555440897219_1020133484170355582_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=WGa8TUegLDMQ7kNvgFPWIm2&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYARXns2joFjGSPU6F5x0UVpZGJORfGTXlzYnBiBPgMjAg&oe=66C46B88',
-  'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455640025_879555490897214_8965230795414648581_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fudAHCFFB6QQ7kNvgEHYnSY&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYB7qcp6LA5XuAZ89wCCiTBnbw1tBSW3NqiT0F7zoS1ATw&oe=66C48447',
-  'https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455348967_880135427505887_8758665298980807519_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=tHCZoHZd9qYQ7kNvgHB6vp_&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYDjVvD5t9-XWxKcG1GP1mi7UZRG_a4iUmsdFDGVPyWqpw&oe=66C5B224'
+  'https://www.dropbox.com/scl/fi/hgyvzblja8cj0wm6ni10j/fiesta-manfrey.jpg?rlkey=prijj0wu4jmnuq66zmxp9esjq&st=snbc1dzw&raw=1',
+  'https://www.dropbox.com/scl/fi/d56ik6joirj0ns0d80s0m/axion2.jpg?rlkey=byfn0uncipahmaj3isq2hhpuq&st=gf5pfi2j&raw=1',
+  'https://www.dropbox.com/scl/fi/g6yvj29gbtymue8hcr8mq/estadio-kempes.jpg?rlkey=napgyqztr2x1lxo5b8pkectxo&st=kj7kwqv0&raw=1',
+  'https://www.dropbox.com/scl/fi/8p73n9x52xg065pigspf1/drone.jpg?rlkey=jei5o2h8ct3tol443vfbc28o5&st=a0d0otuh&raw=1'
 ])
 
 const currentImageIndex = ref(0)
