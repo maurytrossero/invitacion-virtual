@@ -135,7 +135,7 @@ function stopZoom() {
   position: relative;
   padding: 40px;
   background-color: #000;
-  background-image: url('https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/456100461_880112307508199_2921364796462348468_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=jl0t5A7e7TwQ7kNvgE4v1aN&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYAA29yxTQTAFPzYjU7PMPGUDoYQSfpVbeq59mH2Is9-Zg&oe=66C5872F'); /* Cambia esta URL por la de tu imagen de fondo */
+  background-image: url('https://www.dropbox.com/scl/fi/55ffixug06bri6e1pcx3j/imagen-de-fondo.jpg?rlkey=yhxxjdb9hekuu9hoy1nj4q3bi&st=h2liln5y&raw=1'); /* Cambia esta URL por la de tu imagen de fondo */
   background-size: cover;
   background-position: center;
   margin-top: 80px; /* Añade margen superior para evitar solapamiento */

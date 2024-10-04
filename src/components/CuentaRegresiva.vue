@@ -1,7 +1,7 @@
 <template>
   <div class="cuenta-regresiva">
     <div class="overlay">
-      <h1>Emma Alejandra & Jorge Antonio</h1>
+      <h1>Noe & Cristian</h1>
       <h2>NUESTRA BODA | 23/11/2024</h2>
       <div class="contador">
         <div class="tiempo">

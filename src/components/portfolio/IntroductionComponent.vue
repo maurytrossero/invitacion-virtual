@@ -73,7 +73,7 @@ import DroneIcon from 'vue-material-design-icons/Helicopter.vue';
 
 .hero-image {
   position: relative;
-  background: url('https://scontent.fcor3-1.fna.fbcdn.net/v/t39.30808-6/455682815_880112290841534_5260424241854043392_n.jpg?stp=dst-jpg_p526x395&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=boEyfa9RuUUQ7kNvgHSTBQw&_nc_ht=scontent.fcor3-1.fna&cb_e2o_trans=q&oh=00_AYDCOvKTkj1QOpzNLykz7KHtKVWuGFdE_7mHOPp20GZ5Rg&oe=66C57E36') no-repeat center center;
+  background: url('https://previews.dropbox.com/p/thumb/ACblRGYatlvfOl0IYvXSL_LjLHdR3rjClJYMbHZqyiirqfp5qwC0LbLo-f1AOtH9wVwC8uH3Kg1rIzkPQY7MD-ZqyiH45euxSSWebj6DWtn4bDbb7TOnAafcvp9iswerFtSGbJnAtW1zclaN-scAMl86yxR0rIWMXSb0cqfyUwVH9eMsvKSINyAw_KxJEaLF4d18Urw3ARxi2fW7GxVwxlYXp9b35-jnxr2ZH6tRJMWuhia5Wudi2iZhuZE_ORjpdj3CU4DdpEHHGc3JRP3sayeeXaZEvVYMQwpKm8zaBCWKE3879lHFCW30jmMa8fqbgSk/p.jpeg') no-repeat center center;
   background-size: cover;
   width: 100%;
   min-height: 100vh;
