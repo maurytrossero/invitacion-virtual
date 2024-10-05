@@ -112,19 +112,24 @@ watch(pantallaCompleta, (newVal) => {
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lora&display=swap');
 
 .fiesta {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  background-color: #f0eae5;
+  color: #333;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: calc(100% - 10px); /* Ajuste de ancho según lo solicitado */
+  height: calc(100vh - 50px); /* Ajuste de alto según lo solicitado */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100%;
-  background-color: #f7f7f7;
-  padding: 20px;
+  align-items: center;
   box-sizing: border-box;
-  text-align: center;
-  border-radius: 15px; /* Bordes redondeados añadidos */
-  border: 1px solid #ddd; /* Borde opcional */
-  overflow: hidden; /* Asegura que el contenido no sobresalga */
+  position: relative;
+  overflow: hidden;
+  margin: 5px auto; /* Márgenes pequeños para mantener el estilo centrado */
 }
 
 .fiesta h1, .fiesta h2 {

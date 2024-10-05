@@ -79,19 +79,24 @@ const cerrarModal = () => {
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lora&display=swap');
 
 .fiesta-contenedor {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  background-color: #f0eae5;
+  color: #333;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: calc(100% - 10px); /* Ajuste de ancho según lo solicitado */
+  height: calc(100vh - 50px); /* Ajuste de alto según lo solicitado */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: auto; /* Cambiado para permitir el ajuste en móvil */
-  width: 100%;
-  background-color: #f7f7f7;
-  padding: 10px; /* Reducido para más espacio en móvil */
+  align-items: center;
   box-sizing: border-box;
-  border-radius: 15px;
-  border: 2px solid #ccc;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  position: relative;
   overflow: hidden;
+  margin: 5px auto; /* Márgenes pequeños para mantener el estilo centrado */
 }
 
 .fiesta-titulo, .fiesta-subtitulo {

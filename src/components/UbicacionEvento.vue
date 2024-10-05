@@ -47,18 +47,26 @@ const lugares = [
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lora&display=swap');
 
 .ubicacion-contenedor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  background-color: #f7f7f7;
-  padding: 10px; /* Reducción del padding */
-  box-sizing: border-box;
-  border-radius: 15px;
-  overflow: hidden;
+  font-family: 'Playfair Display', serif;
+    text-align: center;
+    background-color: #f0eae5; /* Color de fondo */
+    color: #333; /* Color del texto */
+    padding: 20px;
+    border: 2px solid #ccc; /* Borde del contenedor */
+    border-radius: 10px; /* Borde redondeado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    width: calc(100% - 10px); /* Ajuste de ancho según lo solicitado */
+    height: calc(100vh - 50px); /* Ajuste de alto según lo solicitado */
+    display: flex;
+    flex-direction: column; /* Cambiado a columna */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    box-sizing: border-box; /* Incluir padding y border en el tamaño total */
+    position: relative;
+    overflow: hidden; /* Evitar desbordamiento */
+    margin: 5px auto; /* Mantener el componente centrado */
 }
+
 
 .ubicacion-titulo {
   font-family: 'Cormorant Garamond', serif;

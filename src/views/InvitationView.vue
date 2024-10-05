@@ -6,9 +6,9 @@
     <div ref="ubicacionEventoRef"><UbicacionEvento /></div>
     <div ref="gestionFiestaRef"><GestionFiesta /></div>
     <div ref="fotosEventoRef"><FotosEvento /></div>
+     <!--<div ref="ubicacionMesasRef"><UbicacionMesas /></div>-->
 
-    <FooterMusic />
-
+    <!--<FooterMusic />-->
     <button class="scroll-btn up" @click="scroll('up')">▲</button>
     <button class="scroll-btn down" @click="scroll('down')">▼</button>
   </div>
@@ -22,6 +22,7 @@ import CuentaRegresiva from '@/components/CuentaRegresiva.vue';
 import UbicacionEvento from '@/components/UbicacionEvento.vue';
 import GestionFiesta from '@/components/GestionFiesta.vue';
 import FotosEvento from '@/components/FotosEvento.vue';
+import UbicacionMesas from '@/components/UbicacionMesas.vue';
 import FooterMusic from '@/components/FooterMusic.vue';
 
 const cuentaRegresivaRef = ref<HTMLElement | null>(null);
@@ -30,6 +31,7 @@ const ubicacionEventoRef = ref<HTMLElement | null>(null);
 const gestionFiestaRef = ref<HTMLElement | null>(null);
 const fotosEventoRef = ref<HTMLElement | null>(null);
 const introduccionComponenteRef = ref<HTMLElement | null>(null);
+const ubicacionMesasRef = ref<HTMLElement | null>(null);
 
 const refs = [
   cuentaRegresivaRef,
@@ -37,7 +39,8 @@ const refs = [
   ubicacionEventoRef,
   gestionFiestaRef,
   fotosEventoRef,
-  introduccionComponenteRef
+  introduccionComponenteRef,
+  ubicacionMesasRef
 ];
 
 let currentIndex = ref(0);

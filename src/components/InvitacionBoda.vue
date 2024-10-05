@@ -24,9 +24,8 @@ const googleCalendarLink = `https://calendar.google.com/calendar/render?action=T
   border: 2px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: calc(100% - 40px); /* Ajusta el ancho considerando el padding */
-  max-width: 800px; /* Establece un ancho máximo para mantener el contenido centrado y con buen aspecto */
-  height: calc(100vh - 40px); /* Ajusta la altura considerando el padding */
+  width: calc(100% - 10px); /* Ajuste de ancho según lo solicitado */
+  height: calc(100vh - 50px); /* Ajuste de alto según lo solicitado */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,7 +33,7 @@ const googleCalendarLink = `https://calendar.google.com/calendar/render?action=T
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  margin: 20px auto; /* Centra el contenedor y añade márgenes arriba y abajo */
+  margin: 5px auto; /* Márgenes pequeños para mantener el estilo centrado */
 }
 
 .invitacion::before, .invitacion::after {
@@ -42,24 +41,24 @@ const googleCalendarLink = `https://calendar.google.com/calendar/render?action=T
   position: absolute;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 25vw; /* Ajusta el tamaño en relación con el ancho del viewport */
-  height: 25vh; /* Ajusta el tamaño en relación con la altura del viewport */
-  max-width: 150px; /* Tamaño máximo para evitar que las imágenes sean demasiado grandes */
-  max-height: 150px; /* Tamaño máximo para evitar que las imágenes sean demasiado grandes */
-  background-image: url('@/../public/images/flor.png'); /* Usa la imagen directamente en el CSS */
+  width: 25vw; /* Ajuste en relación al ancho del viewport */
+  height: 25vh; /* Ajuste en relación a la altura del viewport */
+  max-width: 150px; /* Tamaño máximo para evitar imágenes muy grandes */
+  max-height: 150px; /* Tamaño máximo para evitar imágenes muy grandes */
+  background-image: url('@/../public/images/flor.png'); /* Imagen decorativa */
 }
 
 .invitacion::before {
   top: 0;
   left: 0;
-  background-position: top left; /* Posiciona la imagen en la esquina superior izquierda */
+  background-position: top left; /* Imagen decorativa en esquina superior izquierda */
 }
 
 .invitacion::after {
   bottom: 0;
   right: 0;
-  background-position: bottom right; /* Posiciona la imagen en la esquina inferior derecha */
-  transform: rotate(180deg); /* Rota la imagen 180 grados */
+  background-position: bottom right; /* Imagen decorativa en esquina inferior derecha */
+  transform: rotate(180deg); /* Rotación para darle estilo a la imagen */
 }
 
 .agendar-boton {
@@ -75,7 +74,7 @@ const googleCalendarLink = `https://calendar.google.com/calendar/render?action=T
 }
 
 .agendar-boton:hover {
-  background-color: #9a733b; /* Color dorado oscuro */
+  background-color: #9a733b; /* Color dorado oscuro al hacer hover */
 }
 
 h1, h2, h3 {
@@ -91,10 +90,9 @@ p {
   .invitacion {
     padding: 10px;
     border-width: 1px;
-    margin: 10px auto; /* Ajusta los márgenes para móviles */
-    width: calc(100% - 20px); /* Ajusta el ancho considerando el padding y márgenes */
-    max-width: 100%; /* Ajusta el ancho máximo para pantallas más pequeñas */
-    height: calc(100vh - 20px); /* Ajusta la altura considerando el padding y márgenes */
+    margin: 10px auto; /* Ajuste de márgenes en móvil */
+    width: calc(100% - 10px); /* Ajuste de ancho en móvil */
+    height: calc(100vh - 50px); /* Mantiene la relación de alto en móvil */
   }
   
   h1 {
