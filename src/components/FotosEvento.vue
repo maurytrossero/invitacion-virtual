@@ -2,11 +2,7 @@
   <div class="fiesta">
     <h1>Una gran fiesta junto a vos</h1>
     <p>Compartí tus fotos y videos de este hermoso día con el hashtag</p>
-    <h2>#BodaEmaYJorge</h2>
-
-    <div>
-      <a :href="instagramAuthUrl">Iniciar sesión con Instagram</a>
-    </div>
+    <h2>#BodaNoeYCristian</h2>
 
     <div class="carrusel">
       <div class="carrusel-contenedor" :style="carruselStyle">
