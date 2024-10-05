@@ -3,10 +3,13 @@
     <h1>Fiesta</h1>
     <p>Sábado 23 de Noviembre de 2024</p>
     <h2>Agendar fecha</h2>
+    <!-- Botón para agendar la fecha en Google Calendar -->
+    <a :href="googleCalendarLink" target="_blank" class="agendar-boton">Añadir a Google Calendar</a>
   </div>
 </template>
 
 <script lang="ts" setup>
+const googleCalendarLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fiesta&dates=20241123T180000Z/20241123T210000Z&details=No+te+pierdas+nuestra+fiesta&location=Dirección+de+la+fiesta&sf=true&output=xml`;
 </script>
 
 <style scoped>
@@ -57,6 +60,22 @@
   right: 0;
   background-position: bottom right; /* Posiciona la imagen en la esquina inferior derecha */
   transform: rotate(180deg); /* Rota la imagen 180 grados */
+}
+
+.agendar-boton {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #b98b4e; /* Color dorado */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: 'Playfair Display', serif;
+  transition: background-color 0.3s;
+}
+
+.agendar-boton:hover {
+  background-color: #9a733b; /* Color dorado oscuro */
 }
 
 h1, h2, h3 {
