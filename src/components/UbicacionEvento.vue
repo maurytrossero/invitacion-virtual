@@ -23,21 +23,21 @@ const lugares = [
     titulo: "Ceremonia Religiosa",
     direccion: "Calle Falsa 123",
     hora: "17:00",
-    imagen: "https://previews.dropbox.com/p/thumb/ACaMlmzHGmTPwpePKDxvzWwB8y1YprqI1N_Brv1NJZBMkk5mYxjFXWdFGSsmFmkIHox7Q5i1Na9cXGinfF7RIKEFb8LU4ycybRNhblv47NBRV4VMm00hdyVQm7l2duebSF3N_aNIMdUBe3oEej7Jiv3tOP0fWxYcxuWWvffHLu-F-2y0nX1SciIYgMxLMJXW-bY0UznKRQGhS0hUjUfhawIpv6FTd4Xs-MthaDe5jyQDtYFwSgVswf-yjqE_sQkdgyHimedPO3-oRgF2Iauo5gE-2i0U_nPl04KFvYr0swoXIkh8DUeG23f_flbvj0iRvOPI2Wd97N3Un2zAwfY7sPAa/p.jpeg?is_prewarmed=true",
+    imagen: "https://dl.dropboxusercontent.com/scl/fi/4by13m0e74vyw6dxlrv6i/iglesia.jpg?rlkey=6ixcspd3h0l035aw30o5x3ig2",
     url: "https://maps.app.goo.gl/q6xZJabaxwE6Dbyi9"
   },
   {
     titulo: "Ceremonia Civil",
     direccion: "Avenida Siempre Viva 742",
     hora: "17:45",
-    imagen: "https://previews.dropbox.com/p/thumb/ACa5-q0vD51Y5kYFXiLLIYJxjf4sHRgyhsmja7kgLHvxyd-jEknSPGkzvb5Ihg9bgeeVGmWd-i0I6T9_ZRI-o6mtLoDfwmMnW_mW4R1y3hED-W1aDcMaQIx8weNYkmeRq6_z0BEiZgtnZ5XBpuUn7Pf29yp866MafWGoOWAn9vUOmjS-YSziybllWcYYYnPrxQcdhjzwCgI3cAGDF8HT0I-jHVBo1OyD-vsfb87AhODOoef4xGozo7f9E2Wbe7itFG56ARdAa_ObyqkcBqCVThEDNg8OQdurK6fTt1r19xahnlw8Ro-AG4rapURUpFI-mxFwhIWB3XmDY6mmHyXlKcLN/p.png?is_prewarmed=true",
+    imagen: "https://dl.dropboxusercontent.com/scl/fi/w5iwgv12bp2hbqzba8sxh/regitro.png?rlkey=pzfn3azdmampghckp8nxz21zv",
     url: "https://maps.app.goo.gl/sDjHZv7XphtKHbYT8"
   },
   {
     titulo: "Salón de Fiestas",
     direccion: "Calle Principal 456",
     hora: "18:00",
-    imagen: "https://previews.dropbox.com/p/thumb/ACZvbONixrMN595yAeiP8fET7P1N3nZu542pEv9-UG6tSsRMEYSR7WXBxGKiPbtOjrfQDI6TCU4cIhOS4e_0pXoSloqP8JE02Mt4tRs7Z8iTWvGU7sju2eUfFrGpa9QYOsPQaZ4zQzWxDa5w9n9qrmHmvA5Yw-CgQeNwoHFRd7EO_XybZWw6WTbWslF6KEYdGZmdBYQV-ReWBiVa-hZ9TVUSl8LbqO70HrhYH5asTkj5ksOFJivR1XCdXXgwM5u2po6yubUJHfvxMfib1GRCBfpB1wGkNNc4hkmURqy4vNDIgW2bKMMrc3MWvwCktVLo4ckORla1wQhu7Bayx8gcOhiM/p.jpeg?is_prewarmed=true",
+    imagen: "https://dl.dropboxusercontent.com/scl/fi/yov2bdlkrw4c3sz4gdt2h/club.jpg?rlkey=ugtwvsi1qdetyeyip52uhc5jy",
     url: "https://maps.app.goo.gl/gNDTyJ8PpaH3J6EP6"
   }
 ]
