@@ -1,14 +1,8 @@
 <template>
   <div class="invitacion">
-    <h1>Invitación</h1>
-    <p>Con la bendición de Dios</p>
-    <h2>¡NOS CASAMOS!</h2>
-    <p>y nos encantaría compartir este día con ustedes</p>
-    <h3>Nuestros Padres</h3>
-    <p>Novia:</p>
-    <p>Ana García y Juan Pérez</p>      
-    <p>Novio:</p>
-    <p>María López y Carlos Martínez</p>
+    <h1>Fiesta</h1>
+    <p>Sábado 23 de Noviembre de 2024</p>
+    <h2>Agendar fecha</h2>
   </div>
 </template>
 

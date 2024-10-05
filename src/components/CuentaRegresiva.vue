@@ -3,6 +3,7 @@
     <div class="overlay">
       <h1>Noe & Cristian</h1>
       <h2>NUESTRA BODA | 23/11/2024</h2>
+      <h3>"Los esperamos para compartir un momento especial para nosotros lleno de emoción y alegría"</h3>
       <div class="contador">
         <div class="tiempo">
           <transition-group name="slide-fade" tag="div" class="digit">

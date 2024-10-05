@@ -8,6 +8,7 @@
 
     <button class="scroll-btn up" @click="scroll('up')">▲</button>
     <button class="scroll-btn down" @click="scroll('down')">▼</button>
+    <FooterMusic/>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import CuentaRegresiva from '@/components/CuentaRegresiva.vue';
 import UbicacionEvento from '@/components/UbicacionEvento.vue';
 import GestionFiesta from '@/components/GestionFiesta.vue';
 import FotosEvento from '@/components/FotosEvento.vue';
+import FooterMusic from '@/components/FooterMusic.vue';
 
 const cuentaRegresivaRef = ref<HTMLElement | null>(null);
 const invitacionBodaRef = ref<HTMLElement | null>(null);

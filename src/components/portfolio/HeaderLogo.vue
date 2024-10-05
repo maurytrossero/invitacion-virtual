@@ -10,12 +10,14 @@
         ></div>
       </div>
     </div>
-    <img :src="logoSrc" alt="Logo" class="logo" />
+    <!-- Al hacer click en el logo se redirige a la ruta de invitacion -->
+    <img :src="logoSrc" alt="Logo" class="logo" @click="goToInvitation" />
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 const logoSrc = 'https://www.dropbox.com/scl/fi/gv2k4qop077jvccqdhriu/LOGO.jpg?rlkey=isw4oc0cdjzp8k7kac4gv9wsp&st=i465hsay&raw=1'; // Logo
 
@@ -29,6 +31,7 @@ const backgroundImages = ref([
 
 const currentImageIndex = ref(0)
 
+// Configura el estilo del carrusel
 const carouselStyle = computed(() => ({
   transform: `translateX(-${currentImageIndex.value * 100}%)`,
   transition: 'transform 1s ease-in-out'
@@ -39,6 +42,12 @@ onMounted(() => {
     currentImageIndex.value = (currentImageIndex.value + 1) % backgroundImages.value.length
   }, 5000) // Cambia la imagen cada 5 segundos
 })
+
+// Router para redirigir al componente 'invitacion'
+const router = useRouter()
+const goToInvitation = () => {
+  router.push({ name: 'invitacion-virtual' }) // Redirige a la ruta '/invitacion'
+}
 </script>
 
 <style scoped>
@@ -82,6 +91,7 @@ onMounted(() => {
   border: 5px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer; /* Agregar cursor de puntero para que parezca clicable */
 }
 
 @media (max-width: 768px) {
