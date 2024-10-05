@@ -119,20 +119,22 @@ const cerrarModal = () => {
 
 .fiesta {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  justify-content: center; /* Centra las tarjetas en el contenedor */
+  align-items: flex-start; /* Alinea las tarjetas en la parte superior */
+  flex-wrap: wrap; /* Permite que las tarjetas se envuelvan en varias filas si es necesario */
   width: 100%;
   max-width: 1920px;
-  padding: 10px; /* Reducido */
+  padding: 0 20px; /* Reduce el espacio superior e inferior, ajusta el espacio lateral */
   box-sizing: border-box;
 }
 
 .tarjeta {
-  width: 80%; /* Ajustado para más flexibilidad */
+  width: 20%; /* Mantiene el ancho de las tarjetas */
   height: auto; /* Cambiado para que el contenido ajuste automáticamente */
-  margin: 5px; /* Reducido */
+  margin: 10px; /* Aumentado para mayor separación entre tarjetas */
 }
+
+
 
 .tarjeta-contenido {
   width: 100%;
@@ -177,11 +179,11 @@ const cerrarModal = () => {
 
 @media (max-width: 768px) {
   .fiesta-titulo {
-    font-size: 2em; /* Ajustado en el media query también */
+    font-size: 1.8em; /* Ajustado a un tamaño más pequeño */
   }
 
   .fiesta-subtitulo {
-    font-size: 1em; /* Ajustado en el media query también */
+    font-size: 0.9em; /* Ajustado a un tamaño más pequeño */
   }
 
   .fiesta {
@@ -190,23 +192,24 @@ const cerrarModal = () => {
   }
 
   .tarjeta {
-    width: 90%;
-    margin-bottom: 10px; /* Reducido */
+    width: 95%; /* Aumentado para ocupar más espacio */
+    margin-bottom: 5px; /* Reducido */
   }
 
   .tarjeta-contenido h2 {
-    font-size: 1.2em; /* Ajustado en el media query también */
+    font-size: 1.1em; /* Ajustado a un tamaño más pequeño */
   }
 
   .tarjeta-contenido p {
-    font-size: 0.9em; /* Ajustado en el media query también */
-    margin-bottom: 10px; /* Reducido */
+    font-size: 0.8em; /* Ajustado a un tamaño más pequeño */
+    margin-bottom: 5px; /* Reducido */
   }
 
   .tarjeta-contenido button {
-    font-size: 0.9em; /* Ajustado en el media query también */
-    padding: 8px 16px; /* Ajustado en el media query también */
+    font-size: 0.8em; /* Ajustado a un tamaño más pequeño */
+    padding: 6px 12px; /* Reducido */
   }
 }
+
 </style>
 
