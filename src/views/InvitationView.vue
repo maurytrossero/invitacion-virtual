@@ -6,14 +6,16 @@
     <div ref="ubicacionEventoRef"><UbicacionEvento /></div>
     <div ref="gestionFiestaRef"><GestionFiesta /></div>
     <div ref="fotosEventoRef"><FotosEvento /></div>
-     <!--<div ref="ubicacionMesasRef"><UbicacionMesas /></div>-->
+    <FooterMusic v-if="showFooterMusic" />
 
-    <!--<FooterMusic />-->
     <button class="scroll-btn up" @click="scroll('up')">▲</button>
     <button class="scroll-btn down" @click="scroll('down')">▼</button>
+    <button class="music-btn" @click="toggleFooterMusic">
+      <font-awesome-icon :icon="showFooterMusic ? 'volume-up' : 'volume-mute'" />
+    </button>
+
   </div>
 </template>
-
 <script lang="ts" setup>
 import { ref } from 'vue';
 import InvitacionBoda from '@/components/InvitacionBoda.vue';
@@ -22,7 +24,6 @@ import CuentaRegresiva from '@/components/CuentaRegresiva.vue';
 import UbicacionEvento from '@/components/UbicacionEvento.vue';
 import GestionFiesta from '@/components/GestionFiesta.vue';
 import FotosEvento from '@/components/FotosEvento.vue';
-import UbicacionMesas from '@/components/UbicacionMesas.vue';
 import FooterMusic from '@/components/FooterMusic.vue';
 
 const cuentaRegresivaRef = ref<HTMLElement | null>(null);
@@ -44,6 +45,8 @@ const refs = [
 ];
 
 let currentIndex = ref(0);
+const isPlaying = ref(false); // Estado de reproducción
+const showFooterMusic = ref(false);
 
 const scroll = (direction: 'up' | 'down') => {
   if (refs.length === 0) return;
@@ -62,7 +65,17 @@ const scroll = (direction: 'up' | 'down') => {
     });
   }
 };
+
+const toggleFooterMusic = () => {
+  showFooterMusic.value = !showFooterMusic.value;
+
+  // Si se muestra el footer, puedes iniciar la música
+  if (showFooterMusic.value && !isPlaying.value) {
+    isPlaying.value = true; // Inicia la reproducción
+  }
+};
 </script>
+
 
 <style scoped>
 .home {
@@ -100,6 +113,24 @@ const scroll = (direction: 'up' | 'down') => {
   transform: translateX(-50%);
 }
 
+.music-btn {
+  position: fixed;
+  bottom: 50px; /* Ajusta la posición del botón de música */
+  right: 20px; /* Ajusta la posición del botón de música */
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  z-index: 1000;
+}
+
 /* Responsive styling */
 @media (max-width: 768px) {
   .scroll-btn {
@@ -114,6 +145,12 @@ const scroll = (direction: 'up' | 'down') => {
 
   .scroll-btn.down {
     bottom: 70px; /* Ajusta la posición en vista móvil */
+  }
+
+  .music-btn {
+    width: 40px;
+    height: 40px;
+    bottom: 40px; /* Ajusta la posición en vista móvil */
   }
 }
 </style>

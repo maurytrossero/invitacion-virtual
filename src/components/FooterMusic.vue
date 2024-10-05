@@ -1,5 +1,5 @@
 <template>
-    <div class="footer-music">
+    <div v-if="isFooterVisible" class="footer-music">
       <div class="controls">
         <button @click="rewind" class="control-btn">⏪</button>
         <button @click="togglePlayPause" class="control-btn">
@@ -31,22 +31,23 @@
   </template>
   
   <script setup>
-  import { ref, onMounted, getCurrentInstance, computed } from 'vue'
+  import { ref, onMounted, getCurrentInstance, computed } from 'vue';
   
-  const isPlaying = ref(false)
-  const player = ref(null)
-  const volume = ref(50) // Volumen inicial al 50%
-  const duration = ref(0) // Duración total del video
-  const playbackPosition = ref(0) // Posición actual de reproducción
-  const currentTime = computed(() => formatTime(playbackPosition.value)) // Tiempo actual
-  const totalTime = computed(() => formatTime(duration.value)) // Tiempo total
+  const isPlaying = ref(false);
+  const player = ref(null);
+  const volume = ref(50); // Volumen inicial al 50%
+  const duration = ref(0); // Duración total del video
+  const playbackPosition = ref(0); // Posición actual de reproducción
+  const currentTime = computed(() => formatTime(playbackPosition.value)); // Tiempo actual
+  const totalTime = computed(() => formatTime(duration.value)); // Tiempo total
+  const isFooterVisible = ref(true); // Controla la visibilidad del footer
   const { proxy } = getCurrentInstance(); // Obtener el contexto del componente
   
   onMounted(() => {
     // Cargar el API de YouTube de manera asíncrona
-    const script = document.createElement('script')
-    script.src = 'https://www.youtube.com/iframe_api'
-    document.body.appendChild(script)
+    const script = document.createElement('script');
+    script.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(script);
   
     // Inicializar el reproductor de YouTube cuando el API esté lista
     window.onYouTubeIframeAPIReady = () => {
@@ -57,17 +58,17 @@
           onReady: onPlayerReady,
           onStateChange: onPlayerStateChange
         }
-      })
+      });
     }
-  })
+  });
   
   const onPlayerReady = (event) => {
-    event.target.setVolume(volume.value)
+    event.target.setVolume(volume.value);
   }
   
   const onPlayerStateChange = (event) => {
     if (event.data === window.YT.PlayerState.PLAYING) {
-      updatePlaybackPosition()
+      updatePlaybackPosition();
     }
   }
   
@@ -75,52 +76,52 @@
   const togglePlayPause = () => {
     if (player.value) {
       if (isPlaying.value) {
-        player.value.pauseVideo()
+        player.value.pauseVideo();
       } else {
-        player.value.playVideo()
+        player.value.playVideo();
       }
-      isPlaying.value = !isPlaying.value
+      isPlaying.value = !isPlaying.value;
     } else {
-      console.log("El reproductor no está listo.")
+      console.log("El reproductor no está listo.");
     }
   }
   
   // Rebobinar 10 segundos
   const rewind = () => {
     if (player.value) {
-      const currentTime = player.value.getCurrentTime()
-      player.value.seekTo(currentTime - 10)
+      const currentTime = player.value.getCurrentTime();
+      player.value.seekTo(currentTime - 10);
     }
   }
   
   // Adelantar 10 segundos
   const forward = () => {
     if (player.value) {
-      const currentTime = player.value.getCurrentTime()
-      player.value.seekTo(currentTime + 10)
+      const currentTime = player.value.getCurrentTime();
+      player.value.seekTo(currentTime + 10);
     }
   }
   
   // Ajustar el volumen
   const adjustVolume = () => {
     if (player.value) {
-      player.value.setVolume(volume.value)
+      player.value.setVolume(volume.value);
     }
   }
   
   // Actualizar la posición de reproducción
   const updatePlaybackPosition = () => {
     if (player.value) {
-      const currentTime = player.value.getCurrentTime()
-      playbackPosition.value = currentTime
-      duration.value = player.value.getDuration() // Obtener la duración total del video
+      const currentTime = player.value.getCurrentTime();
+      playbackPosition.value = currentTime;
+      duration.value = player.value.getDuration(); // Obtener la duración total del video
     }
   }
   
   // Ir a una posición específica
   const seek = () => {
     if (player.value) {
-      player.value.seekTo(playbackPosition.value)
+      player.value.seekTo(playbackPosition.value);
     }
   }
   
@@ -200,4 +201,3 @@
     }
   }
   </style>
-  
