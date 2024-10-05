@@ -1,20 +1,23 @@
 <template>
   <div class="home">
+    <div ref="introduccionComponenteRef"><IntroduccionComponente /></div>
     <div ref="cuentaRegresivaRef"><CuentaRegresiva /></div>
     <div ref="invitacionBodaRef"><InvitacionBoda /></div>
     <div ref="ubicacionEventoRef"><UbicacionEvento /></div>
     <div ref="gestionFiestaRef"><GestionFiesta /></div>
     <div ref="fotosEventoRef"><FotosEvento /></div>
 
+    <FooterMusic />
+
     <button class="scroll-btn up" @click="scroll('up')">▲</button>
     <button class="scroll-btn down" @click="scroll('down')">▼</button>
-    <FooterMusic/>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 import InvitacionBoda from '@/components/InvitacionBoda.vue';
+import IntroduccionComponente from '@/components/IntroduccionComponente.vue';
 import CuentaRegresiva from '@/components/CuentaRegresiva.vue';
 import UbicacionEvento from '@/components/UbicacionEvento.vue';
 import GestionFiesta from '@/components/GestionFiesta.vue';
@@ -26,13 +29,15 @@ const invitacionBodaRef = ref<HTMLElement | null>(null);
 const ubicacionEventoRef = ref<HTMLElement | null>(null);
 const gestionFiestaRef = ref<HTMLElement | null>(null);
 const fotosEventoRef = ref<HTMLElement | null>(null);
+const introduccionComponenteRef = ref<HTMLElement | null>(null);
 
 const refs = [
   cuentaRegresivaRef,
   invitacionBodaRef,
   ubicacionEventoRef,
   gestionFiestaRef,
-  fotosEventoRef
+  fotosEventoRef,
+  introduccionComponenteRef
 ];
 
 let currentIndex = ref(0);
@@ -81,13 +86,13 @@ const scroll = (direction: 'up' | 'down') => {
 }
 
 .scroll-btn.up {
-  bottom: 60px;
+  bottom: 150px; /* Aumenta la posición para que esté más arriba */
   left: 50%;
   transform: translateX(-50%);
 }
 
 .scroll-btn.down {
-  bottom: 10px;
+  bottom: 100px; /* Ajusta la posición del botón hacia abajo */
   left: 50%;
   transform: translateX(-50%);
 }
@@ -101,11 +106,11 @@ const scroll = (direction: 'up' | 'down') => {
   }
 
   .scroll-btn.up {
-    bottom: 50px;
+    bottom: 110px; /* Ajusta la posición en vista móvil */
   }
 
   .scroll-btn.down {
-    bottom: 5px;
+    bottom: 70px; /* Ajusta la posición en vista móvil */
   }
 }
 </style>

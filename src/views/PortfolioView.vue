@@ -3,8 +3,7 @@
     <HeaderLogo />
     <IntroductionComponent />
     <ProjectGallery />
-    <ContactForm />
-    
+    <ContactForm />   
     <!-- Flechas de navegación -->
     <button class="arrow up" @click="scrollToComponent('up')">▲</button>
     <button class="arrow down" @click="scrollToComponent('down')">▼</button>

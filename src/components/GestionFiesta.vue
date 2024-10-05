@@ -83,10 +83,10 @@ const cerrarModal = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: auto; /* Cambiado para permitir el ajuste en móvil */
   width: 100%;
   background-color: #f7f7f7;
-  padding: 20px;
+  padding: 10px; /* Reducido para más espacio en móvil */
   box-sizing: border-box;
   border-radius: 15px;
   border: 2px solid #ccc;
@@ -100,16 +100,16 @@ const cerrarModal = () => {
 
 .fiesta-titulo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 3em;
-  margin-bottom: 10px;
-  color: #b98b4e; /* Color dorado */
+  font-size: 2.5em; /* Reducido */
+  margin-bottom: 5px; /* Reducido */
+  color: #b98b4e;
 }
 
 .fiesta-subtitulo {
   font-family: 'Lora', serif;
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  color: #333; /* Color gris oscuro */
+  font-size: 1.2em; /* Reducido */
+  margin-bottom: 10px; /* Reducido */
+  color: #333;
 }
 
 .fiesta {
@@ -118,66 +118,65 @@ const cerrarModal = () => {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 1920px; /* Asegurar que el contenedor ocupe el mismo tamaño que los componentes anteriores */
-  padding: 20px;
+  max-width: 1920px;
+  padding: 10px; /* Reducido */
   box-sizing: border-box;
 }
 
 .tarjeta {
-  width: 300px;
-  height: 200px;
-  margin: 10px;
+  width: 80%; /* Ajustado para más flexibilidad */
+  height: auto; /* Cambiado para que el contenido ajuste automáticamente */
+  margin: 5px; /* Reducido */
 }
 
 .tarjeta-contenido {
   width: 100%;
-  height: 100%;
-  background-color: #f5e6cc; /* Color cremita */
+  background-color: #f5e6cc;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 15px; /* Reducido */
   box-sizing: border-box;
-  text-align: center; /* Asegurar que el texto esté centrado */
+  text-align: center;
 }
 
 .tarjeta-contenido h2 {
   font-family: 'Lora', serif;
-  font-size: 1.5em;
-  margin: 10px 0;
+  font-size: 1.2em; /* Reducido */
+  margin: 5px 0; /* Reducido */
 }
 
 .tarjeta-contenido p {
   font-family: 'Lora', serif;
-  font-size: 1em;
-  margin-bottom: 20px;
+  font-size: 0.9em; /* Reducido */
+  margin-bottom: 10px; /* Reducido */
 }
 
 .tarjeta-contenido button {
-  background-color: #b98b4e; /* Color dorado */
+  background-color: #b98b4e;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 8px 15px; /* Reducido */
   font-family: 'Lora', serif;
-  font-size: 1em;
+  font-size: 0.9em; /* Reducido */
   cursor: pointer;
 }
 
 .tarjeta-contenido button:hover {
-  background-color: #9a733b; /* Color dorado oscuro */
+  background-color: #9a733b;
 }
 
 @media (max-width: 768px) {
   .fiesta-titulo {
-    font-size: 2em;
+    font-size: 2em; /* Ajustado en el media query también */
   }
 
   .fiesta-subtitulo {
-    font-size: 1em;
+    font-size: 1em; /* Ajustado en el media query también */
   }
 
   .fiesta {
@@ -187,21 +186,22 @@ const cerrarModal = () => {
 
   .tarjeta {
     width: 90%;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reducido */
   }
 
   .tarjeta-contenido h2 {
-    font-size: 1.2em;
+    font-size: 1.2em; /* Ajustado en el media query también */
   }
 
   .tarjeta-contenido p {
-    font-size: 0.9em;
-    margin-bottom: 15px;
+    font-size: 0.9em; /* Ajustado en el media query también */
+    margin-bottom: 10px; /* Reducido */
   }
 
   .tarjeta-contenido button {
-    font-size: 0.9em;
-    padding: 8px 16px;
+    font-size: 0.9em; /* Ajustado en el media query también */
+    padding: 8px 16px; /* Ajustado en el media query también */
   }
 }
 </style>
+

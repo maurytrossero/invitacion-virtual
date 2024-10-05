@@ -1,9 +1,7 @@
 <template>
   <div class="cuenta-regresiva">
     <div class="overlay">
-      <h1>Noe & Cristian</h1>
-      <h2>NUESTRA BODA | 23/11/2024</h2>
-      <h3>"Los esperamos para compartir un momento especial para nosotros lleno de emoción y alegría"</h3>
+      <h1>Cuenta Regresiva</h1>
       <div class="contador">
         <div class="tiempo">
           <transition-group name="slide-fade" tag="div" class="digit">
@@ -72,7 +70,7 @@ onMounted(() => {
   position: relative;
   height: calc(100vh - 50px); /* Reduce el margen inferior */
   margin: 5px; /* Aplica margen de 10px alrededor */
-  background: url('https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2022/07/26/16588301170836.jpg') no-repeat center center;
+  background: url('https://www.spainuvies.com/wp-content/uploads/2020/01/ramo-flores-boda-1080x675.jpg') no-repeat center center;
   background-size: cover;
   overflow: hidden;
   border: 2px solid white; /* Añade el borde blanco */
@@ -102,15 +100,6 @@ h1 {
   margin: 0;
   text-align: center;
   line-height: 1.1; /* Ajusta la altura de la línea para mejorar la legibilidad */
-  overflow-wrap: break-word; /* Permite que el texto se rompa para ajustarse al contenedor */
-}
-
-h2 {
-  font-size: 2em;
-  font-family: 'Open Sans', sans-serif;
-  margin: 10px 0;
-  text-align: center;
-  line-height: 1.2; /* Ajusta la altura de la línea para mejorar la legibilidad */
   overflow-wrap: break-word; /* Permite que el texto se rompa para ajustarse al contenedor */
 }
 
@@ -161,20 +150,9 @@ h2 {
 @media (max-width: 768px) {
   h1 {
     font-size: 2em;
-    /* Usa 'display: block' y 'white-space: pre-wrap' para forzar el salto de línea */
     display: block;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    /* Ajusta el máximo ancho para forzar el salto en móviles */
-    max-width: 90%;
-  }
-  h2 {
-    font-size: 1.5em;
-    /* Usa 'display: block' y 'white-space: pre-wrap' para forzar el salto de línea */
-    display: block;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    /* Ajusta el máximo ancho para forzar el salto en móviles */
     max-width: 90%;
   }
 
