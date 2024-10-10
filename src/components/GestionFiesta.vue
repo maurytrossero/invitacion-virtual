@@ -195,7 +195,7 @@ const cerrarModal = () => {
   }
 
   .tarjeta-contenido h2 {
-    font-size: 1em; /* Reducido el tamaño del título */
+    font-size: 0.85em; /* Reducido el tamaño del título */
     margin: 3px 0; /* Margen ajustado */
   }
 
@@ -231,7 +231,7 @@ const cerrarModal = () => {
   }
 
   .tarjeta-contenido h2 {
-    font-size: 1em;
+    font-size: 0.85em; /* Reducido el tamaño del título */
     margin: 3px 0;
   }
 
@@ -245,6 +245,7 @@ const cerrarModal = () => {
     padding: 5px 10px;
   }
 }
+
 
 
 </style>
