@@ -177,39 +177,75 @@ const cerrarModal = () => {
   background-color: #9a733b;
 }
 
-@media (max-width: 768px) {
-  .fiesta-titulo {
-    font-size: 1.8em; /* Ajustado a un tamaño más pequeño */
-  }
-
-  .fiesta-subtitulo {
-    font-size: 0.9em; /* Ajustado a un tamaño más pequeño */
-  }
-
+/* Ajustes generales para móviles en portrait */
+@media (max-width: 768px) and (orientation: portrait) {
   .fiesta {
-    flex-direction: column;
+    flex-direction: column; /* Tarjetas apiladas verticalmente */
     align-items: center;
   }
 
   .tarjeta {
-    width: 95%; /* Aumentado para ocupar más espacio */
-    margin-bottom: 5px; /* Reducido */
+    width: 90%; /* Reducido para dejar más espacio en pantalla */
+    margin-bottom: 10px; /* Margen pequeño para separación */
+    height: auto; /* Ajusta la altura automáticamente */
+  }
+
+  .tarjeta-contenido {
+    padding: 10px; /* Reducido el padding interno */
   }
 
   .tarjeta-contenido h2 {
-    font-size: 1.1em; /* Ajustado a un tamaño más pequeño */
+    font-size: 1em; /* Reducido el tamaño del título */
+    margin: 3px 0; /* Margen ajustado */
   }
 
   .tarjeta-contenido p {
-    font-size: 0.8em; /* Ajustado a un tamaño más pequeño */
-    margin-bottom: 5px; /* Reducido */
+    font-size: 0.75em; /* Reducido el tamaño del texto */
+    margin-bottom: 5px; /* Margen ajustado */
   }
 
   .tarjeta-contenido button {
-    font-size: 0.8em; /* Ajustado a un tamaño más pequeño */
-    padding: 6px 12px; /* Reducido */
+    font-size: 0.75em; /* Tamaño reducido del botón */
+    padding: 6px 10px; /* Ajuste de padding para el botón */
   }
 }
+
+/* Ajustes específicos para landscape en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+  .fiesta {
+    flex-direction: row; /* Tarjetas alineadas en fila */
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 5px;
+    height: auto;
+  }
+
+  .tarjeta {
+    width: 30%; /* Asegura que las tres tarjetas sean visibles en una fila */
+    height: auto;
+    margin: 5px;
+  }
+
+  .tarjeta-contenido {
+    padding: 10px;
+  }
+
+  .tarjeta-contenido h2 {
+    font-size: 1em;
+    margin: 3px 0;
+  }
+
+  .tarjeta-contenido p {
+    font-size: 0.75em;
+    margin-bottom: 5px;
+  }
+
+  .tarjeta-contenido button {
+    font-size: 0.75em;
+    padding: 5px 10px;
+  }
+}
+
 
 </style>
 

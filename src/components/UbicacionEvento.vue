@@ -5,7 +5,7 @@
       <div class="tarjeta" v-for="(lugar, index) in lugares" :key="index">
         <div class="tarjeta-trasera">
           <img :src="lugar.imagen" alt="Imagen del lugar" />
-          <h2>{{ lugar.titulo }}</h2>
+          <h2>{{ lugar.direccion }}</h2>
           <p>{{ lugar.hora }} hs.</p>
           <a :href="lugar.url" target="_blank">Ver en Google Maps</a>
         </div>
@@ -21,21 +21,21 @@
 const lugares = [
   {
     titulo: "Ceremonia Religiosa",
-    direccion: "Calle Falsa 123",
+    direccion: "Parroquia Nuestra Señora del Rosario",
     hora: "17:00",
     imagen: "https://dl.dropboxusercontent.com/scl/fi/4by13m0e74vyw6dxlrv6i/iglesia.jpg?rlkey=6ixcspd3h0l035aw30o5x3ig2",
     url: "https://maps.app.goo.gl/q6xZJabaxwE6Dbyi9"
   },
   {
     titulo: "Ceremonia Civil",
-    direccion: "Avenida Siempre Viva 742",
+    direccion: "Registro Civil Freyre",
     hora: "17:45",
     imagen: "https://dl.dropboxusercontent.com/scl/fi/w5iwgv12bp2hbqzba8sxh/regitro.png?rlkey=pzfn3azdmampghckp8nxz21zv",
     url: "https://maps.app.goo.gl/sDjHZv7XphtKHbYT8"
   },
   {
     titulo: "Salón de Fiestas",
-    direccion: "Calle Principal 456",
+    direccion: "Club de Abuelos Freyre",
     hora: "18:00",
     imagen: "https://dl.dropboxusercontent.com/scl/fi/yov2bdlkrw4c3sz4gdt2h/club.jpg?rlkey=ugtwvsi1qdetyeyip52uhc5jy",
     url: "https://maps.app.goo.gl/gNDTyJ8PpaH3J6EP6"
@@ -175,35 +175,80 @@ const lugares = [
   transform: rotateY(360deg);
 }
 
-@media (max-width: 768px) {
-  .ubicacion-titulo {
-    font-size: 2em; /* Reducción del tamaño de fuente para pantallas pequeñas */
-  }
-
+@media (max-width: 768px) and (orientation: landscape) {
   .ubicacion {
-    flex-direction: column;
-    height: auto; /* Permitir que el contenedor se ajuste a su contenido */
+    flex-direction: row; /* Asegurar que estén en una fila */
+    justify-content: space-around; /* Espacio alrededor de las tarjetas */
+    align-items: center; /* Centrar las tarjetas verticalmente */
+    height: auto; /* Ajustar la altura del contenedor */
+    padding: 5px;
   }
 
   .tarjeta {
-    width: 90%;
-    margin-bottom: 10px; /* Reducción del margen inferior */
+    width: 30%; /* Mantener el tamaño de las tarjetas al 30% del contenedor */
+    margin: 5px; /* Reducir el margen entre tarjetas */
+    height: 150px; /* Aumentar ligeramente la altura para que se vea mejor el texto */
   }
 
   .tarjeta-trasera, .tarjeta-delantera {
-    font-size: 1em; /* Reducción del tamaño de fuente */
+    font-size: 0.9em; /* Reducir el tamaño general de la fuente */
+    padding: 5px;
   }
-  
+
   .tarjeta-trasera h2, .tarjeta-delantera h2 {
-    font-size: 1.2em; /* Reducción del tamaño de fuente */
+    font-size: 1em; /* Mantener el tamaño del título */
   }
 
   .tarjeta-trasera p {
-    font-size: 0.75em; /* Reducción del tamaño de fuente */
+    font-size: 0.7em; /* Mantener el tamaño del texto */
   }
 
   .tarjeta-trasera a {
-    font-size: 0.75em; /* Reducción del tamaño de fuente */
+    font-size: 0.7em; /* Mantener el tamaño del enlace */
+  }
+
+  .tarjeta-trasera img {
+    width: 40px;
+    height: auto; /* Asegurar que la imagen no se deforme */
+    aspect-ratio: 1/1; /* Mantener el aspecto cuadrado de la imagen */
   }
 }
+
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .ubicacion {
+    flex-direction: row; /* Asegurarse de que estén en una fila */
+    justify-content: space-evenly; /* Distribuir las tarjetas de manera uniforme */
+    align-items: center;
+    height: auto;
+  }
+
+  .tarjeta {
+    width: 25%; /* Mantener el tamaño en tablets */
+    height: 170px; /* Aumentar la altura para evitar deformaciones */
+    margin: 10px; /* Espacio entre tarjetas */
+  }
+
+  .tarjeta-trasera, .tarjeta-delantera {
+    font-size: 1em; /* Ajustar el tamaño de la fuente en tablets */
+  }
+
+  .tarjeta-trasera h2, .tarjeta-delantera h2 {
+    font-size: 1.1em; /* Ajustar ligeramente el tamaño del título */
+  }
+
+  .tarjeta-trasera p {
+    font-size: 0.8em; /* Ajustar el tamaño del texto */
+  }
+
+  .tarjeta-trasera a {
+    font-size: 0.8em; /* Ajustar el tamaño del enlace */
+  }
+
+  .tarjeta-trasera img {
+    width: 50px;
+    height: auto; /* Asegurar que la imagen no se deforme */
+    aspect-ratio: 1/1; /* Mantener el aspecto cuadrado */
+  }
+}
+
 </style>

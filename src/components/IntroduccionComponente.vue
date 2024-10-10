@@ -1,7 +1,7 @@
 <template>
   <div class="cuenta-regresiva">
     <div class="overlay">
-      <h2>NUESTRA BODA</h2>
+      <h2><span class="comillas">&ldquo;</span> NUESTRA BODA<span class="comillas">&rdquo;</span></h2>
       <h1>Noe & Cristian</h1>
       <h2>23/11/2024</h2>
       <h3>"Los esperamos para compartir un momento especial para nosotros lleno de emoción y alegría"</h3>
@@ -10,12 +10,12 @@
 </template>
 
 <script lang="ts" setup>
-// Eliminar importaciones y variables no usadas
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
 .cuenta-regresiva {
   position: relative;
@@ -65,13 +65,21 @@ h2 {
 
 /* Estilo para h3 */
 h3 {
-  font-size: 1.2em; /* Tamaño de fuente más pequeño para mayor legibilidad */
-  font-family: 'Open Sans', sans-serif; /* Fuente legible */
-  margin: 15px 0; /* Margen alrededor del texto */
-  padding: 0 10px; /* Padding para evitar que se salga de los márgenes */
-  line-height: 1.4; /* Aumenta la altura de la línea para mejorar la legibilidad */
-  color: #f0f0f0; /* Color de texto contrastante */
-  text-align: center; /* Centra el texto horizontalmente */
+  font-size: 1.8em; /* Tamaño de fuente más grande */
+  font-family: 'Dancing Script', cursive; /* Nueva fuente cursiva pero más legible */
+  margin: 15px 0;
+  padding: 0 10px;
+  line-height: 1.4;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+/* Estilo para las comillas */
+.comillas {
+  font-size: 2em; /* Aumenta el tamaño de las comillas */
+  color: white; /* Cambia el color de las comillas */
+  font-family: 'Great Vibes', cursive; /* Usa una fuente decorativa */
+  margin-top: 20px; /* Añade margen superior para separarlas más del texto */
 }
 
 /* Responsive styling */
@@ -95,7 +103,7 @@ h3 {
     margin-right: 30px; /* Añade margen derecho */
   }
   h3 {
-    font-size: 1em; /* Ajusta el tamaño en dispositivos móviles */
+    font-size: 1.3em; /* Ajusta el tamaño en dispositivos móviles */
     padding: 0 5px; /* Reduce el padding en dispositivos móviles */
     text-align: center; /* Asegura que el texto esté centrado horizontalmente */
     margin-right: 30px; /* Añade margen derecho */

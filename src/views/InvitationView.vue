@@ -5,7 +5,6 @@
     <div ref="invitacionBodaRef"><InvitacionBoda /></div>
     <div ref="ubicacionEventoRef"><UbicacionEvento /></div>
     <div ref="gestionFiestaRef"><GestionFiesta /></div>
-    <div ref="fotosEventoRef"><FotosEvento /></div>
     <FooterMusic v-if="showFooterMusic" />
 
     <button class="scroll-btn up" @click="scroll('up')">▲</button>
@@ -13,9 +12,9 @@
     <button class="music-btn" @click="toggleFooterMusic">
       <font-awesome-icon :icon="showFooterMusic ? 'volume-up' : 'volume-mute'" />
     </button>
-
   </div>
 </template>
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 import InvitacionBoda from '@/components/InvitacionBoda.vue';
@@ -35,26 +34,30 @@ const introduccionComponenteRef = ref<HTMLElement | null>(null);
 const ubicacionMesasRef = ref<HTMLElement | null>(null);
 
 const refs = [
+  introduccionComponenteRef,
   cuentaRegresivaRef,
   invitacionBodaRef,
   ubicacionEventoRef,
   gestionFiestaRef,
-  fotosEventoRef,
-  introduccionComponenteRef,
-  ubicacionMesasRef
+  fotosEventoRef
 ];
 
 let currentIndex = ref(0);
-const isPlaying = ref(false); // Estado de reproducción
+const isPlaying = ref(false);
 const showFooterMusic = ref(false);
 
 const scroll = (direction: 'up' | 'down') => {
   if (refs.length === 0) return;
 
+  // Ajustar el índice actual según la dirección del desplazamiento
   if (direction === 'up') {
-    currentIndex.value = (currentIndex.value - 1 + refs.length) % refs.length;
+    if (currentIndex.value > 0) {
+      currentIndex.value--;
+    }
   } else if (direction === 'down') {
-    currentIndex.value = (currentIndex.value + 1) % refs.length;
+    if (currentIndex.value < refs.length - 1) {
+      currentIndex.value++;
+    }
   }
 
   const targetRef = refs[currentIndex.value];
@@ -69,20 +72,18 @@ const scroll = (direction: 'up' | 'down') => {
 const toggleFooterMusic = () => {
   showFooterMusic.value = !showFooterMusic.value;
 
-  // Si se muestra el footer, puedes iniciar la música
   if (showFooterMusic.value && !isPlaying.value) {
-    isPlaying.value = true; // Inicia la reproducción
+    isPlaying.value = true;
   }
 };
 </script>
-
 
 <style scoped>
 .home {
   text-align: center;
   padding: 20px;
   position: relative;
-  min-height: 200vh; /* Asegura que haya suficiente contenido para desplazar */
+  min-height: 200vh;
 }
 
 .scroll-btn {
@@ -102,21 +103,21 @@ const toggleFooterMusic = () => {
 }
 
 .scroll-btn.up {
-  bottom: 150px; /* Aumenta la posición para que esté más arriba */
+  bottom: 150px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .scroll-btn.down {
-  bottom: 100px; /* Ajusta la posición del botón hacia abajo */
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .music-btn {
   position: fixed;
-  bottom: 50px; /* Ajusta la posición del botón de música */
-  right: 20px; /* Ajusta la posición del botón de música */
+  bottom: 50px;
+  right: 20px;
   background: rgba(0, 0, 0, 0.7);
   border: none;
   border-radius: 50%;
@@ -140,17 +141,17 @@ const toggleFooterMusic = () => {
   }
 
   .scroll-btn.up {
-    bottom: 110px; /* Ajusta la posición en vista móvil */
+    bottom: 110px;
   }
 
   .scroll-btn.down {
-    bottom: 70px; /* Ajusta la posición en vista móvil */
+    bottom: 70px;
   }
 
   .music-btn {
     width: 40px;
     height: 40px;
-    bottom: 40px; /* Ajusta la posición en vista móvil */
+    bottom: 40px;
   }
 }
 </style>
