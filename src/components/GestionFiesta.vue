@@ -25,7 +25,9 @@
 <script lang="ts" setup>
 import ModalDialog from './ModalDialog.vue';
 import { ref } from 'vue';
-import api from '../api'; // Ajusta la ruta según la ubicación real
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { addData } from '../services/firestoreService';
 
 interface Detalle {
   titulo: string;
@@ -76,15 +78,19 @@ const cerrarModal = () => {
   isMusica.value = false;
 };
 
-// Función para enviar sugerencias a la API
+// Función para enviar sugerencias a Firestore
 const enviarSugerencia = async (nombreCancion: string, artista: string) => {
   try {
-    const nuevaCancion = await api.createItem({
+    // Crear el objeto con la estructura adecuada
+    const nuevaCancion = {
       nombre: nombreCancion,
       interprete: artista,
-    });
+    };
     
-    console.log('Canción guardada:', nuevaCancion);
+    // Llamar a la función addData para guardar en Firestore
+    const id = await addData(nuevaCancion);
+    console.log('Canción guardada con ID:', id);
+    
     cerrarModal(); // Cerrar el modal después de enviar la sugerencia
   } catch (error) {
     console.error('Error al guardar la canción:', error);
@@ -92,6 +98,7 @@ const enviarSugerencia = async (nombreCancion: string, artista: string) => {
   }
 };
 </script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lora&display=swap');

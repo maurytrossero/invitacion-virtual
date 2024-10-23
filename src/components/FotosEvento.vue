@@ -74,7 +74,7 @@ const fetchImages = async () => {
     const fetchedImages = await getInstagramImages();
     imagenes.value = imagenes.value.concat(fetchedImages);
   } catch (error) {
-    console.error('Error al obtener imágenes de Instagram:', error);
+    //console.error('Error al obtener imágenes de Instagram:', error);
   }
 };
 </script>
