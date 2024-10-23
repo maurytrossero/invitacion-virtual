@@ -1,5 +1,5 @@
 <template>
-  <div class="cuenta-regresiva">
+  <div class="cuenta-regresiva" :style="{ backgroundImage: backgroundImage }">
     <div class="overlay">
       <h1>Cuenta Regresiva</h1>
       <div class="contador">
@@ -33,13 +33,20 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 const targetDate = new Date('2024-11-23T17:00:00').getTime()
 const days = ref<string[]>(['0', '0'])
 const hours = ref<string[]>(['0', '0'])
 const minutes = ref<string[]>(['0', '0'])
 const seconds = ref<string[]>(['0', '0'])
+
+// Computed property for background image
+const backgroundImage = computed(() => {
+  return window.innerWidth <= 768 
+    ? "url('https://dl.dropboxusercontent.com/scl/fi/rgynuaxbx2bnlomrbovqa/DSC_5877V.jpg?rlkey=pvoiylrouwt9ez1gdi90wi5eh&dl=1')" // URL de la imagen para móviles
+    : "url('https://dl.dropboxusercontent.com/scl/fi/tomyp07mxjuvdeixwe94z/DSC_5877.jpg?rlkey=gshrm2a20w49dspunprs89top&st=1snq9htw')" // URL de la imagen para desktop
+})
 
 const updateCountdown = () => {
   const now = new Date().getTime()
@@ -70,7 +77,8 @@ onMounted(() => {
   position: relative;
   height: calc(100vh - 50px); /* Reduce el margen inferior */
   margin: 5px; /* Aplica margen de 10px alrededor */
-  background: url('https://www.spainuvies.com/wp-content/uploads/2020/01/ramo-flores-boda-1080x675.jpg') no-repeat center center;
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
   overflow: hidden;
   border: 2px solid white; /* Añade el borde blanco */

@@ -11,22 +11,22 @@
         </div>
       </div>
     </div>
-    <!-- Pasar isVisible en lugar de usar v-if -->
     <ModalDialog 
       :isVisible="mostrarModal" 
       :title="modalTitulo" 
       :message="modalMensaje" 
+      :showInputs="isMusica" 
       @onClose="cerrarModal" 
+      @enviarSugerencia="enviarSugerencia"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-// Importación del componente ModalDialog
 import ModalDialog from './ModalDialog.vue';
 import { ref } from 'vue';
+import api from '../api'; // Ajusta la ruta según la ubicación real
 
-// Definición del tipo para los detalles
 interface Detalle {
   titulo: string;
   descripcion: string;
@@ -34,12 +34,11 @@ interface Detalle {
   mensaje: string;
 }
 
-// Estado para el modal
 const mostrarModal = ref(false);
 const modalTitulo = ref('');
 const modalMensaje = ref('');
+const isMusica = ref(false); // Variable para controlar si se trata de música
 
-// Array de detalles con el tipo definido
 const detalles: Detalle[] = [
   {
     titulo: "Música",
@@ -66,14 +65,33 @@ const abrirModal = (detalle: Detalle) => {
   modalTitulo.value = detalle.titulo;
   modalMensaje.value = detalle.mensaje;
   mostrarModal.value = true;
+
+  isMusica.value = detalle.titulo === "Música"; // Comprobar si el detalle es de música
 };
 
 // Función para cerrar el modal
 const cerrarModal = () => {
   mostrarModal.value = false;
+  // Limpiar el estado de música si es necesario
+  isMusica.value = false;
+};
+
+// Función para enviar sugerencias a la API
+const enviarSugerencia = async (nombreCancion: string, artista: string) => {
+  try {
+    const nuevaCancion = await api.createItem({
+      nombre: nombreCancion,
+      interprete: artista,
+    });
+    
+    console.log('Canción guardada:', nuevaCancion);
+    cerrarModal(); // Cerrar el modal después de enviar la sugerencia
+  } catch (error) {
+    console.error('Error al guardar la canción:', error);
+    // Aquí puedes manejar el error, por ejemplo, mostrando un mensaje al usuario
+  }
 };
 </script>
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lora&display=swap');

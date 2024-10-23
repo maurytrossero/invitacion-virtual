@@ -20,8 +20,8 @@
 .cuenta-regresiva {
   position: relative;
   height: calc(100vh - 50px); /* Reduce el margen inferior */
-  margin: 5px; /* Aplica margen de 10px alrededor */
-  background: url('https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2022/07/26/16588301170836.jpg') no-repeat center center;
+  margin: 5px; /* Aplica margen de 5px alrededor */
+  background: url('https://dl.dropboxusercontent.com/scl/fi/9g1d33zmsluyxrfn9k8te/imagen-propuestaW.jpg?rlkey=8affm2g65hlulgq62vmg0lfsy&st=50ii6141') no-repeat center center;
   background-size: cover;
   overflow: hidden;
   border: 2px solid white; /* Añade el borde blanco */
@@ -84,6 +84,10 @@ h3 {
 
 /* Responsive styling */
 @media (max-width: 768px) {
+  .cuenta-regresiva {
+    background: url('https://dl.dropboxusercontent.com/scl/fi/dimcffvy2ur8av5hgu7ep/imagen-propuesta.jpg?rlkey=siike27l0gaybd0l9gs6iadq9&st=qvgvksv2') no-repeat center center; /* Imagen diferente para móviles */
+  }
+
   h1 {
     font-size: 2em;
     display: block;

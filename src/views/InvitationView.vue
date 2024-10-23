@@ -2,9 +2,11 @@
   <div class="home">
     <div ref="introduccionComponenteRef"><IntroduccionComponente /></div>
     <div ref="cuentaRegresivaRef"><CuentaRegresiva /></div>
+    <div ref="fotosEventoRef"><FotosEvento /></div>
     <div ref="invitacionBodaRef"><InvitacionBoda /></div>
     <div ref="ubicacionEventoRef"><UbicacionEvento /></div>
     <div ref="gestionFiestaRef"><GestionFiesta /></div>
+
     <FooterMusic v-if="showFooterMusic" />
 
     <button class="scroll-btn up" @click="scroll('up')">▲</button>
@@ -27,19 +29,19 @@ import FooterMusic from '@/components/FooterMusic.vue';
 
 const cuentaRegresivaRef = ref<HTMLElement | null>(null);
 const invitacionBodaRef = ref<HTMLElement | null>(null);
+const fotosEventoRef = ref<HTMLElement | null>(null);
 const ubicacionEventoRef = ref<HTMLElement | null>(null);
 const gestionFiestaRef = ref<HTMLElement | null>(null);
-const fotosEventoRef = ref<HTMLElement | null>(null);
 const introduccionComponenteRef = ref<HTMLElement | null>(null);
 const ubicacionMesasRef = ref<HTMLElement | null>(null);
 
 const refs = [
   introduccionComponenteRef,
   cuentaRegresivaRef,
+  fotosEventoRef,
   invitacionBodaRef,
   ubicacionEventoRef,
-  gestionFiestaRef,
-  fotosEventoRef
+  gestionFiestaRef
 ];
 
 let currentIndex = ref(0);
