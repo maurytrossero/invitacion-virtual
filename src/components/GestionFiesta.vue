@@ -57,7 +57,7 @@ const detalles: Detalle[] = [
   {
     titulo: "Valor Tarjeta",
     descripcion: "Conocé los valores de las tarjetas y los datos para el pago",
-    botonTexto: "+ Info",
+    botonTexto: "Ver información",
     mensaje: `Precio tarjeta<br />
       - Mayores $32.000<br />
       - Menores de 2 a 5 años $10.000<br />
