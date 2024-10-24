@@ -6,6 +6,7 @@
     <button @click="toggleMute" class="control-btn">
       <i :class="isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up'"></i>
     </button>
+    <!-- El reproductor de YouTube está oculto -->
     <div class="youtube-player" id="youtubePlayer" style="display: none;"></div>
   </div>
 </template>
@@ -16,17 +17,27 @@ import { onMounted, ref } from 'vue';
 const isPlaying = ref(false);
 const isMuted = ref(false);
 const player = ref(null);
-const isFooterVisible = true; // Define esto según sea necesario
+const isFooterVisible = ref(true);
 
 onMounted(() => {
-  const script = document.createElement('script');
-  script.src = 'https://www.youtube.com/iframe_api';
-  document.body.appendChild(script);
+  // Cargar la API de YouTube si no está disponible aún
+  if (!window.YT) {
+    const script = document.createElement('script');
+    script.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(script);
+  }
 
+  // Inicializar el reproductor cuando la API esté lista
   window.onYouTubeIframeAPIReady = () => {
     player.value = new window.YT.Player('youtubePlayer', {
-      videoId: 'DzzSFG-M-eg',
-      playerVars: { 'playsinline': 1, 'showinfo': 0, 'controls': 0 },
+      videoId: 'DzzSFG-M-eg', // ID del video de fondo
+      playerVars: { 
+        'playsinline': 1, 
+        'showinfo': 0, 
+        'controls': 0, 
+        'rel': 0, // Evita mostrar videos relacionados
+        'modestbranding': 1 // Minimiza el branding de YouTube
+      },
       events: {
         onReady: onPlayerReady,
       },
@@ -35,7 +46,8 @@ onMounted(() => {
 });
 
 const onPlayerReady = () => {
-  playVideo(); // Iniciar la reproducción automáticamente
+  // Iniciar la reproducción automáticamente al estar listo
+  playVideo();
 };
 
 const playVideo = () => {
@@ -86,17 +98,21 @@ const toggleMute = () => {
   cursor: pointer;
   outline: none;
   margin: 0 15px;
-  color: #fff; /* Asegura que los iconos sean blancos */
-  font-size: 24px; /* Tamaño del icono */
+  color: #fff;
+  font-size: 24px;
 }
 
 .control-btn:hover {
-  opacity: 0.8; /* Efecto hover */
+  opacity: 0.8;
+}
+
+.youtube-player {
+  display: none; /* El reproductor está oculto por completo */
 }
 
 @media (max-width: 768px) {
   .control-btn {
-    font-size: 20px; /* Tamaño del icono en dispositivos móviles */
+    font-size: 20px;
   }
 }
 </style>
