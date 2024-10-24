@@ -94,6 +94,7 @@ export default {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -153,5 +154,28 @@ export default {
 /* Estilo específico para el botón de enviar sugerencia */
 .enviar-sugerencia {
   margin-top: 15px; /* Añadir margen superior para separar del input */
+}
+@media (max-width: 768px) {
+  .modal {
+    width: 75%; /* Mantén el ancho al 90% en dispositivos móviles */
+    padding: 15px; /* Reduce el padding para que todo entre bien */
+  }
+
+  .modal-header h3 {
+    font-size: 1.2em; /* Ajusta el tamaño del título en móviles */
+  }
+
+  .modal-body {
+    font-size: 1em; /* Ajusta el tamaño del texto del cuerpo en móviles */
+  }
+
+  .modal-input {
+    font-size: 0.9em; /* Ajusta el tamaño del texto dentro de los inputs */
+  }
+
+  .modal-button {
+    padding: 8px 16px; /* Reduce el padding del botón para mejor ajuste */
+    font-size: 0.9em; /* Ajusta el tamaño del texto del botón */
+  }
 }
 </style>

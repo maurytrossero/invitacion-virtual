@@ -58,8 +58,16 @@ const detalles: Detalle[] = [
     titulo: "Valor Tarjeta",
     descripcion: "Conocé los valores de las tarjetas y los datos para el pago",
     botonTexto: "+ Info",
-    mensaje: "Valor de la tarjeta <br />Mayores $25000 - Menores $15000. <br /> <br />Tiempo para confirmar y pagar<br /> hasta el 15/11/2024 inclusive.<br /> <br />Datos para el pago al Tel.<br /> 3564 419817",
+    mensaje: `Precio tarjeta<br />
+      - Mayores $32.000<br />
+      - Menores de 2 a 5 años $10.000<br />
+      - Menores de 6 a 12 años $15.000<br /><br />
+      Tel. Cel. para enviar comprobante de pago (aclarar nombre, apellido y cantidad):<br />
+      3562-548686 (Noe)<br /><br />
+      Para transferencias, hasta el 15/11/2024.<br /><br />
+      Alias: Djpela82`,
   }
+
 ];
 
 // Función para abrir el modal con el contenido adecuado
