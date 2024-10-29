@@ -3,6 +3,9 @@ import PortfolioView from '../views/PortfolioView.vue'
 import InvitationView from '../views/InvitationView.vue'
 import AuthCallback from '@/components/AuthCallback.vue'
 import SongsList from '@/views/SongsList.vue'; // Asegúrate de que este camino sea correcto
+import MapaDeMesasView from '@/views/MapaDeMesasView.vue';
+import GestionMesasInvitados from '../components/GestionMesasInvitados.vue';
+
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -30,7 +33,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/musica', // Ruta para acceder a la lista de canciones
     name: 'songs-list',
     component: SongsList // Componente que se renderizará
-  }
+  },
+  {
+    path: '/mesas',
+    name: 'MapaDeMesas',
+    component: MapaDeMesasView,
+  },
+  { path: '/gestion', 
+    component: GestionMesasInvitados 
+  }, // Nueva ruta para la gestión
+
 ]
 
 const router = createRouter({
