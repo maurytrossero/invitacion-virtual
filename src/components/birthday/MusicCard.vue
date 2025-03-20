@@ -21,12 +21,8 @@
             <p>Completa el siguiente formulario para enviarnos tu música sugerida</p>
           </div>
           <div class="map-container">
-            <!-- Cuando se hace clic aquí, se abre directamente el modal -->
-            <a
-              href="#"
-              @click.prevent="openModal"
-              class="map-link"
-            >
+            <!-- Con .stop evitamos que se propague el clic y afecte a otros eventos -->
+            <a href="#" @click.prevent.stop="openModal" class="map-link">
               Sugerir Canción
             </a>
           </div>
@@ -34,36 +30,36 @@
       </div>
     </div>
   
-    <!-- Modal de sugerencia de canción -->
-    <MusicModal v-if="isModalVisible" @close="closeModal" />
+    <!-- Modal de sugerencia de canción: usamos v-show en lugar de v-if -->
+    <MusicModal v-show="isModalVisible" @close="closeModal" />
   </template>
   
   <script>
-    import MusicModal from '@/components/birthday/MusicModal.vue'; // Ajusta según sea necesario
+  import MusicModal from '@/components/birthday/MusicModal.vue'; // Asegúrate de que la ruta sea correcta
   
-    export default {
-      name: "EventCard",
-      components: {
-        MusicModal,
+  export default {
+    name: "EventCard",
+    components: {
+      MusicModal,
+    },
+    data() {
+      return {
+        isFlipped: false,
+        isModalVisible: false, // Controla la visibilidad del modal
+      };
+    },
+    methods: {
+      flipCard() {
+        this.isFlipped = !this.isFlipped;
       },
-      data() {
-        return {
-          isFlipped: false,
-          isModalVisible: false, // Controla la visibilidad del modal
-        };
+      openModal() {
+        this.isModalVisible = true; // Abre el modal
       },
-      methods: {
-        flipCard() {
-          this.isFlipped = !this.isFlipped;
-        },
-        openModal() {
-          this.isModalVisible = true; // Muestra el modal cuando se hace clic en "Sugerir Canción"
-        },
-        closeModal() {
-          this.isModalVisible = false; // Cierra el modal
-        },
+      closeModal() {
+        this.isModalVisible = false; // Cierra el modal
       },
-    };
+    },
+  };
   </script>
   
   <style scoped>
@@ -235,4 +231,5 @@
     }
   }
   </style>
+  
   

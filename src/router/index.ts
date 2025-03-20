@@ -4,7 +4,7 @@ import InvitationView from '../views/InvitationView.vue'
 import AuthCallback from '@/components/AuthCallback.vue'
 import SongsList from '@/views/SongsList.vue'; // Asegúrate de que este camino sea correcto
 import BirthdayView from '@/views/BirthdayView.vue';
-
+import BirthdaysongsListview from '@/views/BithddaysongsListview.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -36,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/invitacion-andrea-giron', // Ruta para acceder a la lista de canciones
     name: 'invitacion-andrea-giron',
     component: BirthdayView // Componente que se renderizará
+  },
+  {
+    path: '/invitacion-andrea-giron/musica', // Ruta para acceder a la lista de canciones
+    name: 'andrea-giron-musica',
+    component: BirthdaysongsListview // Componente que se renderizará
   }
 ]
 

@@ -2,15 +2,16 @@
     <div class="event-location-container">
       <div class="event-text">
         <p class="event-description">
-          Para divertirnos al maximo envianos tu música favorita <strong>que no pueda faltar en la fiesta</strong>
+          Para divertirnos al máximo envíanos tu música favorita <strong>que no pueda faltar en la fiesta</strong>
         </p>
       </div>
   
-    <!-- Ícono de pago -->
-    <div class="location-icon">
-        <i class="fas fa-music location-icon"></i>
-    </div>
-
+      <!-- Ícono de música con enlace -->
+      <div class="location-icon">
+        <router-link to="/invitacion-andrea-giron/musica">
+          <i class="fas fa-music location-icon"></i>
+        </router-link>
+      </div>
   
       <!-- Texto -->
       <div class="location-text">
@@ -30,7 +31,7 @@
   export default {
     name: 'EventLocation',
     components: {
-      MusicCard, // Registro local del componente
+      MusicCard,
     },
   };
   </script>
@@ -39,23 +40,22 @@
   @import url('https://fonts.googleapis.com/css2?family=Spectral+SC:wght@500&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
   
-  /* Contenedor principal */
   .event-location-container {
     background-color: #f8f8f8;
     border-radius: 8px;
     padding: 20px;
     width: 100%;
-    min-height: 100vh; /* Ocupa al menos la pantalla completa */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centra los elementos verticalmente */
+    justify-content: center;
     gap: 20px;
-    overflow-x: hidden; /* Evita scroll horizontal */
+    overflow-x: hidden;
     box-sizing: border-box;
+    margin: 0;
   }
   
-  /* Texto principal */
   .event-text {
     text-align: center;
     font-family: 'Playball', cursive;
@@ -66,14 +66,12 @@
     max-width: 90%;
   }
   
-  /* Ícono de ubicación */
   .location-icon {
     font-size: 2.5rem;
     color: #b8860b;
     margin: 10px 0;
   }
   
-  /* Texto de ubicación */
   .location-text {
     font-family: 'Spectral SC', serif;
     font-size: 1.5rem;
@@ -88,7 +86,6 @@
     max-width: 320px;
   }
   
-  /* Contenedor de la tarjeta */
   .event-card-container {
     width: 100%;
     max-width: 320px;
@@ -96,14 +93,13 @@
     display: flex;
     justify-content: center;
     position: relative;
-    background-color: transparent; /* Eliminado el fondo */
+    background-color: transparent;
     border-radius: 8px;
-    box-shadow: none; /* Eliminada la sombra */
+    box-shadow: none;
     padding: 20px;
     z-index: 1;
   }
   
-  /* Ajustes para móviles */
   @media (max-width: 768px) {
     .event-text {
       font-size: 1.2rem;
@@ -121,7 +117,6 @@
     }
   }
   
-  /* Ajustes para pantallas alargadas y orientación horizontal */
   @media (max-width: 768px) and (orientation: landscape) {
     .event-location-container {
       padding: 10px;
@@ -143,3 +138,4 @@
     }
   }
   </style>
+  
