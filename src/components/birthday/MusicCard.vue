@@ -4,51 +4,66 @@
         <!-- Parte frontal de la tarjeta -->
         <div class="card-side card-front">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJV9VrJEALJlT1wavS0P9rQOokq5FqZy_iTQ&s"
+            src="https://media.istockphoto.com/id/1324006497/es/foto/mezclador-de-dj-controlador-de-m%C3%BAsica-en-un-club-nocturno-en-una-fiesta.jpg?s=612x612&w=0&k=20&c=xeywNcuAniIqgucCVeJwaCgq1YJ-JbARFo_D1qvr-kU="
             alt="Imagen del salón"
             class="card-image"
           />
           <div class="card-overlay">
-            <i class="fas fa-utensils location-icon"></i>
-            <p class="card-text">Salón de Fiestas</p>
+            <i class="fas fa-record-vinyl location-icon"></i>
+            <p class="card-text">Música</p>
           </div>
         </div>
   
         <!-- Parte trasera de la tarjeta -->
         <div class="card-side card-back">
           <div class="card-back-content">
-            <h3>La Biela</h3>
-            <p>21:00 hs</p>
-            <p>Acceso Norte Ruta 1, Freyre, Córdoba</p>
+            <h3>Tu música favorita</h3>
+            <p>Completa el siguiente formulario para enviarnos tu música sugerida</p>
           </div>
           <div class="map-container">
+            <!-- Cuando se hace clic aquí, se abre directamente el modal -->
             <a
-              href="https://maps.app.goo.gl/QiHJuu1amZ4zVtGs5"
-              target="_blank"
+              href="#"
+              @click.prevent="openModal"
               class="map-link"
             >
-              Ver mapa
+              Sugerir Canción
             </a>
           </div>
         </div>
       </div>
     </div>
+  
+    <!-- Modal de sugerencia de canción -->
+    <MusicModal v-if="isModalVisible" @close="closeModal" />
   </template>
   
   <script>
-  export default {
-    name: "EventCard",
-    data() {
-      return {
-        isFlipped: false,
-      };
-    },
-    methods: {
-      flipCard() {
-        this.isFlipped = !this.isFlipped;
+    import MusicModal from '@/components/birthday/MusicModal.vue'; // Ajusta según sea necesario
+  
+    export default {
+      name: "EventCard",
+      components: {
+        MusicModal,
       },
-    },
-  };
+      data() {
+        return {
+          isFlipped: false,
+          isModalVisible: false, // Controla la visibilidad del modal
+        };
+      },
+      methods: {
+        flipCard() {
+          this.isFlipped = !this.isFlipped;
+        },
+        openModal() {
+          this.isModalVisible = true; // Muestra el modal cuando se hace clic en "Sugerir Canción"
+        },
+        closeModal() {
+          this.isModalVisible = false; // Cierra el modal
+        },
+      },
+    };
   </script>
   
   <style scoped>
@@ -133,7 +148,6 @@
     justify-content: space-between;
   }
   
-  /* Se asegura que el contenido trasero esté bien distribuido */
   .card-back-content {
     display: flex;
     flex-direction: column;
@@ -166,6 +180,49 @@
     font-weight: 500;
   }
   
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    max-width: 100%;
+  }
+  
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .modal-content button {
+    padding: 10px 15px;
+    background-color: #b8860b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modal-content button:hover {
+    background-color: #9a7516;
+  }
+  
   /* Ajustes para dispositivos móviles */
   @media (max-width: 768px) {
     .card-container {
@@ -178,3 +235,4 @@
     }
   }
   </style>
+  

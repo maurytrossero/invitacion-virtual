@@ -4,22 +4,24 @@
         <!-- Parte frontal de la tarjeta -->
         <div class="card-side card-front">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJV9VrJEALJlT1wavS0P9rQOokq5FqZy_iTQ&s"
+            src="https://media.istockphoto.com/id/694177316/es/foto/barbacoa-fiesta.jpg?s=612x612&w=0&k=20&c=tMzwj15vBSr1g4HgRJDxURcHb8U_RW8XCoSFA_UQ27o="
             alt="Imagen del salón"
             class="card-image"
           />
           <div class="card-overlay">
             <i class="fas fa-utensils location-icon"></i>
-            <p class="card-text">Salón de Fiestas</p>
+            <p class="card-text">Precio de Tarjeta</p>
           </div>
         </div>
   
         <!-- Parte trasera de la tarjeta -->
         <div class="card-side card-back">
           <div class="card-back-content">
-            <h3>La Biela</h3>
-            <p>21:00 hs</p>
-            <p>Acceso Norte Ruta 1, Freyre, Córdoba</p>
+            <h3>Mayores</h3>
+            <p>$30000</p>
+
+            <h3>Menores</h3>
+            <p>$ 25000</p>
           </div>
           <div class="map-container">
             <a
@@ -27,7 +29,7 @@
               target="_blank"
               class="map-link"
             >
-              Ver mapa
+              Alias
             </a>
           </div>
         </div>
