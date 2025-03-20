@@ -1,6 +1,6 @@
 <template>
     <div class="card-container">
-      <div class="card">
+      <div class="card" @click="flipCard" :class="{ flipped: isFlipped }">
         <!-- Parte frontal de la tarjeta -->
         <div class="card-side card-front">
           <img
@@ -10,7 +10,7 @@
           />
           <div class="card-overlay">
             <i class="fas fa-utensils location-icon"></i>
-            <p class="card-text">Salon de Fiestas</p>
+            <p class="card-text">Salón de Fiestas</p>
           </div>
         </div>
     
@@ -37,32 +37,41 @@
     
   <script>
   export default {
-    name: 'EventCard',
+    name: "EventCard",
+    data() {
+      return {
+        isFlipped: false,
+      };
+    },
+    methods: {
+      flipCard() {
+        this.isFlipped = !this.isFlipped;
+      },
+    },
   };
   </script>
     
   <style scoped>
-  /* Importar fuente Muli ExtraLight */
-  @import url('https://fonts.googleapis.com/css2?family=Muli:wght@200&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Muli:wght@200&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
   
+  /* El contenedor ahora es un bloque normal, sin flex centrado verticalmente */
   .card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    width: 100%;
+    max-width: 320px; /* Limita el ancho para mantener el diseño */
+    margin: 20px auto; /* Centrado horizontal y con margen superior/inferior */
   }
   
   .card {
-    width: 320px;
+    width: 100%;
     height: 220px;
     perspective: 1500px;
     position: relative;
-    transition: transform 0.6s;
     transform-style: preserve-3d;
+    transition: transform 0.6s;
   }
   
-  .card:hover {
+  .card.flipped {
     transform: rotateY(180deg);
   }
   
@@ -81,15 +90,15 @@
   
   .card-front {
     background-color: #f8f8f8;
-    overflow: hidden; /* Esto asegura que no se vea la sombra opaca */
-    border-radius: 15px; /* Aseguramos que los bordes redondeados de la imagen se alineen */
+    overflow: hidden;
+    border-radius: 15px;
   }
   
   .card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 15px; /* Asegura que la imagen tenga bordes redondeados */
+    border-radius: 15px;
   }
   
   .card-overlay {
@@ -106,20 +115,17 @@
     color: white;
   }
   
-  /* Aplicar fuente Playfair Display al texto "Salón de Fiestas" */
   .card-text {
-    font-family: 'Playfair Display', serif; /* Usar Playfair Display */
+    font-family: "Playfair Display", serif;
     font-size: 1.3rem;
     font-weight: 500;
   }
   
-  /* Estilo para el icono de restaurante */
   .location-icon {
     font-size: 2rem;
     margin-bottom: 10px;
   }
   
-  /* Estilo para la parte trasera de la tarjeta */
   .card-back {
     background-color: #b8860b;
     color: white;
@@ -128,7 +134,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: 'Muli', sans-serif; /* Aplicar la fuente Muli ExtraLight */
+    font-family: "Muli", sans-serif;
   }
   
   .card-back-content h3 {
@@ -151,9 +157,14 @@
     font-weight: 500;
   }
   
+  /* Ajustes para dispositivos móviles */
   @media (max-width: 768px) {
+    .card-container {
+      max-width: 90%; /* Permite que se ajuste al ancho de la pantalla */
+      margin: 10px auto; /* Menos margen si es necesario */
+    }
+    
     .card {
-      width: 85%;
       height: 250px;
     }
   }
