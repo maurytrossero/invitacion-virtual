@@ -2,7 +2,7 @@
     <div class="event-location-container">
       <div class="event-text">
         <p class="event-description">
-          Para divertirnos al máximo envíanos tu música favorita <strong>que no pueda faltar en la fiesta</strong>
+          Para divertirnos al máximo <strong>envíanos tu música favorita </strong>que no pueda faltar en la fiesta
         </p>
       </div>
   

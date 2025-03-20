@@ -1,66 +1,62 @@
 <template>
-    <div class="card-container">
-      <div class="card" @click="flipCard" :class="{ flipped: isFlipped }">
-        <!-- Parte frontal de la tarjeta -->
-        <div class="card-side card-front">
-          <img
-            src="https://media.istockphoto.com/id/1324006497/es/foto/mezclador-de-dj-controlador-de-m%C3%BAsica-en-un-club-nocturno-en-una-fiesta.jpg?s=612x612&w=0&k=20&c=xeywNcuAniIqgucCVeJwaCgq1YJ-JbARFo_D1qvr-kU="
-            alt="Imagen del salón"
-            class="card-image"
-          />
-          <div class="card-overlay">
-            <i class="fas fa-record-vinyl location-icon"></i>
-            <p class="card-text">Música</p>
-          </div>
+  <div class="card-container">
+    <div class="card" @click="flipCard" :class="{ flipped: isFlipped }">
+      <div class="card-side card-front">
+        <img
+          src="https://media.istockphoto.com/id/1324006497/es/foto/mezclador-de-dj-controlador-de-m%C3%BAsica-en-un-club-nocturno-en-una-fiesta.jpg?s=612x612&w=0&k=20&c=xeywNcuAniIqgucCVeJwaCgq1YJ-JbARFo_D1qvr-kU="
+          alt="Imagen del salón"
+          class="card-image"
+        />
+        <div class="card-overlay">
+          <p class="card-text">Música</p>
         </div>
-  
-        <!-- Parte trasera de la tarjeta -->
-        <div class="card-side card-back">
-          <div class="card-back-content">
-            <h3>Tu música favorita</h3>
-            <p>Completa el siguiente formulario para enviarnos tu música sugerida</p>
-          </div>
-          <div class="map-container">
-            <!-- Con .stop evitamos que se propague el clic y afecte a otros eventos -->
-            <a href="#" @click.prevent.stop="openModal" class="map-link">
-              Sugerir Canción
-            </a>
-          </div>
+      </div>
+
+      <div class="card-side card-back">
+        <div class="card-back-content">
+          <h3>Tu música favorita</h3>
+          <p>Completa el siguiente formulario para enviarnos tu música sugerida</p>
+        </div>
+        <div class="map-container">
+          <a href="#" @click.prevent="openModal" class="map-link">
+            Sugerir Canción
+          </a>
         </div>
       </div>
     </div>
-  
-    <!-- Modal de sugerencia de canción: usamos v-show en lugar de v-if -->
-    <MusicModal v-show="isModalVisible" @close="closeModal" />
-  </template>
-  
-  <script>
-  import MusicModal from '@/components/birthday/MusicModal.vue'; // Asegúrate de que la ruta sea correcta
-  
-  export default {
-    name: "EventCard",
-    components: {
-      MusicModal,
+  </div>
+
+  <MusicModal :show="isModalVisible" @close="closeModal" />
+</template>
+
+<script>
+import MusicModal from "@/components/birthday/MusicModal.vue";
+
+export default {
+  name: "EventCard",
+  components: {
+    MusicModal,
+  },
+  data() {
+    return {
+      isFlipped: false,
+      isModalVisible: false,
+    };
+  },
+  methods: {
+    flipCard() {
+      this.isFlipped = !this.isFlipped;
     },
-    data() {
-      return {
-        isFlipped: false,
-        isModalVisible: false, // Controla la visibilidad del modal
-      };
+    openModal() {
+      this.isModalVisible = true;
     },
-    methods: {
-      flipCard() {
-        this.isFlipped = !this.isFlipped;
-      },
-      openModal() {
-        this.isModalVisible = true; // Abre el modal
-      },
-      closeModal() {
-        this.isModalVisible = false; // Cierra el modal
-      },
+    closeModal() {
+      this.isModalVisible = false;
     },
-  };
-  </script>
+  },
+};
+</script>
+
   
   <style scoped>
   @import url("https://fonts.googleapis.com/css2?family=Muli:wght@200&display=swap");
