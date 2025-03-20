@@ -23,7 +23,7 @@
           </div>
           <div class="map-container">
             <a
-              href="https://www.google.com/maps?q=Acceso+Norte+Ruta+1,+Freyre,+Córdoba"
+              href="https://maps.app.goo.gl/QiHJuu1amZ4zVtGs5"
               target="_blank"
               class="map-link"
             >

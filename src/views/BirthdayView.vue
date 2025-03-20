@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-container">
       <CountdownComponent />
       <EventLocation />
     </div>
@@ -18,6 +18,9 @@
   </script>
   
   <style scoped>
-  /* Estilos adicionales si son necesarios */
+  .main-container {
+    width: 100%;
+    overflow-x: hidden;
+  }
   </style>
   
