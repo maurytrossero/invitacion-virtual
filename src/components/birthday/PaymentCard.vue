@@ -18,10 +18,13 @@
         <div class="card-side card-back">
           <div class="card-back-content">
             <h3>Mayores</h3>
-            <p>$30000</p>
+            <p>$40000</p>
 
-            <h3>Menores</h3>
-            <p>$ 25000</p>
+            <h3>Menores de 6 a 11 años</h3>
+            <p>$ 20000</p>
+
+            <h3>Menores de 2 a 5 años</h3>
+            <p>$ 15000</p>
           </div>
           <div class="map-container">
             <a

@@ -4,7 +4,6 @@
       <EventLocation />
       <PaymentComponent />
       <MusicSuggestion />
-
     </div>
   </template>
   
@@ -13,6 +12,8 @@
   import EventLocation from '@/components/birthday/EventLocation.vue';
   import MusicSuggestion from '@/components/birthday/MusicSuggestion.vue';
   import PaymentComponent from '@/components/birthday/PaymentComponent.vue';
+  import TriviaComponent from '@/components/birthday/TriviaComponent.vue';
+
 
   
   export default {
@@ -20,7 +21,7 @@
       CountdownComponent,
       EventLocation,
       PaymentComponent,
-      MusicSuggestion
+      MusicSuggestion,
     }
   };
   </script>
