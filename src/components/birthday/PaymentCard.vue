@@ -1,80 +1,81 @@
 <template>
-  <div class="hover-wrapper">
-    <div class="card-container">
-      <div class="card">
-        <!-- Parte frontal de la tarjeta -->
-        <div class="card-side card-front">
-          <img
-            src="https://media.istockphoto.com/id/694177316/es/foto/barbacoa-fiesta.jpg?s=612x612&w=0&k=20&c=tMzwj15vBSr1g4HgRJDxURcHb8U_RW8XCoSFA_UQ27o="
-            alt="Imagen del salón"
-            class="card-image"
-          />
-          <div class="card-overlay">
-            <i class="fas fa-utensils location-icon"></i>
-            <p class="card-text">Precio de Tarjeta</p>
-          </div>
+  <div class="card-container">
+    <div class="card" @click="flipCard" :class="{ flipped: isFlipped }">
+      <!-- Parte frontal de la tarjeta -->
+      <div class="card-side card-front">
+        <img
+          src="https://media.istockphoto.com/id/694177316/es/foto/barbacoa-fiesta.jpg?s=612x612&w=0&k=20&c=tMzwj15vBSr1g4HgRJDxURcHb8U_RW8XCoSFA_UQ27o="
+          alt="Imagen del salón"
+          class="card-image"
+        />
+        <div class="card-overlay">
+          <i class="fas fa-utensils location-icon"></i>
+          <p class="card-text">Precio de Tarjeta</p>
         </div>
-  
-        <!-- Parte trasera de la tarjeta -->
-        <div class="card-side card-back">
-          <div class="card-back-content">
-            <h3>Mayores</h3>
-            <p>$40000</p>
-  
-            <h3>Menores de 6 a 11 años</h3>
-            <p>$20000</p>
-  
-            <h3>Menores de 2 a 5 años</h3>
-            <p>$15000</p>
-          </div>
-          <div class="map-container">
-            <a
-              href="https://maps.app.goo.gl/QiHJuu1amZ4zVtGs5"
-              target="_blank"
-              class="map-link"
-            >
-              Alias
-            </a>
-          </div>
+      </div>
+
+      <!-- Parte trasera de la tarjeta -->
+      <div class="card-side card-back">
+        <div class="card-back-content">
+          <h3>Mayores</h3>
+          <p>$40000</p>
+
+          <h3>Menores de 6 a 11 años</h3>
+          <p>$ 20000</p>
+
+          <h3>Menores de 2 a 5 años</h3>
+          <p>$ 15000</p>
+        </div>
+        <div class="map-container">
+          <a
+            href="https://maps.app.goo.gl/QiHJuu1amZ4zVtGs5"
+            target="_blank"
+            class="map-link"
+          >
+            Alias
+          </a>
         </div>
       </div>
     </div>
   </div>
 </template>
-  
+
 <script>
 export default {
   name: "EventCard",
+  data() {
+    return {
+      isFlipped: false,
+    };
+  },
+  methods: {
+    flipCard() {
+      this.isFlipped = !this.isFlipped;
+    },
+  },
 };
 </script>
-  
+
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Muli:wght@200&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 
-/* Wrapper externo que amplía el área de hover sin modificar el tamaño de la tarjeta */
-.hover-wrapper {
-  display: inline-block;
-  padding: 20px; /* Área extra para detectar el hover */
-}
-
 .card-container {
-  width: 320px;
-  height: 220px;
+  width: 100%;
+  max-width: 320px;
   margin: 20px auto;
   perspective: 1500px;
 }
 
 .card {
   width: 100%;
-  height: 100%;
+  height: 220px;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.6s;
 }
 
-/* El giro se activa mientras el mouse esté en el área del wrapper */
-.hover-wrapper:hover .card {
+.card.flipped {
   transform: rotateY(180deg);
 }
 
@@ -137,6 +138,7 @@ export default {
   justify-content: space-between;
 }
 
+/* Se asegura que el contenido trasero esté bien distribuido */
 .card-back-content {
   display: flex;
   flex-direction: column;
@@ -172,9 +174,12 @@ export default {
 /* Ajustes para dispositivos móviles */
 @media (max-width: 768px) {
   .card-container {
-    width: 90%;
-    height: auto;
+    max-width: 90%;
     margin: 10px auto;
+  }
+
+  .card {
+    height: 250px;
   }
 }
 </style>
