@@ -46,7 +46,7 @@ onMounted(() => {
 // Router para redirigir al componente 'invitacion'
 const router = useRouter()
 const goToInvitation = () => {
-  router.push({ name: 'invitacion-virtual' }) // Redirige a la ruta '/invitacion'
+  router.push({ name: 'invitacion-boda-cristian-noe' }) // Redirige a la ruta '/invitacion'
 }
 </script>
 

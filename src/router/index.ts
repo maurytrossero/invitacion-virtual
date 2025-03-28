@@ -6,6 +6,7 @@ import SongsList from '@/views/SongsList.vue'; // Asegúrate de que este camino 
 import BirthdayView from '@/views/BirthdayView.vue';
 import BirthdaysongsListview from '@/views/BithddaysongsListview.vue';
 import TriviaresultView from '@/views/TriviaresultView.vue';
+import WeddingView from '@/views/WeddingView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -32,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/musica', // Ruta para acceder a la lista de canciones
     name: 'songs-list',
     component: SongsList // Componente que se renderizará
+  },
+  {
+    path: '/invitacion-boda-cristian-noe', // Ruta para acceder a la lista de canciones
+    name: 'invitacion-boda-cristian-noe',
+    component: WeddingView // Componente que se renderizará
   },
   {
     path: '/invitacion-andrea-giron', // Ruta para acceder a la lista de canciones
