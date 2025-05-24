@@ -1,7 +1,7 @@
 <template>
   <div
     class="container"
-    :style="{ backgroundImage: `url('https://dl.dropboxusercontent.com/scl/fi/mbuurifow6wrqzblkq55n/fondo-cuenta-regresiva.jpg?rlkey=mjh2idwb921bgidgwjxxgo03l&st=pa40y6zy')` }"
+    :style="{ backgroundImage: `url('${backgroundUrl}')` }"
   >
     <div class="overlay">
       <div class="header">
@@ -38,22 +38,29 @@ const time = ref({
 const isEventToday = ref(false)
 let interval = null
 
+const backgroundUrl = ref('') // Dinámico
+
+function updateBackground() {
+  const isPortrait = window.matchMedia('(orientation: portrait)').matches
+  const isMobile = window.innerWidth <= 768
+
+  backgroundUrl.value = isMobile && isPortrait
+    ? 'https://dl.dropboxusercontent.com/scl/fi/mbuurifow6wrqzblkq55n/fondo-cuenta-regresiva.jpg?rlkey=mjh2idwb921bgidgwjxxgo03l&st=pa40y6zy'
+    : 'https://dl.dropboxusercontent.com/scl/fi/3pe534n3rtymvhtlpxf34/fondo-cuenta-regresiva-horizontal.jpg?rlkey=2i5soo6xdsd7jz7rirv06kim2&st=jr834jrh'
+}
+
 function updateCountdown() {
   const now = new Date()
   const startOfEventDay = new Date(eventDate)
   const endOfEventDay = new Date(eventDate)
   endOfEventDay.setHours(23, 59, 59)
 
-  if (
-    now >= startOfEventDay &&
-    now <= endOfEventDay
-  ) {
+  if (now >= startOfEventDay && now <= endOfEventDay) {
     isEventToday.value = true
     return
   }
 
-  const diff = now < eventDate ? eventDate - now : now - eventDate
-
+  const diff = eventDate - now
   const totalSeconds = Math.floor(diff / 1000)
   const days = Math.floor(totalSeconds / (3600 * 24))
   const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600)
@@ -70,21 +77,26 @@ function updateCountdown() {
 
 onMounted(() => {
   updateCountdown()
+  updateBackground()
+  window.addEventListener('resize', updateBackground)
   interval = setInterval(updateCountdown, 1000)
 })
 
 onUnmounted(() => {
   clearInterval(interval)
+  window.removeEventListener('resize', updateBackground)
 })
 </script>
+
 
 <style scoped>
 @font-face {
   font-family: 'Amelia Faith';
-  src: url('https://dl.dropboxusercontent.com/s/ustksumtry5jf98o01fwe/AmeliaFaith.otf') format('opentype');
+  src: url('https://dl.dropboxusercontent.com/scl/fi/ustksumtry5jf98o01fwe/AmeliaFaith.otf?rlkey=5u49len90x841b63ykz388xcz&st=wfvxo4uu') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
+
 
 /* Elimina márgenes y padding predeterminados del navegador */
 html, body {
