@@ -53,7 +53,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/invitacion-andrea-giron/resultados-trivia', // Ruta para acceder a la lista de canciones
     name: 'andrea-giron-resultados-trivia',
     component: TriviaresultView // Componente que se renderizará
-  }
+  },
+  {
+  path: '/invitacion-kyara',
+  name: 'FifteenView',
+  component: () => import('@/views/FifteenView.vue')
+}
+
 ]
 
 const router = createRouter({
