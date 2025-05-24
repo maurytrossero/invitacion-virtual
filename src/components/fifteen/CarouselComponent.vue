@@ -74,16 +74,12 @@ onUnmounted(() => {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Fair+Prosper&display=swap");
 
-/* Fuente Myriad Pro si está disponible localmente */
 @font-face {
   font-family: "Myriad Pro";
-  src: local("Myriad Pro"), local("MyriadPro-Regular"),
-       url("./fonts/MyriadPro-Regular.woff2") format("woff2"),
-       url("./fonts/MyriadPro-Regular.woff") format("woff");
+  src: url("https://www.dropbox.com/scl/fi/vfnezg761hlftzuog7d3x/MYRIADPRO-REGULAR.OTF?rlkey=j1thn2zkichsil6yrki69474t&raw=1") format("opentype");
   font-style: normal;
   font-weight: normal;
 }
-
 
 :global(html, body) {
   margin: 0;
