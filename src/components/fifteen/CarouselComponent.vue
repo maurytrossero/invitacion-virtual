@@ -77,10 +77,13 @@ onUnmounted(() => {
 /* Fuente Myriad Pro si está disponible localmente */
 @font-face {
   font-family: "Myriad Pro";
-  src: local("Myriad Pro"), local("MyriadPro-Regular");
+  src: local("Myriad Pro"), local("MyriadPro-Regular"),
+       url("./fonts/MyriadPro-Regular.woff2") format("woff2"),
+       url("./fonts/MyriadPro-Regular.woff") format("woff");
   font-style: normal;
   font-weight: normal;
 }
+
 
 :global(html, body) {
   margin: 0;
