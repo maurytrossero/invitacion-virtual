@@ -75,7 +75,7 @@ onUnmounted(() => {
 /* Cambié a Montserrat */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
-/* Quité el @font-face que cargaba Myriad Pro local */
+/* Quité el @font-face que cargaba Myriad Pro local. Probar luego si se puede arreglar */
 
 :global(html, body) {
   margin: 0;
