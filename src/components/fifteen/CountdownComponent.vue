@@ -97,7 +97,6 @@ onUnmounted(() => {
   font-style: normal;
 }
 
-
 /* Elimina márgenes y padding predeterminados del navegador */
 html, body {
   margin: 0;
@@ -156,95 +155,150 @@ html, body {
   font-weight: normal;
 }
 
-/* Bloque de cuenta regresiva */
+/* Cuenta regresiva */
 .countdown {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem; /* Espacio entre los bloques de tiempo */
+  gap: 1.5rem;
   margin: 2rem auto;
-  padding: 0 5vw;
+  padding: 0 1rem; /* Padding reducido para evitar scroll */
   box-sizing: border-box;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 90%;
-  flex-wrap: nowrap; /* Evita que se acomode en varias líneas */
+  white-space: nowrap; /* Evita que se bajen a otra línea */
+  overflow: visible; /* Mostrar contenido completo */
+  max-width: 100%;
+  flex-wrap: nowrap;
 }
 
-/* Caja individual (días, horas, etc.) */
 .time-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 60px; /* Ancho mínimo de cada bloque */
+  min-width: 40px; /* Tamaño mínimo pequeño para móviles */
   text-align: center;
+  flex-shrink: 1; /* Permite achicar si no hay espacio */
 }
 
-/* Número grande (valor de tiempo) */
 .time-value {
-  font-size: 2rem; /* Cambiá el tamaño de los números */
+  font-size: 2rem; /* Tamaño base de números */
   font-weight: bold;
 }
 
-/* Texto pequeño debajo (label: días, horas, etc.) */
 .time-label {
-  font-size: 0.75rem; /* Cambiá el tamaño del texto inferior */
+  font-size: 0.75rem;
   margin-top: 0.3rem;
   text-transform: uppercase;
 }
 
-/* Fecha del evento con líneas arriba y abajo */
+/* Fecha del evento con líneas decorativas arriba y abajo */
 .date {
   position: relative;
   margin-top: 1.5rem;
-  padding: 0.8rem 0; /* Espaciado interno vertical */
-  font-size: 0.9rem; /* Cambiá tamaño de texto de la fecha */
+  padding: 0.8rem 0;
+  font-size: 0.9rem;
   letter-spacing: 1px;
   text-align: center;
   color: white;
 }
 
-/* Líneas decorativas arriba y abajo de la fecha */
 .date::before,
 .date::after {
   content: "";
   display: block;
-  height: 2px; /* Grosor de la línea */
+  height: 2px;
   background-color: white;
-
-  width: 15%;      /* ← Cambiá el largo de las líneas (ej: 20%, 10%) */
-  margin: 1rem auto;  /* ← Espacio vertical entre la línea y el texto */
+  width: 15%;
+  margin: 1rem auto;
 }
 
-/* Mensaje adicional debajo (puede ser cita, mensaje, etc.) */
+/* Mensaje adicional */
 .message {
-  font-size: 1.4rem; /* Cambiá tamaño del mensaje */
+  font-size: 1.4rem;
   font-weight: bold;
   margin: 2rem 0;
-  color: #ffe680; /* Cambiá el color aquí */
+  color: #ffe680;
 }
 
-/* Responsivo para móviles */
+/* Responsivo para móviles (hasta 600px) */
 @media (max-width: 600px) {
   .countdown {
-    max-width: 70%;      /* Anchura del bloque de cuenta regresiva en móviles */
-    margin-left: auto;
-    margin-right: auto;
-    gap: 0.8rem; /* Menor espacio entre bloques */
-    padding-left: 1rem;
-    padding-right: 1rem;
+    gap: 1.5rem;
+    padding: 0 0.5rem; /* Padding aún más pequeño */
   }
 
   .time-box {
-    min-width: 40px; /* Más angosto en pantallas chicas */
+    min-width: 30px; /* Más pequeño para móviles */
   }
 
   .time-value {
-    font-size: 1.4rem; /* Números más chicos */
+    font-size: 1.5rem;
   }
 
   .time-label {
-    font-size: 0.6rem; /* Texto de labels más chico */
+    font-size: 0.6rem;
+  }
+}
+
+/* Pantallas medianas y grandes */
+@media (min-width: 601px) and (max-width: 899px) {
+  .countdown {
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .time-box {
+    min-width: 50px;
+  }
+
+  .time-value {
+    font-size: 2.5rem;
+  }
+
+  .time-label {
+    font-size: 0.75rem;
+  }
+}
+
+/* Pantallas grandes desde 900px en adelante */
+@media (min-width: 900px) {
+  .header h2 {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+  }
+
+  .header h1 {
+    font-size: 5rem;
+  }
+
+  .countdown {
+    gap: 3rem;
+    padding: 0 4vw;
+    max-width: 100%;
+  }
+
+  .time-box {
+    min-width: 90px;
+  }
+
+  .time-value {
+    font-size: 3.5rem;
+  }
+
+  .time-label {
+    font-size: 1rem;
+  }
+
+  .date {
+    font-size: 1.2rem;
+  }
+
+  .message {
+    font-size: 2rem;
+  }
+
+  .date::before,
+  .date::after {
+    width: 25%;
   }
 }
 </style>
