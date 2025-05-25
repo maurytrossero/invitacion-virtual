@@ -72,14 +72,10 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Fair+Prosper&display=swap");
+/* Cambié a Montserrat */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
-@font-face {
-  font-family: "Myriad Pro";
-  src: url("https://www.dropbox.com/scl/fi/vfnezg761hlftzuog7d3x/MYRIADPRO-REGULAR.OTF?rlkey=j1thn2zkichsil6yrki69474t&raw=1") format("opentype");
-  font-style: normal;
-  font-weight: normal;
-}
+/* Quité el @font-face que cargaba Myriad Pro local */
 
 :global(html, body) {
   margin: 0;
@@ -141,7 +137,8 @@ onUnmounted(() => {
 }
 
 .quote {
-  font-family: "Fair Prosper", serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
   font-size: 2rem;
   line-height: 1.3;
   margin-bottom: 1.5rem;
@@ -193,7 +190,8 @@ onUnmounted(() => {
 }
 
 .gallery-title {
-  font-family: "Myriad Pro", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
   font-size: 1.6rem;
   color: #000;
   margin-top: 0.5rem;
