@@ -3,7 +3,9 @@
     <section ref="section1" class="section">
       <KyaraInvitation />
     </section>
-
+    <section ref="section2" class="section">
+      <CarouselComponent />
+    </section>
 
     <!-- Botones navegación -->
     <button 
