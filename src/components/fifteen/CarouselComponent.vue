@@ -72,8 +72,8 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Cambié a Montserrat */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Fair+Prosper&display=swap");
+
 
 /* Quité el @font-face que cargaba Myriad Pro local. Probar luego si se puede arreglar */
 
@@ -137,7 +137,7 @@ onUnmounted(() => {
 }
 
 .quote {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Fair Prosper", serif;  /* Aquí cambio a Fair Prosper */
   font-weight: 400;
   font-size: 2rem;
   line-height: 1.3;
