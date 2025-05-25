@@ -142,7 +142,7 @@ onUnmounted(() => {
   font-size: 2rem;
   line-height: 1.3;
   margin-bottom: 1.5rem;
-  color: #5a5045;
+  color: #b6afa0;
 }
 
 .carousel {

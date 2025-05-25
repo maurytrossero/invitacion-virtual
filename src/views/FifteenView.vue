@@ -59,19 +59,25 @@ onMounted(() => {
 <style scoped>
 .fifteen-view {
   height: 100vh;
+  width: 100vw;          /* ancho total sin margen */
+  margin: 0;
+  padding: 0;
   overflow-y: auto;
+  overflow-x: hidden;    /* prevenir scroll horizontal */
   scroll-behavior: smooth;
   position: relative;
 }
 
-/* Cada sección ocupa toda la pantalla */
 .section {
   height: 100vh;
-  width: 100%;
+  width: 100%;           /* ya lo tienes, bien */
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;             /* aseguramos sin márgenes */
+  padding: 0;            /* eliminamos padding lateral si hubiese */
 }
+
 
 /* Botones navegación */
 .nav-btn {
