@@ -19,66 +19,88 @@
 
       <!-- Atrás -->
       <div class="card-back">
-        <img src="https://dl.dropboxusercontent.com/scl/fi/f671ih37wawblpzykpmkq/tarjeta.png?rlkey=g372wrfe4b8zrxbwv2nstfoqa" alt="Decoración" class="back-decoration" />
+        <img
+          src="https://dl.dropboxusercontent.com/scl/fi/f671ih37wawblpzykpmkq/tarjeta.png?rlkey=g372wrfe4b8zrxbwv2nstfoqa"
+          alt="Decoración"
+          class="back-decoration"
+        />
         <div class="back-content">
-          <p class="date">
-            <span>{{ date.month }}</span> | <span>{{ date.day }}</span> | <span>{{ date.year }}</span>
-          </p>
-          <p class="location">{{ location }}</p>
+          <template v-if="backContent && backContent.type === 'price'">
+            <ul>
+              <li v-for="(price, i) in backContent.prices" :key="i">
+                {{ price.description }}: {{ price.amount }}
+              </li>
+            </ul>
+          </template>
+
+          <template v-else-if="backContent && backContent.type === 'location'">
+            <p>{{ backContent.address }}</p>
+            <a
+              :href="backContent.googleMapsUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver en Google Maps
+            </a>
+          </template>
+
+          <template v-else-if="backContent && backContent.type === 'music'">
+            <p>¿Quieres sugerir música? Haz clic para abrir el formulario.</p>
+            <button @click="$emit('open-music-form')">Abrir Formulario Música</button>
+          </template>
+
+          <template v-else>
+            <p>Contenido no disponible.</p>
+          </template>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<!-- eslint-disable no-undef -->
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { Cake, Gift, Info } from 'lucide-vue-next'
+/* global defineProps */
 
-// Props
+import { ref, computed, onMounted } from "vue";
+import { Cake, Gift, Info, Music } from "lucide-vue-next";
+
 const props = defineProps({
   frontImage: String,
   frontText: String,
   frontIcon: String,
-  date: {
+  backContent: {
     type: Object,
-    default: () => ({ month: '', day: '', year: '' })
+    default: () => ({}),
   },
-  location: {
-    type: String,
-    default: ''
-  }
-})
+});
 
-
-// Íconos disponibles
 const iconMap = {
   cake: Cake,
   gift: Gift,
-  info: Info
-}
+  info: Info,
+  music: Music,
+};
 
-const FrontIconComponent = computed(() => iconMap[props.frontIcon] || Info)
-const isFlipped = ref(false)
+const FrontIconComponent = computed(() => iconMap[props.frontIcon] || Info);
+
+const isFlipped = ref(false);
 
 const handleMouseEnter = () => {
-  if (!isMobile.value) isFlipped.value = true
-}
+  if (!isMobile.value) isFlipped.value = true;
+};
 
 const handleMouseLeave = () => {
-  if (!isMobile.value) isFlipped.value = false
-}
+  if (!isMobile.value) isFlipped.value = false;
+};
 
 const handleClick = () => {
-  if (isMobile.value) isFlipped.value = !isFlipped.value
-}
+  if (isMobile.value) isFlipped.value = !isFlipped.value;
+};
 
-// Detectar mobile
-const isMobile = ref(false)
+const isMobile = ref(false);
 onMounted(() => {
-  isMobile.value = /Mobi|Android/i.test(navigator.userAgent)
-})
+  isMobile.value = /Mobi|Android/i.test(navigator.userAgent);
+});
 </script>
 
 <style scoped>
@@ -112,8 +134,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box; /* Asegura que padding/border no rompan proporciones */
-  border: 1px solid #71937b; /* <-- borde fino negro agregado */
+  box-sizing: border-box;
+  border: 1px solid #71937b;
 }
 
 .card-front {
@@ -141,7 +163,7 @@ onMounted(() => {
 .card-back {
   background-color: white;
   transform: rotateY(180deg);
-  padding: 0; /* Quitamos el padding que deformaba el tamaño */
+  padding: 0;
   flex-direction: column;
   justify-content: center;
   text-align: center;
@@ -165,17 +187,37 @@ onMounted(() => {
   z-index: 1;
   color: black;
   font-family: serif;
-  padding: 1rem; /* Si querés espacio interno sin deformar el tamaño */
+  padding: 1rem;
 }
 
-.date {
-  font-size: 1.2rem;
-  font-weight: bold;
+.back-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.back-content li {
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
-.location {
-  font-size: 1rem;
-  font-style: italic;
+.back-content a {
+  color: #436436;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.back-content button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #71937b;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.back-content button:hover {
+  background-color: #5a7963;
 }
 </style>

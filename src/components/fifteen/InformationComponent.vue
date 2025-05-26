@@ -24,17 +24,17 @@
 
     <!-- Contenedor de tarjetas -->
     <div class="modals-container">
-      <ModalComponent
+    <ModalComponent
         v-for="(modal, index) in modals"
         :key="index"
         :frontImage="modal.frontImage"
+        :frontText="modal.frontText"
+        :frontIcon="modal.frontIcon"
         :backContent="modal.backContent"
-      >
-        <template #front>
-          <img :src="modal.icon" :alt="`Icono ${index + 1}`" style="width: 64px; height: 64px;" />
-        </template>
-      </ModalComponent>
+        @open-music-form="abrirFormularioMusica"
+    />
     </div>
+
 
     <!-- Adorno inferior -->
     <img
@@ -54,20 +54,39 @@ import ModalComponent from './ModalComponent.vue'
 const modals = [
   {
     frontImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO0h0CMgMLU-zuXvv31t2jhUWKhY2HwJCrhA&s',
-    icon: '/icono-torta.png',
-    backContent: 'Este es el contenido de la primera tarjeta.'
+    frontText: 'Precio',
+    frontIcon: 'cake',
+    backContent: {
+      type: 'price',
+      prices: [
+        { description: 'Mayores', amount: '$40.000' },
+        { description: 'Menores', amount: '$25.000' },
+        { description: 'Juvenil', amount: '$35.000' },
+        { description: 'Brindis', amount: '$20.000' }
+        ]
+    }
   },
   {
     frontImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUPnVDxHNIJTBlHK9JwfncsixbV8SwKb5Fvg&s',
-    icon: '/icono-regalo.png',
-    backContent: 'Este es el contenido de la segunda tarjeta.'
+    frontText: 'Lugar',
+    frontIcon: 'gift',
+    backContent: {
+      type: 'location',
+      address: `AGOSTO | 16 | 2025
+            Asociación Italiana príncipe Humberto. Porteña .`,
+      googleMapsUrl: 'https://goo.gl/maps/xyz123'
+    }
   },
   {
     frontImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb54uUvljGEDIhS6QTp1I-JrL4PDd6xKOjfQ&s',
-    icon: '/icono-info.png',
-    backContent: 'Este es el contenido de la tercera tarjeta.'
+    frontText: 'Música',
+    frontIcon: 'music',
+    backContent: {
+      type: 'music'
+    }
   }
 ]
+
 </script>
 
 <style scoped>
