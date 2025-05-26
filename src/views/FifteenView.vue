@@ -6,25 +6,32 @@
     <section ref="section2" class="section">
       <CarouselComponent />
     </section>
+    <section ref="section3" class="section">
+      <InformationComponent />
+    </section>
+
 
     <!-- Botones navegación -->
+    <!-- Subir -->
     <button 
-      class="nav-btn up"
-      @click="scrollToSection(0)"
-      :disabled="currentSection === 0"
-      aria-label="Subir"
+    class="nav-btn up"
+    @click="scrollToSection(currentSection - 1)"
+    :disabled="currentSection === 0"
+    aria-label="Subir"
     >
-      ▲
+    ▲
     </button>
 
+    <!-- Bajar -->
     <button 
-      class="nav-btn down"
-      @click="scrollToSection(1)"
-      :disabled="currentSection === 1"
-      aria-label="Bajar"
+    class="nav-btn down"
+    @click="scrollToSection(currentSection + 1)"
+    :disabled="currentSection === sections.length - 1"
+    aria-label="Bajar"
     >
-      ▼
+    ▼
     </button>
+
   </div>
 </template>
 
@@ -32,26 +39,33 @@
 import { ref, onMounted } from 'vue'
 import KyaraInvitation from '@/components/fifteen/CountdownComponent.vue'
 import CarouselComponent from '@/components/fifteen/CarouselComponent.vue'
+import InformationComponent from '@/components/fifteen/InformationComponent.vue'
 
 const container = ref(null)
 const section1 = ref(null)
 const section2 = ref(null)
+const section3 = ref(null)
 const currentSection = ref(0)
 
 function scrollToSection(index) {
-  currentSection.value = index
-  const sections = [section1.value, section2.value]
-  if (sections[index]) {
-    sections[index].scrollIntoView({ behavior: 'smooth' })
+  if (index >= 0 && index < sections.value.length) {
+    currentSection.value = index
+    sections.value[index].scrollIntoView({ behavior: 'smooth' })
   }
 }
 
+
+const sections = ref([])
 onMounted(() => {
-  // Opcional: detectar scroll para actualizar currentSection
+  sections.value = [section1.value, section2.value, section3.value]
+
   container.value.addEventListener('scroll', () => {
     const scrollPos = container.value.scrollTop
     const height = window.innerHeight
-    currentSection.value = scrollPos < height / 2 ? 0 : 1
+
+    // Estimar cuál sección está más cerca
+    const index = Math.round(scrollPos / height)
+    currentSection.value = index
   })
 })
 </script>
@@ -69,14 +83,17 @@ onMounted(() => {
 }
 
 .section {
-  height: 100vh;
-  width: 100%;           /* ya lo tienes, bien */
+  min-height: 100vh; /* permite crecer si el contenido lo necesita */
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;             /* aseguramos sin márgenes */
-  padding: 0;            /* eliminamos padding lateral si hubiese */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  flex-direction: column; /* asegura orden vertical */
 }
+
 
 
 /* Botones navegación */

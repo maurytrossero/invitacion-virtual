@@ -21,6 +21,7 @@
     "emailjs-com": "^3.2.0",
     "firebase": "^11.0.1",
     "font-awesome": "^4.7.0",
+    "lucide-vue-next": "^0.511.0",
     "vue": "^3.2.13",
     "vue-carousel": "^0.18.0",
     "vue-material-design-icons": "^5.3.0",
