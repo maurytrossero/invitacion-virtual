@@ -8,6 +8,20 @@
       aria-hidden="true"
     />
 
+    <!-- Texto invitación -->
+    <div class="mensaje-invitacion">
+    <p>El regalo es opcional,<br />la asistencia es obligatoria</p>
+    
+    <!-- Sustituimos la línea por una imagen PNG -->
+    <img
+        class="separador-img"
+        src="https://dl.dropboxusercontent.com/scl/fi/ulhlqd8fcy3xlhh5oq30v/separador.png?rlkey=sx7wsrnmamhxhx6ig99hbjwtx&st=pa7hlxgt"
+        alt="Separador decorativo"
+        aria-hidden="true"
+    />
+    </div>
+
+
     <!-- Contenedor de tarjetas -->
     <div class="modals-container">
       <ModalComponent
@@ -33,6 +47,7 @@
 </template>
 
 
+
 <script setup>
 import ModalComponent from './ModalComponent.vue'
 
@@ -56,6 +71,59 @@ const modals = [
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Constantia:ital@1&display=swap');
+
+.mensaje-invitacion {
+  text-align: center;
+  font-family: 'Constantia', serif;
+  font-style: italic;
+  color: black;
+  margin-bottom: 1rem;
+  z-index: 20;
+}
+
+.mensaje-invitacion p {
+  font-size: 1.2rem; /* Base para mobile */
+  margin: 0;
+}
+
+.separador-img {
+  margin-top: 0.8rem;  /* Espacio entre texto y separador */
+  width: 120px;
+  height: auto;
+  opacity: 0.85;
+}
+
+/* MEDIA QUERIES: más espacio en vista web */
+@media (min-width: 600px) {
+  .mensaje-invitacion {
+    margin-bottom: 2.5rem;
+  }
+
+  .mensaje-invitacion p {
+    font-size: 1.8rem;
+  }
+
+  .separador-img {
+    margin-top: 1.5rem;
+    width: 150px;
+  }
+
+  .modals-container {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mensaje-invitacion p {
+    font-size: 2rem;
+  }
+
+  .separador-img {
+    width: 180px;
+  }
+}
+
 .information-wrapper {
   position: relative;
   width: 100%;
@@ -99,17 +167,48 @@ const modals = [
 
 .modals-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: nowrap;  /* No se envuelven */
   gap: 1.5rem;
   align-items: center;
+  justify-content: center;
   z-index: 20;
+  max-width: 100%;
+  max-height: 100%;
+  flex-direction: column;  /* Default para portrait */
 }
 
-@media (min-width: 768px) {
+/* Escalado para móvil vertical pequeño para que entren sin scroll */
+@media (max-width: 767px) and (orientation: portrait) {
   .modals-container {
-    flex-direction: row;
-    justify-content: center;
+    transform: scale(0.85);
+    transform-origin: top center;
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .information-wrapper {
+    padding: 1rem 0.5rem;
+  }
+
+  .mensaje-invitacion {
+    margin-bottom: 1.5rem;
   }
 }
 
+/* TODOS los dispositivos en landscape: fila sin escala */
+@media (orientation: landscape) {
+  .modals-container {
+    flex-direction: row;
+    transform: none;  /* Sin escala */
+  }
+}
+
+/* Vistas web grandes (>=768px) en portrait también en fila */
+@media (min-width: 768px) and (orientation: portrait) {
+  .modals-container {
+    flex-direction: row;
+    transform: none;  /* Sin escala */
+  }
+}
 </style>
+
