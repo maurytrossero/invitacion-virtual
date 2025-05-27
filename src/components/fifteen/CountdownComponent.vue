@@ -92,13 +92,13 @@ onUnmounted(() => {
 <style scoped>
 @font-face {
   font-family: 'Amelia Faith';
-  src: url('https://dl.dropboxusercontent.com/scl/fi/ustksumtry5jf98o01fwe/AmeliaFaith.otf?rlkey=5u49len90x841b63ykz388xcz&st=wfvxo4uu') format('opentype');
+  src: url('../../assets/fonts/AmeliaFaithRegular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Bahnschrift';
-  src: url('https://www.dropbox.com/scl/fi/92c6gh386w3dgsisrpl1s/Bahnschrift.woff?rlkey=z8hlmq346fhg2l1ya06is4hgu&st=3tqquet9&raw=1') format('woff');
+  src: url('../../assets/fonts/Bahnschrift.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
