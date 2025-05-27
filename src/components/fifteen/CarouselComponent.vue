@@ -219,14 +219,17 @@ onUnmounted(() => {
   opacity: 1;
 }
 
-@media (max-width: 600px) {
-  .quote {
-    font-size: 1.4rem;
-  }
-
+@media (max-width: 600px) and (orientation: portrait) {
   .carousel {
+    width: 80%;
     aspect-ratio: 3 / 2;
     border-radius: 1rem;
+    margin: 0 auto 1rem auto;
+  }
+
+  .quote {
+    font-size: 1.4rem;
+    padding: 0 1rem;
   }
 
   .gallery-title {
@@ -234,4 +237,31 @@ onUnmounted(() => {
     margin-top: 0.75rem;
   }
 }
+
+@media (max-width: 800px) and (orientation: landscape) {
+  .container {
+    padding: 1rem;
+    justify-content: flex-start;
+  }
+
+  .quote {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel {
+    width: auto;
+    height: calc(100vh - 7rem); /* ajustamos según espacio de la quote */
+    aspect-ratio: 3 / 2;
+    max-height: 60vh;
+    margin: 0 auto 1rem auto;
+    border-radius: 1rem;
+  }
+
+  .gallery-title {
+    font-size: 1rem;
+  }
+}
+
+
 </style>
