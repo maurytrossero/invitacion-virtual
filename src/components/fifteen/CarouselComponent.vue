@@ -72,10 +72,18 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Fair+Prosper&display=swap");
+@font-face {
+  font-family: 'Bahnschrift';
+  src: url('../../assets/fonts/Bahnschrift.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'FairProsper';
+  src: url('../../assets/fonts/FairProsper.woff') format('woff');
+}
 
-/* Quité el @font-face que cargaba Myriad Pro local. Probar luego si se puede arreglar */
 
 :global(html, body) {
   margin: 0;
@@ -137,7 +145,7 @@ onUnmounted(() => {
 }
 
 .quote {
-  font-family: "Fair Prosper", serif;  /* Aquí cambio a Fair Prosper */
+  font-family: "FairProsper", serif;  /* Aquí cambio a Fair Prosper */
   font-weight: 400;
   font-size: 2rem;
   line-height: 1.3;
@@ -190,7 +198,7 @@ onUnmounted(() => {
 }
 
 .gallery-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Bahnschrift', sans-serif;
   font-weight: 700;
   font-size: 1.6rem;
   color: #000;

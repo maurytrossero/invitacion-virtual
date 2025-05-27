@@ -2,9 +2,9 @@ const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: './', // Rutas relativas para CSS y JS
+  publicPath: './',
   css: {
-    extract: true, // Extraer CSS a archivos separados (por defecto true)
+    extract: true,
   },
   configureWebpack: {
     optimization: {
@@ -20,5 +20,8 @@ module.exports = defineConfig({
         },
       },
     },
+  },
+  devServer: {
+    historyApiFallback: true, // 👈 ¡Esta línea es clave!
   },
 })

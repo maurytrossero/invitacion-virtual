@@ -104,11 +104,19 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: 'Bahnschrift';
+  src: url('../../assets/fonts/Bahnschrift.woff') format('woff');
+  font-weight: 100 700;
+  font-style: normal;
+}
+
 .card {
   width: 320px;
   height: 240px; /* Proporción 4:3 */
   perspective: 1000px;
   cursor: pointer;
+  font-family: 'Bahnschrift';
 }
 
 .card-inner {
@@ -136,6 +144,7 @@ onMounted(() => {
   justify-content: center;
   box-sizing: border-box;
   border: 1px solid #71937b;
+  font-family: 'Bahnschrift';
 }
 
 .card-front {
@@ -186,7 +195,7 @@ onMounted(() => {
   position: relative;
   z-index: 1;
   color: black;
-  font-family: serif;
+  font-family: 'Bahnschrift';
   padding: 1rem;
 }
 

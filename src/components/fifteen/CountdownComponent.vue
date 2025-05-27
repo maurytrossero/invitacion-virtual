@@ -96,6 +96,13 @@ onUnmounted(() => {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Bahnschrift';
+  src: url('https://www.dropbox.com/scl/fi/92c6gh386w3dgsisrpl1s/Bahnschrift.woff?rlkey=z8hlmq346fhg2l1ya06is4hgu&st=3tqquet9&raw=1') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 /* Elimina márgenes y padding predeterminados del navegador */
 html, body {
@@ -139,6 +146,8 @@ html, body {
   text-align: center;
   padding: 2rem 1rem; /* Ajusta espaciado interno */
   color: white;
+  font-family: 'Bahnschrift', Thin;
+
 }
 
 /* Texto secundario superior (como fecha o ubicación) */

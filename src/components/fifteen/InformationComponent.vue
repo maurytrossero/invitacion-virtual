@@ -10,21 +10,19 @@
 
     <!-- Texto invitación -->
     <div class="mensaje-invitacion">
-    <p>El regalo es opcional,<br />la asistencia es obligatoria</p>
-    
-    <!-- Sustituimos la línea por una imagen PNG -->
-    <img
+      <p>El regalo es opcional,<br />la asistencia es obligatoria</p>
+
+      <img
         class="separador-img"
         src="https://dl.dropboxusercontent.com/scl/fi/ulhlqd8fcy3xlhh5oq30v/separador.png?rlkey=sx7wsrnmamhxhx6ig99hbjwtx&st=pa7hlxgt"
         alt="Separador decorativo"
         aria-hidden="true"
-    />
+      />
     </div>
-
 
     <!-- Contenedor de tarjetas -->
     <div class="modals-container">
-    <ModalComponent
+      <ModalComponent
         v-for="(modal, index) in modals"
         :key="index"
         :frontImage="modal.frontImage"
@@ -32,9 +30,8 @@
         :frontIcon="modal.frontIcon"
         :backContent="modal.backContent"
         @open-music-form="abrirFormularioMusica"
-    />
+      />
     </div>
-
 
     <!-- Adorno inferior -->
     <img
@@ -46,11 +43,10 @@
   </div>
 </template>
 
-
-
 <script setup>
 import ModalComponent from './ModalComponent.vue'
 
+// Datos de cada tarjeta
 const modals = [
   {
     frontImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO0h0CMgMLU-zuXvv31t2jhUWKhY2HwJCrhA&s',
@@ -63,7 +59,7 @@ const modals = [
         { description: 'Menores', amount: '$25.000' },
         { description: 'Juvenil', amount: '$35.000' },
         { description: 'Brindis', amount: '$20.000' }
-        ]
+      ]
     }
   },
   {
@@ -72,8 +68,7 @@ const modals = [
     frontIcon: 'gift',
     backContent: {
       type: 'location',
-      address: `AGOSTO | 16 | 2025
-            Asociación Italiana príncipe Humberto. Porteña .`,
+      address: `AGOSTO | 16 | 2025\nAsociación Italiana príncipe Humberto. Porteña.`,
       googleMapsUrl: 'https://goo.gl/maps/xyz123'
     }
   },
@@ -87,7 +82,14 @@ const modals = [
   }
 ]
 
+// Emitido desde ModalComponent cuando se hace clic en "Abrir Formulario Música"
+function abrirFormularioMusica() {
+  // Puedes emitir un evento global, usar un store, o abrir un modal aquí
+  console.log("Formulario de música solicitado");
+}
 </script>
+
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Constantia:ital@1&display=swap');
