@@ -7,6 +7,8 @@ import BirthdayView from '@/views/BirthdayView.vue';
 import BirthdaysongsListview from '@/views/BithddaysongsListview.vue';
 import TriviaresultView from '@/views/TriviaresultView.vue';
 import WeddingView from '@/views/WeddingView.vue';
+import VistaAsistentes from '@/components/fifteen/InvitadosComponent.vue'
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -58,12 +60,18 @@ const routes: Array<RouteRecordRaw> = [
   path: '/invitacion-kyara',
   name: 'FifteenView',
   component: () => import('@/views/FifteenView.vue')
-}
+  },
+  {
+    path: '/invitacion-kyara-invitados',
+    name: 'Asistentes',
+    component: VistaAsistentes
+  }
+
 
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.BASE_URL || '/'), 
   routes
 })
 

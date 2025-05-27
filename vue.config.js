@@ -2,7 +2,7 @@ const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: './',
+  publicPath: '/', // Cambié './' a '/' para rutas absolutas, evita problemas con rutas relativas en SPA
   css: {
     extract: true,
   },
@@ -22,6 +22,6 @@ module.exports = defineConfig({
     },
   },
   devServer: {
-    historyApiFallback: true, // 👈 ¡Esta línea es clave!
+    historyApiFallback: true, // Muy importante para que el servidor dev entienda rutas SPA
   },
 })

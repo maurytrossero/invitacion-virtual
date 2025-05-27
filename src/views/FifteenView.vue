@@ -9,8 +9,11 @@
     <section ref="section3" class="section">
       <InformationComponent />
     </section>
+    <section ref="section4" class="section">
+      <ConfirmComponent />
+    </section>
 
-
+  
     <!-- Botones navegación -->
     <!-- Subir -->
     <button 
@@ -40,11 +43,15 @@ import { ref, onMounted } from 'vue'
 import KyaraInvitation from '@/components/fifteen/CountdownComponent.vue'
 import CarouselComponent from '@/components/fifteen/CarouselComponent.vue'
 import InformationComponent from '@/components/fifteen/InformationComponent.vue'
+import ConfirmComponent from '@/components/fifteen/ConfirmAttendance.vue'
+
 
 const container = ref(null)
 const section1 = ref(null)
 const section2 = ref(null)
 const section3 = ref(null)
+const section4 = ref(null)
+
 const currentSection = ref(0)
 
 function scrollToSection(index) {
@@ -57,7 +64,7 @@ function scrollToSection(index) {
 
 const sections = ref([])
 onMounted(() => {
-  sections.value = [section1.value, section2.value, section3.value]
+  sections.value = [section1.value, section2.value, section3.value, section4.value]
 
   container.value.addEventListener('scroll', () => {
     const scrollPos = container.value.scrollTop
