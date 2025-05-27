@@ -1,4 +1,3 @@
-<!-- src/components/VistaAsistentes.vue -->
 <template>
   <div
     class="container"
@@ -9,11 +8,18 @@
         <h2>Lista de asistentes confirmados</h2>
         <ul class="familias-lista">
           <li v-for="(familia, i) in familias" :key="i" class="familia-item">
-            <strong>Familia {{ i + 1 }}:</strong>
-            <div>
+            <div class="card-header">
+              <div class="icono"><i class="fas fa-users"></i></div>
+              <div><strong>Familia {{ i + 1 }}</strong></div>
+            </div>
+
+            <div class="detalle-linea">
+              <i class="fas fa-id-badge"></i>
               <small><strong>Código:</strong> {{ familia.codigoFamilia || 'N/A' }}</small>
             </div>
-            <div v-if="familia.telefono">
+
+            <div class="detalle-linea" v-if="familia.telefono">
+              <i class="fas fa-phone"></i>
               <small>
                 <strong>Teléfono:</strong>
                 <template v-if="esTelefonoValido(familia.telefono)">
@@ -30,14 +36,19 @@
                 </template>
               </small>
             </div>
-            
-            <!-- Aquí agregamos el título -->
-            <div class="titulo-asistentes">Asistentes</div>
+
+            <div class="titulo-asistentes"><i class="fas fa-user-friends"></i> Asistentes</div>
             <ul class="asistentes-lista">
               <li v-for="(a, j) in familia.asistentes" :key="j">
-                {{ a.nombre }} {{ a.apellido }}
+                <i class="fas fa-user"></i> {{ a.nombre }} {{ a.apellido }}
               </li>
             </ul>
+
+            <div class="botones-acciones">
+              <button @click="eliminarFamilia(i)" class="btn-eliminar">
+                <i class="fas fa-trash"></i> Eliminar
+              </button>
+            </div>
           </li>
         </ul>
       </div>
@@ -48,44 +59,49 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { db } from "@/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 
 const familias = ref([]);
 
 onMounted(async () => {
-  const querySnapshot = await getDocs(collection(db, "familias"));
-  familias.value = querySnapshot.docs.map((doc) => doc.data());
+  await cargarFamilias();
 });
 
-/**
- * Valida si el teléfono es válido para formato WhatsApp argentino
- * Se espera que no tenga 0 ni 15 y tenga 10 dígitos
- * @param {string} tel 
- * @returns {boolean}
- */
+async function cargarFamilias() {
+  const querySnapshot = await getDocs(collection(db, "familias"));
+  familias.value = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+}
+
+async function eliminarFamilia(index) {
+  const familia = familias.value[index];
+  const confirmado = window.confirm(`¿Estás seguro de eliminar la Familia ${index + 1}?`);
+  if (confirmado) {
+    try {
+      await deleteDoc(doc(db, "familias", familia.id));
+      familias.value.splice(index, 1);
+    } catch (error) {
+      console.error("Error al eliminar familia:", error);
+      alert("Hubo un error al intentar eliminar la familia.");
+    }
+  }
+}
+
 function esTelefonoValido(tel) {
-  const limpio = tel.replace(/\D/g, ""); // solo números
-  // El formato esperado para Argentina: 10 dígitos, sin 0 ni 15 al inicio
-  // Ejemplo válido: 9112345678
+  const limpio = tel.replace(/\D/g, "");
   return limpio.length === 10 && !limpio.startsWith("0") && !limpio.startsWith("15");
 }
 
-/**
- * Formatea el teléfono para link WhatsApp
- * Agrega prefijo +54 para Argentina
- * @param {string} tel 
- * @returns {string}
- */
 function formatearTelefonoWA(tel) {
-  let limpio = tel.replace(/\D/g, ""); // números
-  // Asegurar que no comience con 0 ni 15
+  let limpio = tel.replace(/\D/g, "");
   if (limpio.startsWith("0")) limpio = limpio.substring(1);
   if (limpio.startsWith("15")) limpio = limpio.substring(2);
-  return "54" + limpio; // código país Argentina + número limpio
+  return "54" + limpio;
 }
 </script>
 
 <style scoped>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
 @font-face {
   font-family: "Bahnschrift";
   src: url("@/assets/fonts/Bahnschrift.woff") format("woff");
@@ -143,17 +159,39 @@ h2 {
 }
 
 .familia-item {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.2);
   margin-bottom: 1rem;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
 }
 
-.familia-item strong {
-  display: block;
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+}
+
+.detalle-linea {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.titulo-asistentes {
+  font-size: 1.05rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  color: #eee;
 }
 
 .asistentes-lista {
@@ -161,11 +199,14 @@ h2 {
   padding-left: 1rem;
   margin: 0;
   color: #eee;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .asistentes-lista li {
   margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .whatsapp-link {
@@ -175,7 +216,31 @@ h2 {
   cursor: pointer;
 }
 
-/* Scrollbar para lista */
+.botones-acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
+.btn-eliminar {
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: #e53935;
+}
+
 .familias-lista::-webkit-scrollbar {
   width: 8px;
 }
@@ -188,7 +253,6 @@ h2 {
   border-radius: 10px;
 }
 
-/* Responsive */
 @media (max-width: 400px) {
   .contenido {
     padding: 1rem 1.5rem;
@@ -197,7 +261,16 @@ h2 {
     font-size: 1.4rem;
   }
   .familia-item {
-    padding: 0.5rem 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+  .card-header,
+  .detalle-linea,
+  .asistentes-lista li {
+    font-size: 0.9rem;
+  }
+  .btn-eliminar {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
   }
 }
 </style>
