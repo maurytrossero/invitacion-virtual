@@ -22,6 +22,8 @@
             <input v-model="apellido" type="text" placeholder="Apellido" />
             <input v-model="telefono" type="tel" placeholder="Teléfono (ej: 1123456789)" />
             <button @click="agregarAsistente" class="boton">Agregar</button>
+  <button @click="cancelarFormulario" class="boton cancelar">Cancelar</button>
+
           </div>
 
           <ul class="lista">
@@ -66,6 +68,15 @@ function validarTelefono(tel) {
   const soloNumeros = tel.replace(/\D/g, '')
   return soloNumeros.length >= 7
 }
+
+function cancelarFormulario() {
+  formVisible.value = false
+  nombre.value = ''
+  apellido.value = ''
+  telefono.value = ''
+  asistentes.value = []
+}
+
 
 async function confirmarAsistencia() {
   if (asistentes.value.length === 0) {
@@ -256,4 +267,15 @@ async function confirmarAsistencia() {
   background-color: rgba(255, 255, 255, 0.4);
   font-weight: bold;
 }
+.cancelar {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-weight: normal;
+}
+
+.cancelar:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: black;
+}
+
 </style>

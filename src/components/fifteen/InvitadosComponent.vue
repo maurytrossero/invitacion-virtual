@@ -6,7 +6,7 @@
     <div class="overlay">
       <div class="contenido">
         <h2>Lista de asistentes confirmados</h2>
-        <ul class="familias-lista">
+        <ul class="familias-lista grid-familias">
           <li v-for="(familia, i) in familias" :key="i" class="familia-item">
             <div class="card-header">
               <div class="icono"><i class="fas fa-users"></i></div>
@@ -28,8 +28,9 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     class="whatsapp-link"
-                    >{{ familia.telefono }}</a
                   >
+                    {{ familia.telefono }}
+                  </a>
                 </template>
                 <template v-else>
                   {{ familia.telefono }}
@@ -37,7 +38,9 @@
               </small>
             </div>
 
-            <div class="titulo-asistentes"><i class="fas fa-user-friends"></i> Asistentes</div>
+            <div class="titulo-asistentes">
+              <i class="fas fa-user-friends"></i> Asistentes
+            </div>
             <ul class="asistentes-lista">
               <li v-for="(a, j) in familia.asistentes" :key="j">
                 <i class="fas fa-user"></i> {{ a.nombre }} {{ a.apellido }}
@@ -45,6 +48,9 @@
             </ul>
 
             <div class="botones-acciones">
+              <button @click="editarFamilia(familia)" class="btn-editar">
+                <i class="fas fa-edit"></i> Editar
+              </button>
               <button @click="eliminarFamilia(i)" class="btn-eliminar">
                 <i class="fas fa-trash"></i> Eliminar
               </button>
@@ -53,23 +59,32 @@
         </ul>
       </div>
     </div>
+    <EditfamilyModal
+      v-if="mostrarModal"
+      :familia="familiaSeleccionada"
+      @cerrar="mostrarModal = false"
+      @guardado="cargarFamilias"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { db } from "@/firebase";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { ref, onMounted } from 'vue';
+import { db } from '@/firebase';
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import EditfamilyModal from './EditfamilyModal.vue';
 
 const familias = ref([]);
+const mostrarModal = ref(false);
+const familiaSeleccionada = ref(null);
 
 onMounted(async () => {
   await cargarFamilias();
 });
 
 async function cargarFamilias() {
-  const querySnapshot = await getDocs(collection(db, "familias"));
-  familias.value = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  const querySnapshot = await getDocs(collection(db, 'familias'));
+  familias.value = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
 
 async function eliminarFamilia(index) {
@@ -77,27 +92,33 @@ async function eliminarFamilia(index) {
   const confirmado = window.confirm(`¿Estás seguro de eliminar la Familia ${index + 1}?`);
   if (confirmado) {
     try {
-      await deleteDoc(doc(db, "familias", familia.id));
+      await deleteDoc(doc(db, 'familias', familia.id));
       familias.value.splice(index, 1);
     } catch (error) {
-      console.error("Error al eliminar familia:", error);
-      alert("Hubo un error al intentar eliminar la familia.");
+      console.error('Error al eliminar familia:', error);
+      alert('Hubo un error al intentar eliminar la familia.');
     }
   }
 }
 
+function editarFamilia(familia) {
+  familiaSeleccionada.value = { ...familia };
+  mostrarModal.value = true;
+}
+
 function esTelefonoValido(tel) {
-  const limpio = tel.replace(/\D/g, "");
-  return limpio.length === 10 && !limpio.startsWith("0") && !limpio.startsWith("15");
+  const limpio = tel.replace(/\D/g, '');
+  return limpio.length === 10 && !limpio.startsWith('0') && !limpio.startsWith('15');
 }
 
 function formatearTelefonoWA(tel) {
-  let limpio = tel.replace(/\D/g, "");
-  if (limpio.startsWith("0")) limpio = limpio.substring(1);
-  if (limpio.startsWith("15")) limpio = limpio.substring(2);
-  return "54" + limpio;
+  let limpio = tel.replace(/\D/g, '');
+  if (limpio.startsWith('0')) limpio = limpio.substring(1);
+  if (limpio.startsWith('15')) limpio = limpio.substring(2);
+  return '54' + limpio;
 }
 </script>
+
 
 <style scoped>
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
@@ -150,39 +171,56 @@ h2 {
   font-family: "Bahnschrift", sans-serif;
 }
 
-.familias-lista {
-  list-style: none;
-  padding: 0;
-  max-height: 60vh;
-  overflow-y: auto;
-  text-align: left;
+/* Aplicar fuente Bahnschrift a todo */
+* {
+  font-family: "Bahnschrift", sans-serif;
 }
 
+/* Mejora visual de tarjetas */
 .familia-item {
-  background-color: rgba(255, 255, 255, 0.2);
-  margin-bottom: 1rem;
-  padding: 1rem 1.25rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.2rem 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(2px);
 }
 
+/* Encabezado "Familia n" */
 .card-header {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  gap: 0.6rem;
   margin-bottom: 0.5rem;
 }
 
+/* Línea de detalle */
 .detalle-linea {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.25rem;
   font-size: 0.95rem;
+  color: #ddd;
 }
 
+/* Lista de asistentes */
+.asistentes-lista li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #eee;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+/* Encabezado asistentes */
 .titulo-asistentes {
   font-size: 1.05rem;
   margin-top: 0.75rem;
@@ -191,66 +229,53 @@ h2 {
   align-items: center;
   gap: 0.5rem;
   font-weight: bold;
-  color: #eee;
+  color: #fff;
 }
 
-.asistentes-lista {
-  list-style: none;
-  padding-left: 1rem;
-  margin: 0;
-  color: #eee;
-  font-size: 0.95rem;
-}
-
-.asistentes-lista li {
-  margin-bottom: 0.3rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.whatsapp-link {
-  color: #25d366;
-  text-decoration: underline;
-  font-weight: 600;
-  cursor: pointer;
-}
-
+/* Botones */
 .botones-acciones {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
   margin-top: 0.75rem;
 }
 
+.btn-editar,
 .btn-eliminar {
-  background-color: #ff5252;
-  color: white;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  transition: background-color 0.2s ease;
+  padding: 0.45rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
+.btn-editar {
+  background-color: #4fc3f7;
+  color: white;
+}
+.btn-editar:hover {
+  background-color: #039be5;
+}
+
+.btn-eliminar {
+  background-color: #ef5350;
+  color: white;
+}
 .btn-eliminar:hover {
-  background-color: #e53935;
+  background-color: #d32f2f;
 }
 
-.familias-lista::-webkit-scrollbar {
-  width: 8px;
-}
-.familias-lista::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-}
-.familias-lista::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
+
+@media (min-width: 768px) {
+  .grid-familias {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 400px) {
