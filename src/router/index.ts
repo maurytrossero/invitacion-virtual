@@ -9,7 +9,6 @@ import TriviaresultView from '@/views/TriviaresultView.vue';
 import WeddingView from '@/views/WeddingView.vue';
 import VistaAsistentes from '@/components/fifteen/InvitadosComponent.vue'
 
-
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -65,7 +64,23 @@ const routes: Array<RouteRecordRaw> = [
     path: '/invitacion-kyara-invitados',
     name: 'Asistentes',
     component: VistaAsistentes
-  }
+  },
+  {
+  path: '/invitacion-kyara-mesas',
+  name: 'Mesas',
+  component: () => import('@/components/fifteen/MesaManager.vue')
+  },
+
+  {
+  path: '/invitacion-kyara-gestion',
+  name: 'Gestion',
+  component: () => import('@/components/fifteen/ManagerComponent.vue')
+  },
+  {
+  path: '/invitacion-kyara-musica-sugerida',
+  name: 'ListadoMusicaSugerida',
+  component: () => import('@/components/fifteen/MusicComponent.vue')
+  },
 
 
 ]
