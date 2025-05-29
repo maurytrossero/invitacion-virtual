@@ -8,7 +8,7 @@
     <div class="overlay">
       <div class="contenido">
         <p class="mensaje">
-          Podés confirmar y realizar el pago hasta el <strong>01/08</strong>
+          Podés confirmar y realizar el pago hasta el <strong>05/08</strong>
         </p>
 
         <div class="botones" v-if="!formVisible">

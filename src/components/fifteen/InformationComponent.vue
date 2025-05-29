@@ -33,6 +33,9 @@
       />
     </div>
 
+    <!-- Modal de música -->
+    <ModalMusic :show="showMusicModal" @close="cerrarFormularioMusica" />
+
     <!-- Adorno inferior -->
     <img
       class="adorno inferior"
@@ -44,9 +47,20 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import ModalComponent from './ModalComponent.vue'
+import ModalMusic from './ModalMusic.vue'
 
-// Datos de cada tarjeta
+const showMusicModal = ref(false)
+
+function abrirFormularioMusica() {
+  showMusicModal.value = true
+}
+
+function cerrarFormularioMusica() {
+  showMusicModal.value = false
+}
+
 const modals = [
   {
     frontImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO0h0CMgMLU-zuXvv31t2jhUWKhY2HwJCrhA&s',
@@ -69,7 +83,7 @@ const modals = [
     backContent: {
       type: 'location',
       address: `AGOSTO | 16 | 2025\nAsociación Italiana príncipe Humberto. Porteña.`,
-      googleMapsUrl: 'https://goo.gl/maps/xyz123'
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Asociación+Italiana+Príncipe+Humberto,+Porteña'
     }
   },
   {
@@ -81,14 +95,7 @@ const modals = [
     }
   }
 ]
-
-// Emitido desde ModalComponent cuando se hace clic en "Abrir Formulario Música"
-function abrirFormularioMusica() {
-  // Puedes emitir un evento global, usar un store, o abrir un modal aquí
-  console.log("Formulario de música solicitado");
-}
 </script>
-
 
 
 <style scoped>

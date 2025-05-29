@@ -5,12 +5,6 @@
 </template>
 
 <script setup>
-import HeaderLogo from '@/components/portfolio/HeaderLogo.vue';
-import IntroductionComponent from '@/components/portfolio/IntroductionComponent.vue';
-import ProjectGallery from '@/components/portfolio/ProjectGallery.vue';
-import ServicesComponent from '@/components/portfolio/ServicesComponent.vue';
-import ContactForm from '@/components/portfolio/ContactForm.vue';
-
 </script>
 
 <style scoped>

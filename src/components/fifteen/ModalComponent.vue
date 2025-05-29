@@ -34,19 +34,22 @@
           </template>
 
           <template v-else-if="backContent && backContent.type === 'location'">
-            <p>{{ backContent.address }}</p>
-            <a
-              :href="backContent.googleMapsUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver en Google Maps
-            </a>
+            <div class="modal-back-content location">
+              <p class="direccion" v-html="formattedAddress"></p>
+              <a
+                :href="backContent.googleMapsUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="boton-maps"
+              >
+                Ver en Google Maps
+              </a>
+            </div>
           </template>
 
           <template v-else-if="backContent && backContent.type === 'music'">
             <p>¿Quieres sugerir música? Haz clic para abrir el formulario.</p>
-            <button @click="$emit('open-music-form')">Abrir Formulario Música</button>
+            <button @click="$emit('open-music-form')" class="boton abrir-formulario">Abrir Formulario Música</button>
           </template>
 
           <template v-else>
@@ -59,8 +62,6 @@
 </template>
 
 <script setup>
-/* global defineProps */
-
 import { ref, computed, onMounted } from "vue";
 import { Cake, Gift, Info, Music } from "lucide-vue-next";
 
@@ -71,7 +72,13 @@ const props = defineProps({
   backContent: {
     type: Object,
     default: () => ({}),
-  },
+  }
+});
+
+const formattedAddress = computed(() => {
+  return props.backContent.address
+    ? props.backContent.address.replace(/\n/g, '<br />')
+    : '';
 });
 
 const iconMap = {
@@ -85,6 +92,11 @@ const FrontIconComponent = computed(() => iconMap[props.frontIcon] || Info);
 
 const isFlipped = ref(false);
 
+const isMobile = ref(false);
+onMounted(() => {
+  isMobile.value = /Mobi|Android/i.test(navigator.userAgent);
+});
+
 const handleMouseEnter = () => {
   if (!isMobile.value) isFlipped.value = true;
 };
@@ -96,11 +108,6 @@ const handleMouseLeave = () => {
 const handleClick = () => {
   if (isMobile.value) isFlipped.value = !isFlipped.value;
 };
-
-const isMobile = ref(false);
-onMounted(() => {
-  isMobile.value = /Mobi|Android/i.test(navigator.userAgent);
-});
 </script>
 
 <style scoped>
@@ -229,4 +236,5 @@ onMounted(() => {
 .back-content button:hover {
   background-color: #5a7963;
 }
+
 </style>

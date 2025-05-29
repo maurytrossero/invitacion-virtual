@@ -1,111 +1,63 @@
 <template>
-  <div v-if="showModal" class="modal-overlay">
-    <div class="modal-content">
-      <h2 class="modal-title">Agregar Canción</h2>
+  <div v-if="show" class="modal-backdrop" @click.self="cerrar">
+    <div class="modal">
+      <h3>Enviar canción</h3>
 
-      <input 
-        type="text" 
-        v-model="name" 
-        placeholder="Tu Nombre" 
-        class="modal-input"
-      />
-      <p v-if="errors.name" class="error-message">{{ errors.name }}</p>
+      <label>Nombre:</label>
+      <input v-model="nombre" placeholder="Tu nombre" />
 
-      <input 
-        type="text" 
-        v-model="songTitle" 
-        placeholder="Título de la Canción" 
-        class="modal-input"
-      />
-      <p v-if="errors.songTitle" class="error-message">{{ errors.songTitle }}</p>
+      <label>Canción:</label>
+      <input v-model="cancion" placeholder="Título o artista" />
 
-      <input 
-        type="text" 
-        v-model="artist" 
-        placeholder="Artista" 
-        class="modal-input"
-      />
-      <p v-if="errors.artist" class="error-message">{{ errors.artist }}</p>
+      <label>Link YouTube:</label>
+      <input v-model="youtube" placeholder="URL YouTube (opcional)" />
 
-      <div class="modal-buttons">
-        <button @click="saveSong" class="boton confirmar">Guardar</button>
-        <button @click="closeModal" class="boton cancelar">Cancelar</button>
+      <div class="acciones">
+        <button @click="enviarCancion" :disabled="!nombre || !cancion">Enviar</button>
+        <button @click="cerrar">Cancelar</button>
       </div>
-
-      <transition name="fade">
-        <div v-if="alertMessage" class="alert-box">{{ alertMessage }}</div>
-      </transition>
     </div>
   </div>
 </template>
 
-<script>
-import { db } from '@/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+<script setup>
+import { ref, watch } from 'vue'
 
-export default {
-  name: "MusicModal",
-  props: ["show"],
-  data() {
-    return {
-      showModal: this.show,
-      name: "",
-      songTitle: "",
-      artist: "",
-      alertMessage: "",
-      errors: {}
-    };
-  },
-  watch: {
-    show(newVal) {
-      this.showModal = newVal;
-    }
-  },
-  methods: {
-    async saveSong() {
-      this.errors = {};
+const props = defineProps({
+  show: Boolean,
+})
 
-      if (!this.name.trim()) this.errors.name = "Ingresa tu nombre.";
-      if (!this.songTitle.trim()) this.errors.songTitle = "Ingresa el título.";
-      if (!this.artist.trim()) this.errors.artist = "Ingresa el artista.";
+const emit = defineEmits(['close', 'submitted'])
 
-      if (Object.keys(this.errors).length > 0) return;
+const nombre = ref('')
+const cancion = ref('')
+const youtube = ref('')
 
-      try {
-        await addDoc(collection(db, "songs"), {
-          name: this.name,
-          songTitle: this.songTitle,
-          artist: this.artist,
-          createdAt: new Date()
-        });
-
-        this.showAlert("Canción guardada exitosamente.");
-        setTimeout(() => {
-          this.resetForm();
-          this.$emit("close");
-        }, 2000);
-      } catch (error) {
-        console.error("Error al guardar la canción:", error);
-        this.showAlert("Hubo un error al guardar la canción.");
-      }
-    },
-    showAlert(message) {
-      this.alertMessage = message;
-      setTimeout(() => {
-        this.alertMessage = "";
-      }, 3000);
-    },
-    closeModal() {
-      this.$emit("close");
-    },
-    resetForm() {
-      this.name = "";
-      this.songTitle = "";
-      this.artist = "";
-      this.errors = {};
+watch(
+  () => props.show,
+  (val) => {
+    if (val) {
+      nombre.value = ''
+      cancion.value = ''
+      youtube.value = ''
     }
   }
-};
+)
+
+function cerrar() {
+  emit('close')
+}
+
+function enviarCancion() {
+  // Aquí puedes agregar la lógica para enviar los datos, p.ej. llamar API o actualizar Firestore
+  // Por ahora emitimos un evento con los datos
+  emit('submitted', {
+    nombre: nombre.value.trim(),
+    cancion: cancion.value.trim(),
+    youtube: youtube.value.trim(),
+  })
+  cerrar()
+}
 </script>
 
 <style scoped>
@@ -116,106 +68,105 @@ export default {
   font-style: normal;
 }
 
-.modal-overlay {
+.modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  z-index: 9999;
-  backdrop-filter: blur(4px);
+  z-index: 1000;
 }
 
-.modal-content {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 1rem;
-  padding: 2rem 1.5rem;
-  max-width: 400px;
-  width: 100%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+.modal {
+  background: rgba(202, 201, 201, 0.1);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   font-family: 'Bahnschrift', sans-serif;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  color: white;
   text-align: center;
+  backdrop-filter: blur(4px);
 }
 
-.modal-title {
-  color: #333;
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+.modal h3 {
+  margin: 0;
+  font-weight: 600;
 }
 
-.modal-input {
+label {
+  font-weight: 500;
+  text-align: left;
+  display: block;
+}
+
+input {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.5rem;
   border-radius: 9999px;
   border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
   text-align: center;
-  font-family: inherit;
-  font-size: 0.95rem;
-  background-color: #f0f0f0;
+  font-family: 'Bahnschrift', sans-serif;
+  font-size: 1rem;
+  outline-offset: 2px;
+  outline-color: transparent;
+  transition: outline-color 0.3s ease;
 }
 
-.error-message {
-  color: red;
-  font-size: 0.8rem;
-  margin-top: -0.5rem;
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.modal-buttons {
+input:focus {
+  outline-color: rgba(255, 255, 255, 0.7);
+}
+
+.acciones {
   display: flex;
   gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
-.boton {
-  font-family: 'Bahnschrift', sans-serif;
+.acciones button {
+  flex: 1 1 auto;
+  min-width: 120px;
+  max-width: 180px;
   padding: 0.5rem 1.5rem;
   border-radius: 9999px;
   border: 1px solid white;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-  min-width: 120px;
-  white-space: nowrap;
-}
-
-.confirmar {
-  background-color: rgba(255, 255, 255, 0.4);
-  color: #000;
-  font-weight: bold;
-  border: 1px solid #000;
-}
-
-.cancelar {
   background-color: rgba(255, 255, 255, 0.15);
-  color: #000;
+  color: white;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: normal;
+  user-select: none;
 }
 
-.boton:hover {
-  transform: scale(1.05);
+.acciones button:first-child {
+  background-color: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+}
+
+.acciones button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.acciones button:hover:not(:disabled) {
   background-color: white;
   color: black;
-}
-
-.alert-box {
-  background-color: #c9a227;
-  color: white;
-  padding: 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.9rem;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+  transform: scale(1.05);
 }
 </style>
