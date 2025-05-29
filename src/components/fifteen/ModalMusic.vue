@@ -22,10 +22,13 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+import { db } from '@/firebase' // ajustá esta ruta si tu config Firebase está en otro lado
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 const props = defineProps({
   show: Boolean,
 })
+const cancionesRef = collection(db, 'kiara-musica')
 
 const emit = defineEmits(['close', 'submitted'])
 
@@ -48,16 +51,24 @@ function cerrar() {
   emit('close')
 }
 
-function enviarCancion() {
-  // Aquí puedes agregar la lógica para enviar los datos, p.ej. llamar API o actualizar Firestore
-  // Por ahora emitimos un evento con los datos
-  emit('submitted', {
+async function enviarCancion() {
+  const nuevaCancion = {
     nombre: nombre.value.trim(),
     cancion: cancion.value.trim(),
     youtube: youtube.value.trim(),
-  })
-  cerrar()
+    creada: serverTimestamp(),
+  }
+
+  try {
+    await addDoc(cancionesRef, nuevaCancion)
+    emit('submitted', nuevaCancion) // solo si querés emitirlo al componente padre
+    cerrar()
+  } catch (error) {
+    console.error('Error al guardar canción:', error)
+    alert('Hubo un error al enviar la canción. Intentá nuevamente.')
+  }
 }
+
 </script>
 
 <style scoped>

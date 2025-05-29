@@ -4,23 +4,23 @@
       <div class="songs-list">
         <h2 class="title">Listado de Canciones</h2>
 
-        <div class="table-wrapper">
+        <div v-if="canciones.length === 0" class="no-songs">Aún no se han sugerido canciones.</div>
+
+        <div v-else class="table-wrapper">
           <table class="songs-table">
             <thead>
               <tr>
                 <th>Sugerida Por</th>
                 <th>Título</th>
-                <th>Artista</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="cancion in canciones" :key="cancion.id">
-                <td>{{ cancion.name }}</td>
-                <td>{{ cancion.songTitle }}</td>
-                <td>{{ cancion.artist }}</td>
+                <td>{{ cancion.nombre }}</td>
+                <td>{{ cancion.cancion }}</td>
                 <td>
-                  <button class="action-button" @click="reproducir(cancion.youtubeId)">▶ Reproducir</button>
+                  <button class="action-button" @click="reproducir(cancion.youtube)">▶ Reproducir</button>
                   <button class="action-button" @click="pausar">⏸ Pausar</button>
                 </td>
               </tr>
@@ -28,7 +28,7 @@
           </table>
         </div>
 
-        <!-- Contenedor invisible del reproductor -->
+        <!-- Reproductor oculto -->
         <div id="youtube-player" style="width:0; height:0;"></div>
       </div>
     </div>
@@ -46,16 +46,15 @@ declare global {
     YT: typeof YT;
     onYouTubeIframeAPIReady: () => void;
   }
-  var YT: any; // fallback si no está definido el tipo de YouTube Player API
+  var YT: any;
 }
 
 interface Cancion {
   id: string;
-  name: string;
-  songTitle: string;
-  artist: string;
-  youtubeId: string;
-  createdAt: any;
+  nombre: string;
+  cancion: string;
+  youtube: string;
+  creada: any;
 }
 
 let player: any;
@@ -68,7 +67,7 @@ export default defineComponent({
     let unsubscribe: () => void;
 
     const loadCanciones = () => {
-      const songsCollection = collection(db, 'songs');
+      const songsCollection = collection(db, 'kiara-musica');
       unsubscribe = onSnapshot(
         songsCollection,
         (snapshot: QuerySnapshot<DocumentData>) => {
@@ -84,6 +83,10 @@ export default defineComponent({
     };
 
     const reproducir = (youtubeId: string) => {
+      if (!youtubeId || youtubeId.length < 5) {
+        alert("El ID de YouTube no es válido.");
+        return;
+      }
       if (player) {
         player.loadVideoById(youtubeId);
         player.playVideo();
@@ -172,14 +175,34 @@ export default defineComponent({
   color: #f5f5f5;
   text-align: center;
   font-family: 'Bahnschrift', sans-serif;
-  background: transparent; /* deja el fondo transparente para que se vea el overlay */
-  backdrop-filter: none;
+  background: transparent;
+  max-height: 90vh; /* NUEVO: evita que se desborde en pantallas bajas */
+  overflow-y: auto;  /* NUEVO: permite scroll si se excede el contenido */
+}
+
+.songs-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.songs-list::-webkit-scrollbar-thumb {
+  background-color: #f4d88a;
+  border-radius: 3px;
+}
+
+.songs-list::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .title {
   font-size: 2rem;
   color: #f4d88a;
   margin-bottom: 1.5rem;
+}
+
+.no-songs {
+  font-size: 1.1rem;
+  color: #ffffffcc;
+  margin-top: 2rem;
 }
 
 .table-wrapper {
@@ -233,7 +256,6 @@ export default defineComponent({
   transform: scale(1.05);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .songs-list {
     padding: 1rem;
