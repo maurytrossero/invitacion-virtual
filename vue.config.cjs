@@ -1,8 +1,9 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
+  lintOnSave: false,     // ← DESACTIVA ESLint en serve/build
   transpileDependencies: true,
-  publicPath: '/', // Cambié './' a '/' para rutas absolutas, evita problemas con rutas relativas en SPA
+  publicPath: '/',
   css: {
     extract: true,
   },
@@ -22,6 +23,6 @@ module.exports = defineConfig({
     },
   },
   devServer: {
-    historyApiFallback: true, // Muy importante para que el servidor dev entienda rutas SPA
+    historyApiFallback: true,
   },
-})
+});
