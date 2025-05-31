@@ -58,6 +58,7 @@ const routes: Array<RouteRecordRaw> = [
   {
   path: '/invitacion-kyara',
   name: 'FifteenView',
+  
   component: () => import('@/views/FifteenView.vue')
   },
   {
@@ -67,21 +68,25 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
   path: '/invitacion-kyara-mesas',
-  name: 'Mesas',
+  name: 'MesasKiara',
   component: () => import('@/components/fifteen/MesaManager.vue')
   },
 
   {
   path: '/invitacion-kyara-gestion',
-  name: 'Gestion',
+  name: 'GestionKiara',
   component: () => import('@/components/fifteen/ManagerComponent.vue')
   },
   {
   path: '/invitacion-kyara-musica-sugerida',
-  name: 'ListadoMusicaSugerida',
+  name: 'ListadoMusicaSugeridaKiara',
   component: () => import('@/components/fifteen/MusicComponent.vue')
   },
-
+  {
+  path: '/invitacion-kyara--lista-invitados',
+  name: 'ListadoInvitadosKiara',
+  component: () => import('@/components/fifteen/MesaList.vue')
+  },
 
 ]
 
