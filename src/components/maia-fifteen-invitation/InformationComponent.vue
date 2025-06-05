@@ -82,8 +82,8 @@ const modals = [
     frontIcon: 'gift',
     backContent: {
       type: 'location',
-      address: `AGOSTO | 16 | 2025\nAsociación Italiana príncipe Humberto. Porteña.`,
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Asociación+Italiana+Príncipe+Humberto,+Porteña'
+      address: `Octubre  |  11  |  2025\nClub de Abuelos Freyre.`,
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Club+de+Abuelo+Conde+de+Torino+Freyre'
     }
   },
   {

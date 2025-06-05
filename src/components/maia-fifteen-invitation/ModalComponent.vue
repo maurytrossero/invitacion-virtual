@@ -48,7 +48,7 @@
           </template>
 
           <template v-else-if="backContent && backContent.type === 'music'">
-            <p>¿Quieres sugerir música? Haz clic para abrir el formulario.</p>
+            <p>¿Queeres sugerir música? Hace clic para abrir el formulario.</p>
             <button @click="$emit('open-music-form')" class="boton abrir-formulario">Abrir Formulario Música</button>
           </template>
 

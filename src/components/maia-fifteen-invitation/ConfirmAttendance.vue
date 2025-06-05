@@ -2,13 +2,13 @@
   <div
     class="container"
     :style="{
-      backgroundImage: `url('https://blog.hiltoncolombia.com/hs-fs/hubfs/1%20(66).jpg?width=5568&name=1%20(66).jpg')`
+      backgroundImage: `url('https://www.dropbox.com/scl/fi/ttvxzsiuuhxh0e9yawld6/7.jpg?rlkey=x375u4cpkkfv650bi6ofb6uzj&raw=1')`
     }"
   >
     <div class="overlay">
       <div class="contenido">
         <p class="mensaje">
-          Podés confirmar y realizar el pago hasta el <strong>05/08</strong>
+          Podés confirmar y realizar el pago hasta el <strong>01/10</strong>
         </p>
 
         <div class="botones" v-if="!formVisible">
