@@ -8,6 +8,7 @@ import BirthdaysongsListview from '@/views/BithddaysongsListview.vue';
 import TriviaresultView from '@/views/TriviaresultView.vue';
 import WeddingView from '@/views/WeddingView.vue';
 import VistaAsistentes from '@/components/fifteen/InvitadosComponent.vue'
+import VistaAsistentesMaia from '@/components/maia-fifteen-invitation/InvitadosComponent.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -97,10 +98,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/invitacion-maia-invitados',
     name: 'MaiaAsistentes',
-    component: VistaAsistentes
+    component: VistaAsistentesMaia
   },
   {
-  path: '/iinvitacion-maia-mesas',
+  path: '/invitacion-maia-mesas',
   name: 'MaiaMesas',
   component: () => import('@/components/maia-fifteen-invitation/MesaManager.vue')
   },

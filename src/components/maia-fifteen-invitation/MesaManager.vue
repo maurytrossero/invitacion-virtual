@@ -62,7 +62,7 @@ import {
 const asistentes = ref([]);
 
 async function cargarAsistentesDesdeFamilias() {
-  const snapshot = await getDocs(collection(db, 'familias'));
+  const snapshot = await getDocs(collection(db, 'familias-maia'));
   const todasLasFamilias = snapshot.docs.map(doc => doc.data());
   let contador = 0;
   asistentes.value = todasLasFamilias.flatMap(f => 
@@ -86,7 +86,7 @@ onMounted(() => {
 
 // Cargar mesas desde Firestore
 async function cargarMesas() {
-  const snapshot = await getDocs(collection(db, 'mesas'));
+  const snapshot = await getDocs(collection(db, 'mesas-maia'));
   mesas.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
 
@@ -105,7 +105,7 @@ async function crearMesa() {
   }
 
   try {
-    await addDoc(collection(db, 'mesas'), {
+    await addDoc(collection(db, 'mesas-maia'), {
       numero,
       asistentes: [],
     });
@@ -122,7 +122,7 @@ async function eliminarMesa(id) {
   if (!confirm('¿Estás seguro de eliminar esta mesa?')) return;
 
   try {
-    await deleteDoc(doc(db, 'mesas', id));
+    await deleteDoc(doc(db, 'mesas-maia', id));
     await cargarMesas();
   } catch (err) {
     console.error('Error al eliminar mesa:', err);
