@@ -91,7 +91,7 @@ async function confirmarAsistencia() {
   const codigoFamilia = generarCodigoFamilia()
 
   try {
-    await addDoc(collection(db, 'familias'), {
+    await addDoc(collection(db, 'familias-maia'), {
       codigoFamilia,
       telefono: telefono.value,
       asistentes: asistentes.value,

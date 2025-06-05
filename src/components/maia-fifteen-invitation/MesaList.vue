@@ -44,7 +44,7 @@ const mesas = ref([])
 const busqueda = ref('')
 
 async function cargarAsistentesDesdeFamilias() {
-  const snapshot = await getDocs(collection(db, 'familias'))
+  const snapshot = await getDocs(collection(db, 'familias-maia'))
   const todasLasFamilias = snapshot.docs.map(doc => doc.data())
   let contador = 0
   asistentes.value = todasLasFamilias.flatMap(f =>
@@ -57,7 +57,7 @@ async function cargarAsistentesDesdeFamilias() {
 }
 
 async function cargarMesas() {
-  const snapshot = await getDocs(collection(db, 'mesas'))
+  const snapshot = await getDocs(collection(db, 'mesas-maia'))
   mesas.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
 }
 

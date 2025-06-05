@@ -49,7 +49,7 @@ watch(
 
 async function guardarCambios() {
   try {
-    const refDoc = doc(db, 'familias', props.familia.id);
+    const refDoc = doc(db, 'familias-maia', props.familia.id);
     await updateDoc(refDoc, {
       telefono: telefono.value,
       asistentes: asistentes.value,

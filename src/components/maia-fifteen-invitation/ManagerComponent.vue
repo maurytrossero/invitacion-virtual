@@ -2,13 +2,13 @@
   <nav class="nav-container">
     <div class="overlay">
       <div class="nav-content">
-        <button class="nav-button" @click="navigate('/invitacion-kyara-invitados')">
+        <button class="nav-button" @click="navigate('/invitacion-maia-invitados')">
           👥 Ver invitados confirmados
         </button>
-        <button class="nav-button" @click="navigate('/invitacion-kyara-mesas')">
+        <button class="nav-button" @click="navigate('/invitacion-maia-mesas')">
           🪑 Ver y gestionar mesas
         </button>
-        <button class="nav-button" @click="navigate('/invitacion-kyara-musica-sugerida')">
+        <button class="nav-button" @click="navigate('/invitacion-maia-musica-sugerida')">
           🎵 Ver lista de música sugerida
         </button>
       </div>

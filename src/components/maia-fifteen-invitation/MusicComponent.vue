@@ -71,7 +71,7 @@ export default defineComponent({
 
     const loadCanciones = () => {
       console.log("Cargando canciones...");
-      const songsCollection = collection(db, 'kiara-musica');
+      const songsCollection = collection(db, 'musica-maia');
       unsubscribe = onSnapshot(
         songsCollection,
         (snapshot: QuerySnapshot<DocumentData>) => {

@@ -156,7 +156,7 @@ async function quitarAsistenteDeMesa(index, asistente) {
 // Guardar mesa en Firestore
 async function guardarMesa(mesa) {
   try {
-    const mesaRef = doc(db, 'mesas', mesa.id);
+    const mesaRef = doc(db, 'mesas-maia', mesa.id);
     await updateDoc(mesaRef, {
       asistentes: mesa.asistentes,
     });

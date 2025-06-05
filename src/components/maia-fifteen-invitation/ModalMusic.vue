@@ -28,7 +28,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 const props = defineProps({
   show: Boolean,
 })
-const cancionesRef = collection(db, 'kiara-musica')
+const cancionesRef = collection(db, 'musica-maia')
 
 const emit = defineEmits(['close', 'submitted'])
 

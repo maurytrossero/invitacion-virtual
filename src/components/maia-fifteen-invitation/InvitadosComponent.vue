@@ -83,7 +83,7 @@ onMounted(async () => {
 });
 
 async function cargarFamilias() {
-  const querySnapshot = await getDocs(collection(db, 'familias'));
+  const querySnapshot = await getDocs(collection(db, 'familias-maia'));
   familias.value = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
 
@@ -92,7 +92,7 @@ async function eliminarFamilia(index) {
   const confirmado = window.confirm(`¿Estás seguro de eliminar la Familia ${index + 1}?`);
   if (confirmado) {
     try {
-      await deleteDoc(doc(db, 'familias', familia.id));
+      await deleteDoc(doc(db, 'familias-maia', familia.id));
       familias.value.splice(index, 1);
     } catch (error) {
       console.error('Error al eliminar familia:', error);
