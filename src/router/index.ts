@@ -55,10 +55,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'andrea-giron-resultados-trivia',
     component: TriviaresultView // Componente que se renderizará
   },
+
+  //Rutas para Kyara
   {
   path: '/invitacion-kyara',
   name: 'FifteenView',
-  
   component: () => import('@/views/FifteenView.vue')
   },
   {
@@ -83,11 +84,42 @@ const routes: Array<RouteRecordRaw> = [
   component: () => import('@/components/fifteen/MusicComponent.vue')
   },
   {
-  path: '/invitacion-kyara--lista-invitados',
+  path: '/invitacion-kyara-lista-invitados',
   name: 'ListadoInvitadosKiara',
   component: () => import('@/components/fifteen/MesaList.vue')
   },
+//Rutas para Maia
+  {
+  path: '/invitacion-maia',
+  name: 'MaiaFifteenView',
+  component: () => import('@/views/MaiaFifteenView.vue')
+  },
+  {
+    path: '/invitacion-maia-invitados',
+    name: 'MaiaAsistentes',
+    component: VistaAsistentes
+  },
+  {
+  path: '/iinvitacion-maia-mesas',
+  name: 'MaiaMesas',
+  component: () => import('@/components/maia-fifteen-invitation/MesaManager.vue')
+  },
 
+  {
+  path: '/invitacion-maia-gestion',
+  name: 'MaiaGestion',
+  component: () => import('@/components/maia-fifteen-invitation/ManagerComponent.vue')
+  },
+  {
+  path: '/invitacion-maia-musica-sugerida',
+  name: 'ListadoMusicaSugeridaMaia',
+  component: () => import('@/components/maia-fifteen-invitation/MusicComponent.vue')
+  },
+  {
+  path: '/invitacion-maia-lista-invitados',
+  name: 'ListadoInvitadosMaia',
+  component: () => import('@/components/maia-fifteen-invitation/MesaList.vue')
+  },
 ]
 
 const router = createRouter({
