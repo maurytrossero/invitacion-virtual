@@ -8,9 +8,12 @@
           type="file"
           @change="handleFileChange"
           accept="image/*"
+          capture="environment" 
           required
           class="input-file"
         />
+
+        <p v-if="file" class="filename">📸 Archivo: {{ file.name }}</p>
 
         <textarea
           v-model="message"
@@ -33,6 +36,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 import { uploadImageWithMessage } from '@/services/galleryService'
@@ -49,6 +53,9 @@ function handleFileChange(event: Event) {
     file.value = target.files[0]
     success.value = false
     error.value = ''
+    console.log('📂 Archivo seleccionado:', file.value)
+  } else {
+    error.value = 'No se seleccionó ningún archivo'
   }
 }
 
@@ -66,7 +73,8 @@ async function handleUpload() {
     message.value = ''
     ;(document.querySelector('input[type="file"]') as HTMLInputElement).value = ''
   } catch (e) {
-    error.value = 'Error al subir la imagen. Intenta nuevamente.'
+    error.value =
+      e instanceof Error ? e.message : 'Error al subir la imagen. Intenta nuevamente.'
   } finally {
     uploading.value = false
   }
@@ -75,8 +83,8 @@ async function handleUpload() {
 
 <style scoped>
 .page-background {
-  min-height: 100vh; /* altura total de la pantalla */
-  background-color: #fffafc; /* color suave tipo crema */
+  min-height: 100vh;
+  background-color: #fffafc;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,5 +175,10 @@ async function handleUpload() {
   color: #d43f3a;
   font-weight: 600;
   margin-top: 0.5rem;
+}
+
+.filename {
+  font-size: 0.9rem;
+  color: #555;
 }
 </style>
