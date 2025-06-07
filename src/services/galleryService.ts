@@ -1,29 +1,43 @@
-import { collection, addDoc, serverTimestamp, query, where, orderBy, getDocs, QueryDocumentSnapshot, DocumentData, Timestamp, onSnapshot} from 'firebase/firestore'
-import { db } from '@/firebase' // asegúrate que esta ruta esté correcta
+import { collection, addDoc, serverTimestamp, query, Timestamp, onSnapshot, doc, deleteDoc } from 'firebase/firestore'
+import { db } from '@/firebase'
+import imageCompression from 'browser-image-compression'
 
-// 🚨 Reemplaza estos valores con los tuyos
-const CLOUD_NAME = 'dr0n6tfhw' // tu Cloud Name
-const UPLOAD_PRESET = 'unsigned_preset' // tu upload preset configurado como "unsigned"
+// ⚙️ Configuración de Cloudinary
+const CLOUD_NAME = 'dr0n6tfhw'
+const UPLOAD_PRESET = 'unsigned_preset'
 
 export async function uploadImageToCloudinary(file: File): Promise<string> {
-  const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`
-  const formData = new FormData()
-  formData.append('file', file)
-  formData.append('upload_preset', UPLOAD_PRESET)
+  try {
+    const compressedFile = await imageCompression(file, {
+      maxSizeMB: 1, // ⚠️ Puedes ajustar esto según tu necesidad
+      maxWidthOrHeight: 1920,
+      useWebWorker: true
+    })
 
-  const res = await fetch(url, {
-    method: 'POST',
-    body: formData
-  })
+    const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`
+    const formData = new FormData()
+    formData.append('file', compressedFile)
+    formData.append('upload_preset', UPLOAD_PRESET)
 
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => ({}))
-    throw new Error(errorData.error?.message || 'Error al subir imagen a Cloudinary')
+    const res = await fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+
+    const responseBody = await res.text()
+
+    if (!res.ok) {
+      console.error('Error Cloudinary:', responseBody)
+      throw new Error(JSON.parse(responseBody).error?.message || 'Error al subir imagen')
+    }
+
+    const data = JSON.parse(responseBody)
+    console.log('✅ Imagen subida a Cloudinary:', data.secure_url)
+    return data.secure_url
+  } catch (err) {
+    console.error('❌ Error al comprimir o subir imagen:', err)
+    throw err
   }
-
-  const data = await res.json()
-  console.log('Imagen subida a Cloudinary:', data.secure_url)
-  return data.secure_url
 }
 
 export async function uploadImageWithMessage(file: File, message: string) {
@@ -46,7 +60,7 @@ export interface GalleryImage {
 
 export function listenToApprovedGallery(callback: (images: any[]) => void) {
   const galleryRef = collection(db, 'gallery')
-const q = query(galleryRef) // sin filtro
+  const q = query(galleryRef)
 
   return onSnapshot(q, (querySnapshot) => {
     const images = querySnapshot.docs.map(doc => ({
@@ -57,3 +71,11 @@ const q = query(galleryRef) // sin filtro
   })
 }
 
+export async function deleteGalleryImage(id: string): Promise<void> {
+  try {
+    await deleteDoc(doc(db, 'gallery', id))
+    console.log(`🗑 Imagen con ID ${id} eliminada`)
+  } catch (error) {
+    console.error('❌ Error al eliminar la imagen:', error)
+  }
+}

@@ -136,7 +136,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/galeria',
     name: 'Gallery',
     component: GalleryView
+  },
+  {
+  path: '/moderar',
+  name: 'Moderation',
+  component: () => import('@/views/ModerationView.vue')
   }
+
 
 ]
 
