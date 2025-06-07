@@ -5,13 +5,13 @@
 
       <form @submit.prevent="handleUpload" class="form">
         <input
-          type="file"
-          @change="handleFileChange"
-          accept="image/*"
-          capture="environment" 
-          required
-          class="input-file"
+        type="file"
+        @change="handleFileChange"
+        accept="image/*"
+        required
+        class="input-file"
         />
+
 
         <p v-if="file" class="filename">📸 Archivo: {{ file.name }}</p>
 
