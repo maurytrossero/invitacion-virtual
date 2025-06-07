@@ -4,14 +4,31 @@
       <h2 class="title">Subí tu foto 💌</h2>
 
       <form @submit.prevent="handleUpload" class="form">
-        <input
-        type="file"
-        @change="handleFileChange"
-        accept="image/*"
-        required
-        class="input-file"
-        />
 
+        <!-- Mostrar solo en móvil -->
+        <label v-if="isMobile" class="custom-btn">
+          📷 Tomar foto
+          <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            class="input-camera hidden-input"
+            @change="handleFileChange"
+            required
+          />
+        </label>
+
+        <!-- Siempre visible -->
+        <label class="custom-btn">
+          🖼️ Elegir de galería
+          <input
+            type="file"
+            accept="image/*"
+            class="input-file hidden-input"
+            @change="handleFileChange"
+            required
+          />
+        </label>
 
         <p v-if="file" class="filename">📸 Archivo: {{ file.name }}</p>
 
@@ -38,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { uploadImageWithMessage } from '@/services/galleryService'
 
 const file = ref<File | null>(null)
@@ -46,6 +63,12 @@ const message = ref('')
 const uploading = ref(false)
 const success = ref(false)
 const error = ref('')
+
+const isMobile = ref(false)
+
+onMounted(() => {
+  isMobile.value = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
+})
 
 function handleFileChange(event: Event) {
   const target = event.target as HTMLInputElement
@@ -71,7 +94,9 @@ async function handleUpload() {
     success.value = true
     file.value = null
     message.value = ''
-    ;(document.querySelector('input[type="file"]') as HTMLInputElement).value = ''
+
+    const inputs = document.querySelectorAll('input[type="file"]') as NodeListOf<HTMLInputElement>
+    inputs.forEach(input => input.value = '')
   } catch (e) {
     error.value =
       e instanceof Error ? e.message : 'Error al subir la imagen. Intenta nuevamente.'
@@ -80,6 +105,9 @@ async function handleUpload() {
   }
 }
 </script>
+
+
+
 
 <style scoped>
 .page-background {
@@ -115,17 +143,28 @@ async function handleUpload() {
   gap: 1.25rem;
 }
 
-.input-file {
-  border: 1.5px solid #b98b4e;
-  padding: 0.5rem;
-  border-radius: 6px;
-  cursor: pointer;
+/* Ocultar inputs file reales */
+.hidden-input {
+  display: none;
 }
 
-.input-file:focus {
-  outline: none;
-  border-color: #9a733b;
-  box-shadow: 0 0 5px #9a733baa;
+/* Botones para seleccionar archivos */
+.custom-btn {
+  background-color: #f7e9dd;
+  border: 1.5px solid #b98b4e;
+  color: #b98b4e;
+  font-weight: 600;
+  padding: 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  display: block;
+}
+
+.custom-btn:hover {
+  background-color: #f1ddc8;
 }
 
 .textarea {
@@ -180,5 +219,12 @@ async function handleUpload() {
 .filename {
   font-size: 0.9rem;
   color: #555;
+}
+
+/* Ocultar input-camera en escritorio */
+@media (min-width: 768px) {
+  .input-camera {
+    display: none !important;
+  }
 }
 </style>
