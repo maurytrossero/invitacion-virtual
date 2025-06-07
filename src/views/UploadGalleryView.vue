@@ -6,26 +6,26 @@
       <form @submit.prevent="handleUpload" class="form">
 
         <!-- BOTÓN PARA TOMAR FOTO - SOLO MÓVIL -->
-        <label v-if="isMobile" class="custom-btn">
-          📷 Tomar foto
-          <input
+        <label class="custom-btn">
+        📷 Tomar foto
+        <input
             type="file"
             accept="image/*"
             capture="environment"
-            class="hidden-input"
+            class="input-camera"
             @change="handleFileChange"
-          />
+        />
         </label>
 
         <!-- BOTÓN PARA ELEGIR DE GALERÍA - TODOS LOS DISPOSITIVOS -->
         <label class="custom-btn">
-          🖼️ Elegir de galería
-          <input
+        🖼️ Elegir de galería
+        <input
             type="file"
             accept="image/*"
-            class="hidden-input"
+            class="input-file"
             @change="handleFileChange"
-          />
+        />
         </label>
 
         <p v-if="file" class="filename">📸 Archivo: {{ file.name }}</p>
