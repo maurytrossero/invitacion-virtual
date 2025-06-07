@@ -9,6 +9,10 @@ import TriviaresultView from '@/views/TriviaresultView.vue';
 import WeddingView from '@/views/WeddingView.vue';
 import VistaAsistentes from '@/components/fifteen/InvitadosComponent.vue'
 import VistaAsistentesMaia from '@/components/maia-fifteen-invitation/InvitadosComponent.vue'
+import UploadGalleryView from '@/views/UploadGalleryView.vue'
+import GalleryView from '@/views/GalleryView.vue'
+
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -121,6 +125,19 @@ const routes: Array<RouteRecordRaw> = [
   name: 'ListadoInvitadosMaia',
   component: () => import('@/components/maia-fifteen-invitation/MesaList.vue')
   },
+
+  //vistas para la galeria de imagenes en vivo
+  {
+    path: '/subir-foto',
+    name: 'UploadGallery',
+    component: UploadGalleryView
+  },
+  {
+    path: '/galeria',
+    name: 'Gallery',
+    component: GalleryView
+  }
+
 ]
 
 const router = createRouter({
