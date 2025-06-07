@@ -5,28 +5,26 @@
 
       <form @submit.prevent="handleUpload" class="form">
 
-        <!-- Mostrar solo en móvil -->
+        <!-- BOTÓN PARA TOMAR FOTO - SOLO MÓVIL -->
         <label v-if="isMobile" class="custom-btn">
           📷 Tomar foto
           <input
             type="file"
             accept="image/*"
             capture="environment"
-            class="input-camera hidden-input"
+            class="hidden-input"
             @change="handleFileChange"
-            required
           />
         </label>
 
-        <!-- Siempre visible -->
+        <!-- BOTÓN PARA ELEGIR DE GALERÍA - TODOS LOS DISPOSITIVOS -->
         <label class="custom-btn">
           🖼️ Elegir de galería
           <input
             type="file"
             accept="image/*"
-            class="input-file hidden-input"
+            class="hidden-input"
             @change="handleFileChange"
-            required
           />
         </label>
 
@@ -55,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { uploadImageWithMessage } from '@/services/galleryService'
 
 const file = ref<File | null>(null)
@@ -64,10 +62,10 @@ const uploading = ref(false)
 const success = ref(false)
 const error = ref('')
 
+// Detectar si estamos en móvil (puede ajustarse según necesidades)
 const isMobile = ref(false)
-
 onMounted(() => {
-  isMobile.value = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
+  isMobile.value = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
 })
 
 function handleFileChange(event: Event) {
@@ -94,9 +92,11 @@ async function handleUpload() {
     success.value = true
     file.value = null
     message.value = ''
-
-    const inputs = document.querySelectorAll('input[type="file"]') as NodeListOf<HTMLInputElement>
-    inputs.forEach(input => input.value = '')
+    // Limpiar ambos inputs
+    const inputs = document.querySelectorAll('input[type="file"]')
+    inputs.forEach((input) => {
+    (input as HTMLInputElement).value = ''
+    })
   } catch (e) {
     error.value =
       e instanceof Error ? e.message : 'Error al subir la imagen. Intenta nuevamente.'
