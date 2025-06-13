@@ -2,7 +2,7 @@
   <div
     class="container"
     :style="{
-      backgroundImage: `url('https://blog.hiltoncolombia.com/hs-fs/hubfs/1%20(66).jpg?width=5568&name=1%20(66).jpg')`
+      backgroundImage: `url('https://dl.dropboxusercontent.com/scl/fi/ucpo6t3d9by764ew4yu27/fondo-topaz.png?rlkey=qdnl6efzqjgudccawx19t3yzr&st=mom1g4qi')`
     }"
   >
     <div class="overlay">

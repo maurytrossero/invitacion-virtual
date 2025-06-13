@@ -45,8 +45,8 @@ function updateBackground() {
   const isMobile = window.innerWidth <= 768
 
   backgroundUrl.value = isMobile && isPortrait
-    ? 'https://dl.dropboxusercontent.com/scl/fi/mbuurifow6wrqzblkq55n/fondo-cuenta-regresiva.jpg?rlkey=mjh2idwb921bgidgwjxxgo03l&st=pa40y6zy'
-    : 'https://dl.dropboxusercontent.com/scl/fi/3pe534n3rtymvhtlpxf34/fondo-cuenta-regresiva-horizontal.jpg?rlkey=2i5soo6xdsd7jz7rirv06kim2&st=jr834jrh'
+    ? 'https://dl.dropboxusercontent.com/scl/fi/ucpo6t3d9by764ew4yu27/fondo-topaz.png?rlkey=qdnl6efzqjgudccawx19t3yzr&st=mom1g4qi'
+    : 'https://dl.dropboxusercontent.com/scl/fi/ucpo6t3d9by764ew4yu27/fondo-topaz.png?rlkey=qdnl6efzqjgudccawx19t3yzr&st=fj10a0a1'
 }
 
 function updateCountdown() {

@@ -22,6 +22,7 @@
                 <td>
                   <button class="action-button" @click="reproducir(cancion.youtube)">▶ Reproducir</button>
                   <button class="action-button" @click="pausar">⏸ Pausar</button>
+                  <button class="action-button" @click="abrirYoutube(cancion.youtube)">🌐 Abrir</button>
                 </td>
               </tr>
             </tbody>
@@ -66,11 +67,9 @@ export default defineComponent({
   name: "SongsList",
   setup() {
     const canciones = ref<Cancion[]>([]);
-
     let unsubscribe: () => void;
 
     const loadCanciones = () => {
-      console.log("Cargando canciones...");
       const songsCollection = collection(db, 'kiara-musica');
       unsubscribe = onSnapshot(
         songsCollection,
@@ -79,49 +78,46 @@ export default defineComponent({
             id: doc.id,
             ...doc.data()
           })) as Cancion[];
-          console.log("Canciones cargadas:", canciones.value);
         },
         (error) => {
-          console.error("Error al obtener canciones en tiempo real:", error);
+          console.error("Error al obtener canciones:", error);
         }
       );
     };
 
+    const extraerIdYoutube = (url: string): string | null => {
+      const match = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu.be\/)([\w\-]{11})/);
+      return match ? match[1] : null;
+    };
+
     const reproducir = (youtubeUrl: string) => {
-    console.log("Intentando reproducir URL:", youtubeUrl);
-    const videoId = extraerIdYoutube(youtubeUrl);
+      const videoId = extraerIdYoutube(youtubeUrl);
+      if (!videoId) {
+        alert("El ID de YouTube no es válido.");
+        return;
+      }
 
-    if (!videoId) {
-      alert("El ID de YouTube no es válido.");
-      return;
-    }
+      console.log("Reproduciendo video con ID:", videoId);
 
-    console.log("Reproduciendo video con ID:", videoId);
-
-    if (player) {
-      player.loadVideoById(videoId);
-      player.playVideo();
-    } else {
-      console.warn("Player aún no está inicializado.");
-    }
-  };
-  // Función auxiliar para extraer el ID del video de una URL
-  function extraerIdYoutube(url: string): string | null {
-    const match = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu.be\/)([\w\-]{11})/);
-    return match ? match[1] : null;
-  }
-
-    const pausar = () => {
-      if (player && typeof player.pauseVideo === "function") {
-        console.log("Pausando video");
-        player.pauseVideo();
+      if (player && typeof player.loadVideoById === "function") {
+        player.loadVideoById(videoId);
+        player.playVideo();
       } else {
-        console.warn("No se puede pausar. Player no está listo:", player);
+        console.warn("Player no está listo.");
       }
     };
 
+    const pausar = () => {
+      if (player && typeof player.pauseVideo === "function") {
+        player.pauseVideo();
+      }
+    };
+
+    const abrirYoutube = (url: string) => {
+      window.open(url, '_blank');
+    };
+
     const onYouTubeIframeAPIReady = () => {
-      console.log("YouTube Iframe API lista. Inicializando player...");
       player = new YT.Player('youtube-player', {
         height: '0',
         width: '0',
@@ -138,37 +134,37 @@ export default defineComponent({
           },
           onError: (error: any) => {
             console.error("Error en el reproductor:", error);
+            if (error && error.data && (error.data === 101 || error.data === 150)) {
+              alert("Este video no permite ser reproducido fuera de YouTube. Será abierto en otra pestaña.");
+              const videoUrl = `https://www.youtube.com/watch?v=${player.getVideoData().video_id}`;
+              abrirYoutube(videoUrl);
+            }
           }
         }
       });
     };
 
     onMounted(() => {
-      console.log("Componente montado");
       loadCanciones();
 
       if (!window.YT || typeof window.YT.Player !== "function") {
-        console.log("Cargando script de YouTube...");
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         document.head.appendChild(tag);
         window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
       } else {
-        console.log("YouTube API ya disponible.");
         onYouTubeIframeAPIReady();
       }
     });
 
     onUnmounted(() => {
-      console.log("Componente desmontado");
       if (unsubscribe) unsubscribe();
     });
 
-    return { canciones, reproducir, pausar };
+    return { canciones, reproducir, pausar, abrirYoutube };
   }
 });
 </script>
-
 
 <style scoped>
 @font-face {
