@@ -47,10 +47,17 @@
             </div>
           </template>
 
-          <template v-else-if="backContent && backContent.type === 'music'">
-            <p>¿Quieres sugerir música? Haz clic para abrir el formulario.</p>
-            <button @click="$emit('open-music-form')" class="boton abrir-formulario">Abrir Formulario Música</button>
-          </template>
+        <template v-else-if="backContent && backContent.type === 'music'">
+          <p>¿Querés sugerir música para la fiesta? Hacé clic y cargala en el formulario.</p>
+          <button @click="$emit('open-music-form')" class="boton abrir-formulario">
+            Abrir Formulario Música
+          </button>
+          <p style="margin: 0.5rem 0;"></p>
+          <button @click="$emit('ver-lista-musica')" class="boton ver-lista">
+            Ver lista sugerida
+          </button>
+        </template>
+
 
           <template v-else>
             <p>Contenido no disponible.</p>

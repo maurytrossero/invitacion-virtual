@@ -50,9 +50,10 @@ const adornoInferior =
   "https://dl.dropboxusercontent.com/scl/fi/fqccte9ioz89kmlog4lb3/adorno-inferior.png?rlkey=rsgkpbj2ty8jhwvh5kf2kwsy5&st=t9nn5t20";
 
 const images = [
-  "https://picsum.photos/id/1015/600/400",
-  "https://picsum.photos/id/1016/600/400",
-  "https://picsum.photos/id/1018/600/400",
+  "https://www.dl.dropboxusercontent.com/scl/fi/vkzb2gwenmvehnldr2tdf/Imagen-1.jpg?rlkey=cclv8flq74yuvglbt3858f3ko&raw=1",
+  "https://www.dl.dropboxusercontent.com/scl/fi/ewo3ro8nlagysjlx4tlc1/imagen-2.jpg?rlkey=oe242cnyx16wvljpvqqowxkae&raw=1",
+  "https://www.dl.dropboxusercontent.com/scl/fi/yq65gm6e059rk12n9ncem/imagen-3.jpg?rlkey=v5pk2dzahqg6wurn5t4cywgay&raw=1",
+  "https://www.dl.dropboxusercontent.com/scl/fi/4bwtd80n6i0w0c350qja7/imagen-4.jpg?rlkey=27jf6w4cw34xz5j3qunvsjp0i&raw=1",
 ];
 
 const currentIndex = ref(0);

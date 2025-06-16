@@ -30,6 +30,8 @@
         :frontIcon="modal.frontIcon"
         :backContent="modal.backContent"
         @open-music-form="abrirFormularioMusica"
+        @ver-lista-musica="redirigirListaMusica"
+
       />
     </div>
 
@@ -50,6 +52,12 @@
 import { ref } from 'vue'
 import ModalComponent from './ModalComponent.vue'
 import ModalMusic from './ModalMusic.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+function redirigirListaMusica() {
+  router.push('/invitacion-kyara-musica-sugerida')
+}
 
 const showMusicModal = ref(false)
 
@@ -63,21 +71,23 @@ function cerrarFormularioMusica() {
 
 const modals = [
   {
-    frontImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO0h0CMgMLU-zuXvv31t2jhUWKhY2HwJCrhA&s',
+    frontImage: 'https://www.dl.dropboxusercontent.com/scl/fi/9o0lyjd2sxdkp328tnue9/1-editado.jpeg?rlkey=fbn3jat26wrjxjyumndxen5w2&raw=1',
     frontText: 'Precio',
     frontIcon: 'cake',
     backContent: {
       type: 'price',
       prices: [
-        { description: 'Mayores', amount: '$40.000' },
-        { description: 'Menores', amount: '$25.000' },
-        { description: 'Juvenil', amount: '$35.000' },
-        { description: 'Brindis', amount: '$20.000' }
+        { description: 'Mayores', amount: '$35.000' },
+        { description: 'Menores de 4 a 11', amount: '$16.000' },
+        { description: 'Juvenil', amount: '$26.000' },
+        { description: 'Brindis', amount: '$15.000' },
+        { description: 'ALIAS', amount: 'vanina.giustetti' }
+
       ]
     }
   },
   {
-    frontImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUPnVDxHNIJTBlHK9JwfncsixbV8SwKb5Fvg&s',
+    frontImage: 'https://www.dl.dropboxusercontent.com/scl/fi/tj4rucj899z60sdogvfrw/2.jpeg?rlkey=cc2yi0lo2splizw7cs4tp2mgv&raw=1',
     frontText: 'Lugar',
     frontIcon: 'gift',
     backContent: {
@@ -87,7 +97,7 @@ const modals = [
     }
   },
   {
-    frontImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb54uUvljGEDIhS6QTp1I-JrL4PDd6xKOjfQ&s',
+    frontImage: 'https://www.dl.dropboxusercontent.com/scl/fi/2welj9vsxbjh3xg5zg5qg/3-editado.jpeg?rlkey=vbmxv1w9aisrvfwekav8qzejf&raw=1',
     frontText: 'Música',
     frontIcon: 'music',
     backContent: {
