@@ -13,7 +13,7 @@
 
         <div class="botones" v-if="!formVisible">
           <button class="boton" @click="formVisible = true">Sí, asistiré</button>
-          <button class="boton">No podré asistir</button>
+          <button class="boton" @click="mostrarAlertaNoAsistira">No podré asistir</button>
         </div>
 
         <div v-if="formVisible" class="formulario">
@@ -22,7 +22,7 @@
             <input v-model="apellido" type="text" placeholder="Apellido" />
             <input v-model="telefono" type="tel" placeholder="Teléfono (ej: 1123456789)" />
             <button @click="agregarAsistente" class="boton">Agregar</button>
-  <button @click="cancelarFormulario" class="boton cancelar">Cancelar</button>
+            <button @click="cancelarFormulario" class="boton cancelar">Cancelar</button>
 
           </div>
 
@@ -41,6 +41,7 @@
 import { ref } from 'vue'
 import { collection, addDoc } from 'firebase/firestore'
 import { db } from '@/firebase'
+import Swal from 'sweetalert2'
 
 const formVisible = ref(false)
 const nombre = ref('')
@@ -77,6 +78,21 @@ function cancelarFormulario() {
   asistentes.value = []
 }
 
+function mostrarAlertaNoAsistira() {
+  Swal.fire({
+    icon: 'info',
+    title: '¡Gracias por avisar!',
+    html: '<p style="font-family: Bahnschrift, sans-serif; font-size: 1rem;">Si cambiás de opinión, podés confirmar asistencia hasta el <strong>05/08</strong>.</p>',
+    confirmButtonText: 'Entendido',
+    background: 'linear-gradient(145deg, #1e1e1e, #2d2d2d)', // fondo similar al overlay
+    color: '#ffffff',
+    confirmButtonColor: '#ffffff',
+    customClass: {
+      popup: 'custom-alert-popup',
+      confirmButton: 'custom-alert-button'
+    }
+  })
+}
 
 async function confirmarAsistencia() {
   if (asistentes.value.length === 0) {
@@ -131,7 +147,7 @@ async function confirmarAsistencia() {
 .overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,6 +251,7 @@ async function confirmarAsistencia() {
   height: 2.5rem;
   color: white;
 }
+
 .formulario {
   display: flex;
   flex-direction: column;
@@ -278,4 +295,45 @@ async function confirmarAsistencia() {
   color: black;
 }
 
+/* Customiza el popup del alerta */
+:deep(.custom-alert-popup) {
+  border-radius: 1.5rem !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1) !important;
+  font-family: 'Bahnschrift', sans-serif !important;
+  text-align: center !important;
+  background: linear-gradient(145deg, #1e1e1e, #2d2d2d) !important;
+  color: white !important;
+}
+
+:deep(.custom-alert-popup h2) {
+  font-family: 'Bahnschrift', sans-serif !important;
+  font-weight: bold !important;
+  color: white !important;
+}
+
+/* Botón del alerta */
+:deep(.custom-alert-button) {
+  background-color: #ffffff !important;
+  color: #000 !important;
+  font-family: 'Bahnschrift', sans-serif !important;
+  border-radius: 9999px !important;
+  padding: 0.5rem 1.5rem !important;
+  font-weight: bold !important;
+  transition: all 0.3s ease !important;
+}
+
+:deep(.custom-alert-button:hover) {
+  background-color: #f0f0f0 !important;
+  color: #333 !important;
+}
+
+:deep(.custom-alert-popup .swal2-icon) {
+  color: white !important;
+  border-color: white !important;
+}
+
+:deep(.custom-alert-popup .swal2-icon-content) {
+  color: white !important;
+}
 </style>
