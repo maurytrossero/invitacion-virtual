@@ -5,60 +5,63 @@
   >
     <div class="overlay">
       <div class="contenido">
-        <h2>Lista de asistentes confirmados</h2>
-        <ul class="familias-lista grid-familias">
-          <li v-for="(familia, i) in familias" :key="i" class="familia-item">
-            <div class="card-header">
-              <div class="icono"><i class="fas fa-users"></i></div>
-              <div><strong>Familia {{ i + 1 }}</strong></div>
-            </div>
+        <h2 class="titulo-fijo">Lista de asistentes confirmados</h2>
+        <div class="scroll-familias">
+          <ul class="familias-lista grid-familias">
+            <li v-for="(familia, i) in familias" :key="i" class="familia-item">
+              <div class="card-header">
+                <div class="icono"><i class="fas fa-users"></i></div>
+                <div><strong>Familia {{ i + 1 }}</strong></div>
+              </div>
 
-            <div class="detalle-linea">
-              <i class="fas fa-id-badge"></i>
-              <small><strong>Código:</strong> {{ familia.codigoFamilia || 'N/A' }}</small>
-            </div>
+              <div class="detalle-linea">
+                <i class="fas fa-id-badge"></i>
+                <small><strong>Código:</strong> {{ familia.codigoFamilia || 'N/A' }}</small>
+              </div>
 
-            <div class="detalle-linea" v-if="familia.telefono">
-              <i class="fas fa-phone"></i>
-              <small>
-                <strong>Teléfono:</strong>
-                <template v-if="esTelefonoValido(familia.telefono)">
-                  <a
-                    :href="`https://wa.me/${formatearTelefonoWA(familia.telefono)}`"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="whatsapp-link"
-                  >
+              <div class="detalle-linea" v-if="familia.telefono">
+                <i class="fas fa-phone"></i>
+                <small>
+                  <strong>Teléfono:</strong>
+                  <template v-if="esTelefonoValido(familia.telefono)">
+                    <a
+                      :href="`https://wa.me/${formatearTelefonoWA(familia.telefono)}`"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="whatsapp-link"
+                    >
+                      {{ familia.telefono }}
+                    </a>
+                  </template>
+                  <template v-else>
                     {{ familia.telefono }}
-                  </a>
-                </template>
-                <template v-else>
-                  {{ familia.telefono }}
-                </template>
-              </small>
-            </div>
+                  </template>
+                </small>
+              </div>
 
-            <div class="titulo-asistentes">
-              <i class="fas fa-user-friends"></i> Asistentes
-            </div>
-            <ul class="asistentes-lista">
-              <li v-for="(a, j) in familia.asistentes" :key="j">
-                <i class="fas fa-user"></i> {{ a.nombre }} {{ a.apellido }}
-              </li>
-            </ul>
+              <div class="titulo-asistentes">
+                <i class="fas fa-user-friends"></i> Asistentes
+              </div>
+              <ul class="asistentes-lista">
+                <li v-for="(a, j) in familia.asistentes" :key="j">
+                  <i class="fas fa-user"></i> {{ a.nombre }} {{ a.apellido }}
+                </li>
+              </ul>
 
-            <div class="botones-acciones">
-              <button @click="editarFamilia(familia)" class="btn-editar">
-                <i class="fas fa-edit"></i> Editar
-              </button>
-              <button @click="eliminarFamilia(i)" class="btn-eliminar">
-                <i class="fas fa-trash"></i> Eliminar
-              </button>
-            </div>
-          </li>
-        </ul>
+              <div class="botones-acciones">
+                <button @click="editarFamilia(familia)" class="btn-editar">
+                  <i class="fas fa-edit"></i> Editar
+                </button>
+                <button @click="eliminarFamilia(i)" class="btn-eliminar">
+                  <i class="fas fa-trash"></i> Eliminar
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
+
     <EditfamilyModal
       v-if="mostrarModal"
       :familia="familiaSeleccionada"
@@ -119,7 +122,6 @@ function formatearTelefonoWA(tel) {
 }
 </script>
 
-
 <style scoped>
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
 
@@ -143,53 +145,75 @@ function formatearTelefonoWA(tel) {
 .overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  box-sizing: border-box;
   text-align: center;
   color: white;
   backdrop-filter: blur(4px);
 }
 
 .contenido {
-  max-width: 500px;
+  max-width: 600px;
   width: 100%;
-  background: rgba(255 255 255 / 0.1);
+  background: rgba(255, 255, 255, 0.1);
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
   font-family: "Bahnschrift", sans-serif;
 }
 
-h2 {
-  font-weight: 600;
-  margin-bottom: 1rem;
-  font-size: 1.8rem;
-  font-family: "Bahnschrift", sans-serif;
+.scroll-familias {
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
 
-/* Aplicar fuente Bahnschrift a todo */
+.scroll-familias::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-familias::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
 * {
   font-family: "Bahnschrift", sans-serif;
 }
 
-/* Mejora visual de tarjetas */
+.grid-familias {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid-familias {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .familia-item {
   background-color: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   padding: 1.2rem 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-/* Encabezado "Familia n" */
 .card-header {
   display: flex;
   align-items: center;
@@ -200,7 +224,6 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
-/* Línea de detalle */
 .detalle-linea {
   display: flex;
   align-items: center;
@@ -210,7 +233,6 @@ h2 {
   color: #ddd;
 }
 
-/* Lista de asistentes */
 .asistentes-lista li {
   display: flex;
   align-items: center;
@@ -220,7 +242,6 @@ h2 {
   margin-bottom: 0.3rem;
 }
 
-/* Encabezado asistentes */
 .titulo-asistentes {
   font-size: 1.05rem;
   margin-top: 0.75rem;
@@ -232,7 +253,6 @@ h2 {
   color: #fff;
 }
 
-/* Botones */
 .botones-acciones {
   display: flex;
   justify-content: flex-end;
@@ -271,11 +291,12 @@ h2 {
   background-color: #d32f2f;
 }
 
-
-@media (min-width: 768px) {
-  .grid-familias {
-    grid-template-columns: 1fr 1fr;
-  }
+.titulo-fijo {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  padding-bottom: 0.5rem;
+  z-index: 10;
 }
 
 @media (max-width: 400px) {
