@@ -102,6 +102,47 @@ const telefonoEdicion = ref('')
 const asistentesEdicion = ref([])
 const documentoEdicionId = ref(null)
 
+// Función genérica para mostrar alertas con SweetAlert2 y estilos personalizados
+async function mostrarAlerta({
+  icon = 'info',
+  title = '',
+  html = '',
+  text = '',
+  confirmButtonText = 'Aceptar',
+  showCancelButton = false,
+  cancelButtonText = 'Cancelar',
+  onConfirm = null,
+  onCancel = null
+} = {}) {
+  const result = await Swal.fire({
+    icon,
+    title,
+    html: html || undefined,
+    text: html ? undefined : text,
+    showCancelButton,
+    confirmButtonText,
+    cancelButtonText,
+    background: 'linear-gradient(145deg, #1e1e1e, #2d2d2d)',
+    color: '#ffffff',
+    confirmButtonColor: '#ffffff',
+    cancelButtonColor: '#888',
+    customClass: {
+      popup: 'custom-alert-popup',
+      confirmButton: 'custom-alert-button',
+      cancelButton: 'custom-alert-button'
+    }
+  })
+
+  if (result.isConfirmed && typeof onConfirm === 'function') {
+    onConfirm()
+  }
+  if (result.isDismissed && typeof onCancel === 'function') {
+    onCancel()
+  }
+
+  return result
+}
+
 // Genera un código de familia alfanumérico de 6 caracteres en mayúscula
 function generarCodigoFamilia() {
   return Math.random().toString(36).substring(2, 8).toUpperCase()
@@ -109,7 +150,11 @@ function generarCodigoFamilia() {
 
 function agregarAsistente() {
   if (!nombre.value || !apellido.value) {
-    alert('Por favor completá nombre y apellido del asistente.')
+    mostrarAlerta({
+      icon: 'warning',
+      title: 'Atención',
+      text: 'Por favor completá nombre y apellido del asistente.'
+    })
     return
   }
   asistentes.value.push({ nombre: nombre.value.trim(), apellido: apellido.value.trim() })
@@ -132,28 +177,29 @@ function cancelarFormulario() {
 }
 
 function mostrarAlertaNoAsistira() {
-  Swal.fire({
+  mostrarAlerta({
     icon: 'info',
     title: '¡Gracias por avisar!',
     html: '<p style="font-family: Bahnschrift, sans-serif; font-size: 1rem;">Si cambiás de opinión, podés confirmar asistencia hasta el <strong>05/08</strong>.</p>',
-    confirmButtonText: 'Entendido',
-    background: 'linear-gradient(145deg, #1e1e1e, #2d2d2d)', // fondo similar al overlay
-    color: '#ffffff',
-    confirmButtonColor: '#ffffff',
-    customClass: {
-      popup: 'custom-alert-popup',
-      confirmButton: 'custom-alert-button'
-    }
+    confirmButtonText: 'Entendido'
   })
 }
 
 async function confirmarAsistencia() {
   if (asistentes.value.length === 0) {
-    alert('Agregá al menos un asistente.')
+    mostrarAlerta({
+      icon: 'warning',
+      title: 'Atención',
+      text: 'Agregá al menos un asistente.'
+    })
     return
   }
   if (!validarTelefono(telefono.value)) {
-    alert('Por favor ingresá un teléfono válido (al menos 7 dígitos).')
+    mostrarAlerta({
+      icon: 'warning',
+      title: 'Atención',
+      text: 'Por favor ingresá un teléfono válido (al menos 7 dígitos).'
+    })
     return
   }
 
@@ -172,7 +218,7 @@ async function confirmarAsistencia() {
     asistentes.value = []
     telefono.value = ''
 
-    await Swal.fire({
+    await mostrarAlerta({
       icon: 'success',
       title: '¡Asistencia confirmada!',
       html: `
@@ -189,42 +235,33 @@ async function confirmarAsistencia() {
       showCancelButton: true,
       confirmButtonText: 'Copiar código',
       cancelButtonText: 'Cerrar',
-      background: 'linear-gradient(145deg, #1e1e1e, #2d2d2d)',
-      color: '#ffffff',
-      confirmButtonColor: '#ffffff',
-      cancelButtonColor: '#888',
-      customClass: {
-        popup: 'custom-alert-popup',
-        confirmButton: 'custom-alert-button',
-        cancelButton: 'custom-alert-button'
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
+      onConfirm: () => {
         navigator.clipboard.writeText(codigoFamilia)
-        Swal.fire({
+        mostrarAlerta({
           icon: 'success',
           title: '¡Código copiado!',
-          background: 'linear-gradient(145deg, #1e1e1e, #2d2d2d)',
-          color: '#ffffff',
-          confirmButtonText: 'Ok',
-          customClass: {
-            popup: 'custom-alert-popup',
-            confirmButton: 'custom-alert-button'
-          }
+          confirmButtonText: 'Ok'
         })
       }
     })
 
   } catch (e) {
-    alert('Hubo un error al confirmar: ' + e.message)
+    mostrarAlerta({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un error al confirmar: ' + e.message
+    })
   }
 }
-
 
 // Buscar familia por código
 async function buscarFamilia() {
   if (!codigoBusqueda.value) {
-    alert('Por favor ingresá un código de familia.')
+    mostrarAlerta({
+      icon: 'warning',
+      title: 'Atención',
+      text: 'Por favor ingresá un código de familia.'
+    })
     return
   }
   try {
@@ -232,7 +269,11 @@ async function buscarFamilia() {
     const q = query(familiasRef, where('codigoFamilia', '==', codigoBusqueda.value.trim().toUpperCase()))
     const querySnapshot = await getDocs(q)
     if (querySnapshot.empty) {
-      alert('No se encontró ninguna familia con ese código.')
+      mostrarAlerta({
+        icon: 'info',
+        title: 'No encontrado',
+        text: 'No se encontró ninguna familia con ese código.'
+      })
       return
     }
     querySnapshot.forEach((docSnap) => {
@@ -242,7 +283,11 @@ async function buscarFamilia() {
       asistentesEdicion.value = data.asistentes.map(a => ({ ...a })) // clonamos para editar sin afectar original
     })
   } catch (e) {
-    alert('Error al buscar la familia: ' + e.message)
+    mostrarAlerta({
+      icon: 'error',
+      title: 'Error',
+      text: 'Error al buscar la familia: ' + e.message
+    })
   }
 }
 
@@ -257,12 +302,20 @@ function eliminarAsistente(index) {
 async function guardarCambios() {
   for (const a of asistentesEdicion.value) {
     if (!a.nombre.trim() || !a.apellido.trim()) {
-      alert('Por favor completá nombre y apellido de todos los asistentes.')
+      mostrarAlerta({
+        icon: 'warning',
+        title: 'Atención',
+        text: 'Por favor completá nombre y apellido de todos los asistentes.'
+      })
       return
     }
   }
   if (!validarTelefono(telefonoEdicion.value)) {
-    alert('Por favor ingresá un teléfono válido (al menos 7 dígitos).')
+    mostrarAlerta({
+      icon: 'warning',
+      title: 'Atención',
+      text: 'Por favor ingresá un teléfono válido (al menos 7 dígitos).'
+    })
     return
   }
   try {
@@ -272,10 +325,18 @@ async function guardarCambios() {
       asistentes: asistentesEdicion.value,
       timestamp: new Date()
     })
-    alert('Cambios guardados correctamente.')
+    mostrarAlerta({
+      icon: 'success',
+      title: 'Guardado',
+      text: 'Cambios guardados correctamente.'
+    })
     cerrarEdicion()
   } catch (e) {
-    alert('Error al guardar los cambios: ' + e.message)
+    mostrarAlerta({
+      icon: 'error',
+      title: 'Error',
+      text: 'Error al guardar los cambios: ' + e.message
+    })
   }
 }
 
@@ -287,6 +348,7 @@ function cerrarEdicion() {
   documentoEdicionId.value = null
 }
 </script>
+
 
 <style scoped>
 @font-face {
