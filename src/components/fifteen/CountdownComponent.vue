@@ -45,8 +45,8 @@ function updateBackground() {
   const isMobile = window.innerWidth <= 768
 
   backgroundUrl.value = isMobile && isPortrait
-    ? 'https://dl.dropboxusercontent.com/scl/fi/ucpo6t3d9by764ew4yu27/fondo-topaz.png?rlkey=qdnl6efzqjgudccawx19t3yzr&st=mom1g4qi'
-    : 'https://dl.dropboxusercontent.com/scl/fi/ucpo6t3d9by764ew4yu27/fondo-topaz.png?rlkey=qdnl6efzqjgudccawx19t3yzr&st=fj10a0a1'
+    ? 'https://dl.dropboxusercontent.com/scl/fi/3x5x4kpy45j7abxx882wx/vertical.jpg?rlkey=b91dlsxrq654f4kt20pylbn5u&raw=1'
+    : 'https://dl.dropboxusercontent.com/scl/fi/by4gfdcba9ot5sxh187wb/horizontal.jpg?rlkey=dy5r8vcw6m3flqf65hl9zs9kz&raw=1'
 }
 
 function updateCountdown() {
