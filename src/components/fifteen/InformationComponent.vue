@@ -80,7 +80,7 @@ const modals = [
         { description: 'Mayores', amount: '$35.000' },
         { description: 'Menores de 4 a 11', amount: '$16.000' },
         { description: 'Juvenil', amount: '$26.000' },
-        { description: 'Brindis', amount: '$15.000' },
+        { description: 'Brindis', amount: '$16.000' },
         { description: 'ALIAS', amount: 'vanina.giustetti' }
 
       ]
@@ -92,7 +92,7 @@ const modals = [
     frontIcon: 'gift',
     backContent: {
       type: 'location',
-      address: `AGOSTO | 16 | 2025\nAsociación Italiana príncipe Humberto. Porteña.`,
+      address: `AGOSTO | 16 | 2025\nAsociación Italiana príncipe Humberto. Porteña.\nCena: 21:00 hs | Brindis: 00:30 hs`,
       googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Asociación+Italiana+Príncipe+Humberto,+Porteña'
     }
   },
