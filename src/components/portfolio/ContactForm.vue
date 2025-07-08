@@ -60,93 +60,125 @@ const handleSubmit = () => {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 .contact-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
-  background-color: #f0f0f0; /* Fondo más claro para mejor contraste */
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   min-height: 100vh;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: #ddd;
 }
 
 .contact-form {
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 40px 30px;
+  border-radius: 16px;
+  border: 2px solid #4A90E2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
   width: 100%;
   max-width: 600px;
   box-sizing: border-box;
 }
 
 .contact-form h2 {
-  margin-bottom: 20px;
-  color: #333; /* Contraste más alto para los encabezados */
-  font-family: 'Arial', sans-serif; /* Fuente diferente para encabezados */
+  margin-bottom: 30px;
+  color: #4A90E2;
+  font-weight: 600;
+  font-size: 2.8rem;
+  text-align: center;
 }
 
 .contact-form label {
   display: block;
-  margin: 10px 0 5px;
-  color: #555;
-  font-family: 'Arial', sans-serif;
+  margin-bottom: 8px;
+  color: #81b3ff;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 12px; /* Espaciado más amplio */
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-bottom: 15px;
+  padding: 14px 15px;
+  border-radius: 10px;
+  border: 1.5px solid #4A90E2;
+  background: #1a1a1a;
+  color: #ddd;
+  font-size: 1rem;
+  margin-bottom: 20px;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  transition: border-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #5a8bd8;
+  font-style: italic;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #81b3ff;
+  outline: none;
+  box-shadow: 0 0 8px #81b3ffaa;
 }
 
 .contact-form textarea {
   resize: vertical;
-  height: 150px;
+  min-height: 140px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .contact-form button {
   width: 100%;
-  padding: 12px 20px;
+  padding: 14px 20px;
   border: none;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 4px;
+  border-radius: 12px;
+  background-color: #4A90E2;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
   cursor: pointer;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .contact-form button:hover {
-  background-color: #0056b3;
+  background-color: #81b3ff;
 }
 
 .social-icons {
+  margin-top: 50px;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  font-size: 2rem;
-  margin-top: 20px;
+  gap: 30px;
 }
 
 .social-icon {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: transparent;
+  background-size: 70% 70%;
   background-position: center;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 8px #4A90E2AA;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
 .social-icon:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2); /* Aumenta el brillo al pasar el ratón */
+  transform: scale(1.15);
+  box-shadow: 0 0 15px #81b3ff;
 }
+
+
 
 .facebook {
   background-image: url('https://e7.pngegg.com/pngimages/335/1001/png-clipart-social-media-facebook-computer-icons-social-network-linkedin-text-logo-internet.png');
@@ -166,25 +198,28 @@ const handleSubmit = () => {
 
 @media (max-width: 768px) {
   .contact-section {
-    padding: 20px;
+    padding: 30px 15px;
   }
 
   .contact-form {
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 30px 20px;
   }
 
-  .contact-form input,
-  .contact-form textarea {
-    padding: 8px;
-  }
-
-  .contact-form button {
-    padding: 10px;
+  .contact-form h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
   }
 
   .social-icons {
-    margin-top: 20px;
+    margin-top: 30px;
+    gap: 25px;
+    font-size: 2.2rem;
+  }
+
+  .social-icon {
+    width: 42px;
+    height: 42px;
   }
 }
+
 </style>
