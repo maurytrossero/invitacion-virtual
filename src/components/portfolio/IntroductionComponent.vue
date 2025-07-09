@@ -5,7 +5,10 @@
       <h2 class="subtitle">Fotógrafo y Productor Audiovisual</h2>
       <div class="description">
         <div class="sections-grid">
-          <div class="section" v-for="(s, i) in services" :key="i" :style="{ animationDelay: `${0.2 + i * 0.2}s` }">
+          <div class="section" 
+            v-for="(s, i) in services" 
+            :key="i" 
+            :style="{ animationDelay: `${0.2 + i * 0.2}s` }">
             <div class="icon-container">
               <component :is="s.icon" class="section-icon" />
             </div>
@@ -24,7 +27,7 @@
 </template>
 
 <script setup>
-import { Users, Camera, Video, PartyPopper} from 'lucide-vue-next';
+import { Users, Camera, Video, PartyPopper } from 'lucide-vue-next';
 import Drone from '@/components/icons/DroneIcon.vue';
 
 const services = [
@@ -69,10 +72,14 @@ const services = [
   color: #fff;
   text-align: center;
   padding: 60px 20px;
+  background-image: url('https://your-image-url.com'); /* Aquí va la URL de tu imagen */
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; /* Hace que la imagen se quede fija al hacer scroll */
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6); /* Fondo negro semi-transparente para contraste */
   border: 1px solid #4A90E2;
   border-radius: 16px;
   padding: 40px;
@@ -103,10 +110,9 @@ const services = [
 .section {
   flex: 0 0 220px; /* ancho fijo */
   text-align: center;
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
 }
-
-
-
 
 @keyframes fadeInUp {
   to {
@@ -125,18 +131,33 @@ const services = [
   background-color: #1a1a1a;
   border: 2px solid #4A90E2;
   margin: 0 auto 15px;
+  transition: transform 0.3s ease;
+}
+
+.icon-container:hover {
+  transform: scale(1.1); /* Efecto de escalado en hover */
 }
 
 .section-icon {
   width: 36px;
   height: 36px;
   color: #4A90E2;
+  transition: color 0.3s ease;
+}
+
+.icon-container:hover .section-icon {
+  color: #fff; /* Cambio de color al pasar el cursor */
 }
 
 .section-title {
   font-size: 1.5rem;
   color: #4A90E2;
   margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.section-title:hover {
+  transform: scale(1.1);
 }
 
 p {

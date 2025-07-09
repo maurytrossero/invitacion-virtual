@@ -17,11 +17,21 @@
     </div>
 
     <div class="social-icons">
-      <a href="https://www.facebook.com/mtproduccioneshd/" target="_blank" class="social-icon facebook"></a>
-      <a href="https://www.instagram.com/mtproducciones.ok/" target="_blank" class="social-icon instagram"></a>
-      <a href="https://wa.me/3564607490?text=Hola, quisiera más información" target="_blank" class="social-icon whatsapp"></a>
-      <a href="https://www.tiktok.com/@mauritrossero" target="_blank" class="social-icon tiktok"></a>
+      <a href="https://www.facebook.com/mtproduccioneshd/" target="_blank" class="social-icon">
+        <img src="https://e7.pngegg.com/pngimages/335/1001/png-clipart-social-media-facebook-computer-icons-social-network-linkedin-text-logo-internet.png" alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com/mtproducciones.ok/" target="_blank" class="social-icon">
+        <img src="https://e7.pngegg.com/pngimages/722/1011/png-clipart-logo-icon-instagram-logo-instagram-logo-purple-violet-thumbnail.png" alt="Instagram">
+      </a>
+      <a href="https://wa.me/3564607490?text=Hola, quisiera más información" target="_blank" class="social-icon">
+        <img src="https://e7.pngegg.com/pngimages/347/373/png-clipart-computer-icons-whatsapp-whatsapp-text-trademark-thumbnail.png" alt="Whatsapp">
+      </a>
+      <a href="https://www.tiktok.com/@mauritrossero" target="_blank" class="social-icon">
+        <img src="https://e7.pngegg.com/pngimages/449/200/png-clipart-tiktok-icon-tech-companies-thumbnail.png" alt="TikTok">
+      </a>
     </div>
+
+
   </div>
 </template>
 
@@ -152,25 +162,25 @@ const handleSubmit = () => {
 .contact-form button:hover {
   background-color: #81b3ff;
 }
-
 .social-icons {
   margin-top: 50px;
   display: flex;
   justify-content: center;
   gap: 30px;
+  flex-wrap: wrap;
 }
 
 .social-icon {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: transparent;
-  background-size: 70% 70%;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   box-shadow: 0 0 8px #4A90E2AA;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
 }
 
 .social-icon:hover {
@@ -178,7 +188,18 @@ const handleSubmit = () => {
   box-shadow: 0 0 15px #81b3ff;
 }
 
-
+.social-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+@media (max-width: 768px) {
+  .social-icon {
+    width: 42px;
+    height: 42px;
+  }
+}
 
 .facebook {
   background-image: url('https://e7.pngegg.com/pngimages/335/1001/png-clipart-social-media-facebook-computer-icons-social-network-linkedin-text-logo-internet.png');

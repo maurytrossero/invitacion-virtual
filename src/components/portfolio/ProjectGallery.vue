@@ -72,9 +72,9 @@
 import { ref } from 'vue';
 
 const eventsProjects = [
-  { id: 1, title: 'Bodas', image: 'https://www.dropbox.com/scl/fi/d7o2s2gijpxbqmyaggb1s/DSC_2841.jpg?rlkey=dn4dq7yonbhb7hxjvh65zojkr&st=trs9ulfz&raw=1' },
-  { id: 2, title: 'Fiesta de 15 Años', image: 'https://www.dropbox.com/scl/fi/eqfsqr0v5syzcn90s1p1o/quince-a-os.jpg?rlkey=gjw3azk9prno5uafh6ztrv9np&st=tmwq8l82&raw=1' },
-  { id: 3, title: 'Egresos', image: 'https://www.dropbox.com/scl/fi/mgrx0kadoywuc75vjz7xw/egreso1.jpg?rlkey=pv0b16n9k4cwf8yix7nmxf51a&st=c6534wlc&raw=1' }
+  { id: 1, title: 'Bodas', image: 'https://www.dropbox.com/scl/fi/4i5i7lav1hbct29ibrmr5/CristianNoe.jpg?rlkey=9hi7n0mdfjl003zm81ko2mfvf&st=pm6jvs7t&raw=1' },
+  { id: 2, title: 'Fiesta de 15 Años', image: 'https://www.dropbox.com/scl/fi/x4m0te4qdnwy4p3xyeozk/quinceAngie.jpg?rlkey=gon81dvzmpozx9ytequs3w9dy&st=504ik5vq&raw=1' },
+  { id: 3, title: 'Egresos', image: 'https://www.dropbox.com/scl/fi/1d8zqvjutu17ifnk0usnj/Promo22Fasta.jpg?rlkey=dikoycmz6e52u9i7iq11ec4v2&st=mcwxqsk8&raw=1' }
 ];
 
 const productProjects = [
