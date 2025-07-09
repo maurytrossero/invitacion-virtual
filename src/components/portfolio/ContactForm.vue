@@ -73,16 +73,37 @@ const handleSubmit = () => {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 .contact-section {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   min-height: 100vh;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   color: #ddd;
+  overflow: hidden;
+  z-index: 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* fallback */
 }
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://dl.dropboxusercontent.com/scl/fi/06au94ai4ahdfujp3kmz5/FOTO2.jpg?rlkey=mejzsc4k6qoq2sdyv82tb4s28&st=xiwoowm6'); /* tu imagen */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* para que se mueva con scroll */
+  filter: grayscale(100%) brightness(0.3) contrast(1.2);
+  z-index: -1;
+  pointer-events: none;
+}
+
 
 .contact-form {
   background: rgba(0, 0, 0, 0.75);

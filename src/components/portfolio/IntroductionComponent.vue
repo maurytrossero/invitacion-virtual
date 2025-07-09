@@ -63,19 +63,31 @@ const services = [
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 .introduction {
+  position: relative;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   color: #fff;
   text-align: center;
   padding: 60px 20px;
-  background-image: url('https://your-image-url.com'); /* Aquí va la URL de tu imagen */
+  overflow: hidden;
+  z-index: 0;
+}
+.introduction::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://dl.dropboxusercontent.com/scl/fi/cn3dnma47t7tjp65y4h0v/DSC_9439.jpg?rlkey=gzf3moia4tyi2ko9nsnp29od0');
   background-position: center;
   background-size: cover;
-  background-attachment: fixed; /* Hace que la imagen se quede fija al hacer scroll */
+background-attachment: scroll; /* o simplemente eliminar esta línea */
+  filter: grayscale(100%) brightness(0.4) contrast(1.2);
+  z-index: -1;
 }
 
 .overlay {

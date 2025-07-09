@@ -133,25 +133,7 @@ function stopZoom() {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-.project-gallery {
-  position: relative;
-  padding: 60px 40px;
-  background-color: #0f2027;
-  background-image: url('https://www.dropbox.com/scl/fi/55ffixug06bri6e1pcx3j/imagen-de-fondo.jpg?rlkey=yhxxjdb9hekuu9hoy1nj4q3bi&st=h2liln5y&raw=1');
-  background-size: cover;
-  background-position: center;
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: #ddd; /* texto general */
-}
 
-.overlay {
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 16px;
-  padding: 30px 40px;
-  border: 2px solid #4A90E2; /* mismo azul */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-}
 
 .gallery-title {
   text-align: center;
@@ -173,11 +155,51 @@ function stopZoom() {
   font-weight: 600;
 }
 
+.project-gallery {
+  position: relative;
+  padding: 60px 40px;
+  background-color: #0f2027;
+  background-image: url('https://www.dropbox.com/scl/fi/55ffixug06bri6e1pcx3j/imagen-de-fondo.jpg?rlkey=yhxxjdb9hekuu9hoy1nj4q3bi&st=h2liln5y&raw=1');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #ddd;
+  overflow-x: hidden; /* opcional, evitar scroll horizontal */
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 16px;
+  padding: 30px 40px;
+  border: 2px solid #4A90E2;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+
+  max-width: 70vw; /* <-- limitar ancho máximo */
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+
+  width: 100%;
+  max-width: 70vw; /* <-- limitar ancho máximo */
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+
+@media (min-width: 769px) {
+  .gallery {
+    max-width: 70vw;
+    margin: 0 auto;
+  }
 }
 
 .gallery-item {
