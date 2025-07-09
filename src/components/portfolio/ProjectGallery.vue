@@ -158,15 +158,27 @@ function stopZoom() {
 .project-gallery {
   position: relative;
   padding: 60px 40px;
-  background-color: #0f2027;
-  background-image: url('https://www.dropbox.com/scl/fi/55ffixug06bri6e1pcx3j/imagen-de-fondo.jpg?rlkey=yhxxjdb9hekuu9hoy1nj4q3bi&st=h2liln5y&raw=1');
-  background-size: cover;
-  background-position: center;
-  margin: 0;
   font-family: 'Poppins', sans-serif;
   color: #ddd;
-  overflow-x: hidden; /* opcional, evitar scroll horizontal */
+  overflow-x: hidden; /* evitar scroll horizontal */
+  z-index: 0;
+  background-color: #0f2027; /* fallback */
 }
+
+.project-gallery::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('https://www.dropbox.com/scl/fi/55ffixug06bri6e1pcx3j/imagen-de-fondo.jpg?rlkey=yhxxjdb9hekuu9hoy1nj4q3bi&st=h2liln5y&raw=1');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* para que se mueva con scroll */
+  filter: grayscale(100%) brightness(0.3) contrast(1.2);
+  z-index: -1;
+  pointer-events: none;
+}
+
 
 .overlay {
   background: rgba(0, 0, 0, 0.85);
