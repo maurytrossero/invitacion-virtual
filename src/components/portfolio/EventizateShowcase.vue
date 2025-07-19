@@ -86,7 +86,7 @@ const features = [
 
 .eventizate-showcase {
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   display: flex;
@@ -97,13 +97,16 @@ const features = [
   box-sizing: border-box;
   z-index: 0;
   text-align: center;
+  overflow-x: hidden; /* ✅ importante */
 }
 
 .eventizate-showcase::before {
   content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: url('https://www.dropbox.com/scl/fi/1y4umbmt9ybmxcz8n96ir/Captura-de-pantalla-2025-07-18-212839.jpg?rlkey=77j291310fflfy85nzou84h05&raw=1') no-repeat center center;
   background-size: cover;
   filter: grayscale(100%) brightness(0.4) contrast(1.2);
@@ -118,22 +121,31 @@ const features = [
   max-width: 900px;
   width: 100%;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
 }
 
 .title {
-  font-size: 2.8rem;
+  font-size: 3rem;
   color: #fff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 10px;
 }
 
-.highlight {
+.highlight-link {
   color: #4A90E2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.highlight-link:hover {
+  color: #72a3f9;
+  text-decoration: underline;
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #ccc;
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
 }
 
 .features {
@@ -149,7 +161,9 @@ const features = [
   border: 1px solid #4A90E2;
   border-radius: 12px;
   padding: 30px 20px;
-  width: 240px;
+  flex: 0 0 220px;
+  max-width: 100%;
+  box-sizing: border-box;
   text-align: center;
   animation: fadeInUp 1s forwards;
   opacity: 0;
@@ -166,8 +180,8 @@ const features = [
   background: #111;
   border: 2px solid #4A90E2;
   border-radius: 50%;
-  width: 64px;
-  height: 64px;
+  width: 5rem;
+  height: 5rem;
   margin: 0 auto 15px;
   display: flex;
   align-items: center;
@@ -176,15 +190,15 @@ const features = [
 }
 
 .feature-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   color: #4A90E2;
 }
 
 .feature-title {
+  font-size: 1.5rem;
   color: #4A90E2;
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 10px;
 }
 
 .previews {
@@ -197,27 +211,31 @@ const features = [
   margin-bottom: 1.5rem;
 }
 
-.preview-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+/* ... ya está todo tu estilo previo ... reemplazamos solo esto: */
 
 .preview-card {
-  background: #111;
-  border: 1px solid #4A90E2;
-  border-radius: 16px;
-  padding: 20px;
-  overflow: hidden;
+  background: transparent;
+  border: none;
+  padding: 0;
+  flex: 0 0 420px;
+  max-width: 100%;
   text-align: center;
 }
 
 .preview-card iframe {
   width: 100%;
-  height: 400px;
-  border-radius: 12px;
-  border: none;
-  margin-bottom: 10px;
+  height: 480px; /* más alto para evitar scroll */
+  border-radius: 30px;
+  border: 8px solid #1a1a1a;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  margin-bottom: 15px;
+  overflow: hidden;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Oculta scrollbar en WebKit (Chrome, Safari) */
+.preview-card iframe::-webkit-scrollbar {
+  display: none;
 }
 
 .preview-card h4 {
@@ -227,7 +245,10 @@ const features = [
 
 .preview-card p {
   color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
 }
+
 
 .invitation-link {
   display: inline-block;
@@ -236,26 +257,33 @@ const features = [
   text-decoration: underline;
   font-weight: 600;
 }
-.highlight-link {
-  color: #4A90E2;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
 
-.highlight-link:hover {
-  color: #72a3f9;
-  text-decoration: underline;
-}
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.3rem;
+  }
 
-@media (min-width: 768px) {
-  .preview-cards {
-    flex-direction: row;
-    justify-content: center;
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .feature-title {
+    font-size: 1.3rem;
+  }
+
+  .feature-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .example-title {
+    font-size: 1.5rem;
   }
 
   .preview-card {
-    width: 45%;
+    flex: 0 0 100%;
   }
 }
 </style>
+
+
