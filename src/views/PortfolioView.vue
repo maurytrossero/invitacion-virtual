@@ -1,31 +1,46 @@
 <template>
   <div id="portfolio-view">
-    <HeaderLogo />
-    <IntroductionComponent />
-    <ProjectGallery />
-    <EventizateShowcase /> <!-- NUEVA SECCIÓN -->
-    <ContactForm />   
-    <!-- Flechas de navegación -->
+    <SiteHeader />
+
+    <div id="header-logo">
+      <HeaderLogo />
+    </div>
+
+    <div id="introduction">
+      <IntroductionComponent />
+    </div>
+
+    <div id="project-gallery">
+      <ProjectGallery />
+    </div>
+
+    <div id="eventizate-showcase">
+      <EventizateShowcase />
+    </div>
+
+    <div id="contact-form">
+      <ContactForm />
+    </div>
+
+    <!-- Flechas de navegación 
     <button class="arrow up" @click="scrollToComponent('up')">▲</button>
-    <button class="arrow down" @click="scrollToComponent('down')">▼</button>
+    <button class="arrow down" @click="scrollToComponent('down')">▼</button>-->
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'; // Importa onMounted desde 'vue'
+import { ref, onMounted } from 'vue';
+import SiteHeader from '@/components/portfolio/SiteHeader.vue'; // IMPORTA tu header nuevo
 import HeaderLogo from '@/components/portfolio/HeaderLogo.vue';
 import IntroductionComponent from '@/components/portfolio/IntroductionComponent.vue';
 import ProjectGallery from '@/components/portfolio/ProjectGallery.vue';
 import ContactForm from '@/components/portfolio/ContactForm.vue';
 import EventizateShowcase from '@/components/portfolio/EventizateShowcase.vue';
 
-
-const components = ref([]);
-
-// Función para desplazar la vista al componente correspondiente
+// Función para scroll con flechas
 function scrollToComponent(direction) {
-  const elements = Array.from(document.querySelectorAll('#portfolio-view > *'));
-  const currentIndex = elements.findIndex((el) => el.getBoundingClientRect().top >= 0);
+  const elements = Array.from(document.querySelectorAll('#portfolio-view > div[id]'));
+  const currentIndex = elements.findIndex(el => el.getBoundingClientRect().top >= 0);
 
   if (direction === 'up' && currentIndex > 0) {
     elements[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
@@ -34,12 +49,10 @@ function scrollToComponent(direction) {
   }
 }
 
-// Montar las referencias a los componentes
 onMounted(() => {
-  // Opcional: Se puede inicializar la lista de componentes si se requiere para otros propósitos
+  // Aquí puedes inicializar algo si hace falta
 });
 </script>
-
 <style scoped>
 #portfolio-view {
   font-family: Avenir, Helvetica, Arial, sans-serif;
