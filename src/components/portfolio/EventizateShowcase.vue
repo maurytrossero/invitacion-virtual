@@ -29,7 +29,7 @@
         <div class="preview-cards">
           <div class="preview-card">
             <iframe
-              src="https://eventizate.mtproducciones.com.ar/invitacion/boda"
+              src="https://eventizate.mtproducciones.com.ar/invitacion/boda-noe-y-cristian"
               title="Invitación Boda"
               frameborder="0"
               loading="lazy"
@@ -37,7 +37,7 @@
             <h4>Invitación para Boda</h4>
             <p>Una invitación elegante, con música, ubicación y confirmación.</p>
             <a
-              href="https://eventizate.mtproducciones.com.ar/invitacion/boda"
+              href="hhttps://eventizate.mtproducciones.com.ar/invitacion/boda-noe-y-cristian"
               target="_blank"
               class="invitation-link"
             >Abrir invitación</a>
